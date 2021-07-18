@@ -1,0 +1,45 @@
+﻿@model IEnumerable<OnlineMovieBooking.Models.CinemaSeat>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Cinema Seat List</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CinemaHall.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SeatNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CinemaHall.Cinema.Name) @Html.DisplayFor(modelItem => item.CinemaHall.Cinema.City.Name) (@Html.DisplayFor(modelItem => item.CinemaHall.Name))
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SeatNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CinemaSeatId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CinemaSeatId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CinemaSeatId })
+        </td>
+    </tr>
+}
+
+</table>

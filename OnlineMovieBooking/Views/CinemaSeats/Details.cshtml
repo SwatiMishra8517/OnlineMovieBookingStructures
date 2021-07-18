@@ -1,0 +1,41 @@
+﻿@model OnlineMovieBooking.Models.CinemaSeat
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details @Model.CinemaHall.Cinema.Name-@Model.CinemaHall.Cinema.City.Name (@Model.CinemaHall.Name) </h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CinemaHall.Name)
+        </dt>
+
+        <dd>
+            @Model.CinemaHall.Cinema.Name-@Model.CinemaHall.Cinema.City.Name (@Model.CinemaHall.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SeatNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SeatNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CinemaSeatId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
