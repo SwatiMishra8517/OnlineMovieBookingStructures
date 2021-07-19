@@ -12,7 +12,7 @@ namespace OnlineMovieBooking.Domain.Repository
     {
         void Add(Feedback feedback);
         Feedback GetById(int id);
-        void Update(Feedback feedback);
+        void Update(int id, Feedback feedback);
         void Delete(int id);
         List<Feedback> GetAll();
     }

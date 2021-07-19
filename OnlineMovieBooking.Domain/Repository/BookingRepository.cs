@@ -13,22 +13,22 @@ namespace OnlineMovieBooking.Domain.Repository
     {
         private MovieContext db;
         
-        public BookingRepository() { }
+        public BookingRepository() 
+        {
+            this.db = new MovieContext();
+        }
         public BookingRepository(MovieContext movieContext)
         {
             this.db = movieContext;
         }
         public bool Add(Booking booking)
         {
-            db = new MovieContext();
             db.Bookings.Add(booking);
             db.SaveChanges();
             return true;
         }
-
         public void Delete(int id)
         {
-            db = new MovieContext();
             var booking = db.Bookings.Find(id);
             if(booking!=null)
             {
@@ -37,9 +37,8 @@ namespace OnlineMovieBooking.Domain.Repository
             }
         }
 
-        public void Edit(int id,Booking booking)
+        public void Update(int id,Booking booking)
         {
-            db = new MovieContext();
             var book = GetById(id);
             book = booking;
             db.SaveChanges();
@@ -47,19 +46,12 @@ namespace OnlineMovieBooking.Domain.Repository
 
         public List<Booking> GetAll()
         {
-            db = new MovieContext();
             return db.Bookings.ToList();
         }
 
         public Booking GetById(int id)
         {
-            db = new MovieContext();
-            var booking = db.Bookings.Find(id);
-            if(booking!=null)
-            {
-                return booking;
-            }
-            return null;
+            return db.Bookings.Find(id);
         }
     }
 }

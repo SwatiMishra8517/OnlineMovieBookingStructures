@@ -12,7 +12,7 @@ namespace OnlineMovieBooking.Domain.Repository
     {
         void Add(Payment payment);
         Payment GetById(int id);
-        void Update(Payment payment);
+        void Update(int id, Payment payment);
         void Delete(int id);
         List<Payment> GetAll();
     }

@@ -25,7 +25,7 @@ namespace OnlineMovieBooking.Domain.Repository
             db.SaveChanges();
         }
 
-        public void Edit(int id, CinemaSeat cinemaSeat)
+        public void Update(int id, CinemaSeat cinemaSeat)
         {
             var cine = GetById(id);
             cine = cinemaSeat;
@@ -39,8 +39,7 @@ namespace OnlineMovieBooking.Domain.Repository
 
         public CinemaSeat GetById(int id)
         {
-            var cine = db.CinemaSeats.Find(id);
-            return cine;
+            return db.CinemaSeats.Find(id);
         }
     }
 }

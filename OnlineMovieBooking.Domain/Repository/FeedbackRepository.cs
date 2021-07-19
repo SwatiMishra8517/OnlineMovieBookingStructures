@@ -28,9 +28,9 @@ namespace OnlineMovieBooking.Domain.Repository
         {
             return db.Feedbacks.Find(id);
         }
-        public void Update(Feedback feedback)
+        public void Update(int id, Feedback feedback)
         {
-            var s = GetById(feedback.FeedbackId);
+            var s = GetById(id);
             s = feedback;
             db.SaveChanges();
         }

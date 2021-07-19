@@ -28,9 +28,9 @@ namespace OnlineMovieBooking.Domain.Repository
         {
             return db.Cities.Find(id);
         }
-        public void Update(City city)
+        public void Update(int id, City city)
         {
-            var s = GetById(city.CityId);
+            var s = GetById(id);
             s = city;
             db.SaveChanges();
         }

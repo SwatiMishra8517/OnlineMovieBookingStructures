@@ -10,10 +10,10 @@ namespace OnlineMovieBooking.Domain.Repository
 {
     public interface ICinemaHallRepository
     {
-        List<CinemaHall> GetAllCinemaHalls();
-        CinemaHall GetCinemaHallById(int id);
-        void AddCinemaHall(CinemaHall cinemaHall);
-        void EditCinemaHall(int id,CinemaHall cinemaHall);
-        void DeleteCinemaHall(int id);
+        List<CinemaHall> GetAll();
+        CinemaHall GetById(int id);
+        void Add(CinemaHall cinemaHall);
+        void Update(int id,CinemaHall cinemaHall);
+        void Delete(int id);
     }
 }

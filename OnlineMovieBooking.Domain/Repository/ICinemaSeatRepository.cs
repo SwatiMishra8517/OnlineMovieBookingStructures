@@ -13,7 +13,7 @@ namespace OnlineMovieBooking.Domain.Repository
         List<CinemaSeat> GetAll();
         CinemaSeat GetById(int id);
         bool Add(CinemaSeat cinemaSeat);
-        void Edit(int id, CinemaSeat cinemaSeat);
+        void Update(int id, CinemaSeat cinemaSeat);
         void Delete(int id);
     }
 }

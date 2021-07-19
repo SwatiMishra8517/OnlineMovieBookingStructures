@@ -12,7 +12,7 @@ namespace OnlineMovieBooking.Domain.Repository
     {
         void Add(City city);
         City GetById(int id);
-        void Update(City city);
+        void Update(int id, City city);
         void Delete(int id);
         List<City> GetAll();
     }

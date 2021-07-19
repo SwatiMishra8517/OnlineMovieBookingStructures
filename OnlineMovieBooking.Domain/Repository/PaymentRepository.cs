@@ -28,9 +28,9 @@ namespace OnlineMovieBooking.Domain.Repository
         {
             return db.Payments.Find(id);
         }
-        public void Update(Payment payment)
+        public void Update(int id, Payment payment)
         {
-            var s = GetById(payment.PaymentId);
+            var s = GetById(id);
             s = payment;
             db.SaveChanges();
         }

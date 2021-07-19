@@ -11,6 +11,14 @@ namespace OnlineMovieBooking.Domain.Repository
     public class CinemaRepository : ICinemaRepository
     {
         private MovieContext db = new MovieContext();
+        public CinemaRepository()
+        {
+            db = new MovieContext();
+        }
+        public CinemaRepository(MovieContext context)
+        {
+            this.db = context;
+        }
         public bool Add(Cinema cinema)
         {
             db.Cinemas.Add(cinema);
@@ -25,7 +33,7 @@ namespace OnlineMovieBooking.Domain.Repository
             db.SaveChanges();
         }
 
-        public void Edit(int id, Cinema cinema)
+        public void Update(int id, Cinema cinema)
         {
             var cine = GetById(id);
             cine = cinema;

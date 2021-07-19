@@ -11,49 +11,42 @@ namespace OnlineMovieBooking.Domain.Repository
     public class CinemaHallRepository : ICinemaHallRepository
     {
         private MovieContext db;
-        public CinemaHallRepository() { }
+        public CinemaHallRepository() 
+        {
+            db = new MovieContext();
+        }
         public CinemaHallRepository(MovieContext movieContext)
         {
             this.db = movieContext;
         }
-        public void AddCinemaHall(CinemaHall cinemaHall)
+        public void Add(CinemaHall cinemaHall)
         {
-            db = new MovieContext();
             db.CinemaHalls.Add(cinemaHall);
             db.SaveChanges();
         }
 
-        public void DeleteCinemaHall(int id)
+        public void Delete(int id)
         {
-            db = new MovieContext();
-            var cinema = GetCinemaHallById(id);
+            var cinema = GetById(id);
             db.CinemaHalls.Remove(cinema);
             db.SaveChanges();
         }
 
-        public void EditCinemaHall(int id, CinemaHall cinemaHall)
+        public void Update(int id, CinemaHall cinemaHall)
         {
-            db = new MovieContext();
-            var cineHall = GetCinemaHallById(id);
+            var cineHall = GetById(id);
             cineHall = cinemaHall;
             db.SaveChanges();
         }
 
-        public List<CinemaHall> GetAllCinemaHalls()
+        public List<CinemaHall> GetAll()
         {
-            db = new MovieContext();
             return db.CinemaHalls.ToList();
         }
 
-        public CinemaHall GetCinemaHallById(int id)
+        public CinemaHall GetById(int id)
         {
-            db = new MovieContext();
-            var cinemaHall = db.CinemaHalls.Find(id);
-            if(cinemaHall!=null)
-            {
-                return cinemaHall;
-            }
-            return null;
+            return db.CinemaHalls.Find(id);
         }
     }
 }

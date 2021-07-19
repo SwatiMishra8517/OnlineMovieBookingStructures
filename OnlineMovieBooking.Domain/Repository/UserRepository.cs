@@ -30,9 +30,9 @@ namespace OnlineMovieBooking.Domain.Repository
         {
             return db.Users.Find(id);
         }
-        public void Update(User user)
+        public void Update(int id, User user)
         {
-            var u = GetById(user.UserId);
+            var u = GetById(id);
             u = user;
             db.SaveChanges();
         }
