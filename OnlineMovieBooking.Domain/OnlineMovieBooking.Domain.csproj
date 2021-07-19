@@ -145,10 +145,10 @@
     <Compile Include="Services\Show\ShowQueryService.cs" />
     <Compile Include="Services\UserServices\User\UserCommandService\IUserCommandService.cs" />
     <Compile Include="Services\UserServices\User\UserCommandService\UserCommandService.cs" />
-    <Compile Include="Services\User\IUserCommandService.cs" />
-    <Compile Include="Services\User\IUserQueryService.cs" />
-    <Compile Include="Services\User\UserCommandService.cs" />
-    <Compile Include="Services\User\UserQueryService.cs" />
+    <Compile Include="Services\UserService\IUserCommandService.cs" />
+    <Compile Include="Services\UserService\IUserQueryService.cs" />
+    <Compile Include="Services\UserService\UserCommandService.cs" />
+    <Compile Include="Services\UserService\UserQueryService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\UserServices\User\UserQueryService\" />
