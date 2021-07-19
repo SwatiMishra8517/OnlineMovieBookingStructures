@@ -207,6 +207,18 @@
     <Compile Include="Proxy\ShowProxy.cs" />
     <Compile Include="Proxy\ShowSeatProxy.cs" />
     <Compile Include="Proxy\UserProxy.cs" />
+    <Compile Include="ViewModels\BookingViewModel.cs" />
+    <Compile Include="ViewModels\CinemaHallViewModel.cs" />
+    <Compile Include="ViewModels\CinemaSeatViewModel.cs" />
+    <Compile Include="ViewModels\CinemaViewModel.cs" />
+    <Compile Include="ViewModels\CityViewModel.cs" />
+    <Compile Include="ViewModels\FeedbackViewModel.cs" />
+    <Compile Include="ViewModels\MovieViewModel.cs" />
+    <Compile Include="ViewModels\PaymentViewModel.cs" />
+    <Compile Include="ViewModels\ShowSeatViewModel.cs" />
+    <Compile Include="ViewModels\ShowViewModel.cs" />
+    <Compile Include="ViewModels\UserLoginViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -299,7 +311,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\Movies\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
