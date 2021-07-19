@@ -16,5 +16,7 @@ namespace OnlineMovieBooking.Domain.Services.User
         {
             this.repository = repository;
         }
+
+
     }
 }

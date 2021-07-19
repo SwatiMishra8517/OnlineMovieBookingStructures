@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OnlineMovieBooking.Domain.Repository.Configuration;
+using OnlineMovieBooking.Domain.Repository.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,10 @@ namespace OnlineMovieBooking.Domain.Repository
 {
     public interface IFeedbackRepository
     {
+        void Add(Feedback feedback);
+        Feedback GetById(int id);
+        void Update(Feedback feedback);
+        void Delete(int id);
+        List<Feedback> GetAll();
     }
 }
