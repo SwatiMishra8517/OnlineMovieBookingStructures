@@ -1,4 +1,4 @@
-﻿using OnlineMovieBooking.Models;
+﻿using OnlineMovieBooking.Domain.Repository.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

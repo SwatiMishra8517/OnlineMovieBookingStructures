@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace OnlineMovieBooking.Models
+namespace OnlineMovieBooking.Domain.Repository.Entities
 {
     public class CinemaSeat
     {
