@@ -1,0 +1,39 @@
+﻿@model IEnumerable<OnlineMovieBooking.Models.Feedback>
+
+@{
+    ViewBag.Title = "FeedBack";
+}
+
+<h2>FeedBack</h2>
+
+
+<h2>@Html.DisplayNameFor(m=>m.Movie.Name)</h2>
+    
+    <p>image</p>
+    <hr />
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.Rating)
+            </th>
+            <td>
+                rating average
+            </td>
+        </tr>
+    </table>
+<table>
+    @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem=>item.User.Username)</td>
+                    <td>@Html.DisplayFor(modelItem=>item.Review)</td>
+                    <td>@Html.DisplayFor(modelItem=>item.Rating)</td>
+                </tr>
+            }
+</table>
+
+    
+<p>
+    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Add Review","AddFeedBack")
+</p>

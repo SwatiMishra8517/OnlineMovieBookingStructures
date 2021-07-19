@@ -11,27 +11,39 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("The Movie Box", "Movies", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Movies", "", "Login")</li>
+                    <li>@Html.ActionLink("Sign Up", "SignUp", "UserLogin")</li>
+                    <li>@Html.ActionLink("Login", "Login", "UserLogin")</li>
                 </ul>
             </div>
         </div>
+    </div>
+    <div class="navbar navbar-inverse">
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Movies", "Index", "Movies")</li>
+                <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                <li>@Html.ActionLink("Cities", "Index", "Cities")</li>
+                <li>@Html.ActionLink("Cinema Halls", "Index", "CinemaHalls")</li>
+                <li>@Html.ActionLink("Cinema Seats", "Index", "CinemaSeats")</li>
+                <li>@Html.ActionLink("Shows", "Index", "Shows")</li>
+                <li>@Html.ActionLink("Show Seats", "Index", "ShowSeats")</li>
+                <li>@Html.ActionLink("Bookings", "Index", "Bookings")</li>
+                <li>@Html.ActionLink("Payments", "Index", "Payments")</li>
+                <li>@Html.ActionLink("Feedbacks", "index", "Feedbacks")</li>
+            </ul>
+        </div>
+    </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p class="text-dark">&copy; @DateTime.Now.Year - The Movie Box</p>
         </footer>
     </div>
 

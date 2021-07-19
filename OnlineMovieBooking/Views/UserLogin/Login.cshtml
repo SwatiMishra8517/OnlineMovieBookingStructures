@@ -1,0 +1,44 @@
+﻿@model OnlineMovieBooking.Models.UserLogin
+
+@{
+    Layout = Layout;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Content/LoginStyle.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="card custom-card login-div">
+            <div class="card-header text-white">
+                <h3 class="text-white">Login</h3>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    @Html.LabelFor(user => user.Username, new { @class = "text-white" })
+                    @Html.TextBoxFor(user => user.Username, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(user => user.Username)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(user => user.Password, new { @class = "text-white" })
+                    @Html.TextBoxFor(user => user.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(user => user.Password)
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary rounded-0">Login</button><br />
+                    <span class="text-white">Don't have an account yet?</span>
+                    @Html.ActionLink("Sign Up", "SignUp")
+                </div>
+
+            </div>
+        </div>
+    }
+</body>
+</html>

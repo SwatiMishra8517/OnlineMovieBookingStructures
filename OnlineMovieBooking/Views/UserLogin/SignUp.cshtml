@@ -1,0 +1,61 @@
+﻿@model OnlineMovieBooking.Models.User
+
+@{
+    Layout = Layout;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>SignUp</title>
+    <link href="~/Content/LoginStyle.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="card custom-card login-div">
+            <div class="card-header text-white">
+                <h3 class="text-white">Sign Up</h3>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Name, new { @class = "text-white" })
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Name)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Username, new { @class = "text-white" })
+                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Username)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.MobileNo, new { @class = "text-white" })
+                    @Html.TextBoxFor(m => m.MobileNo, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.MobileNo)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email, new { @class = "text-white" })
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Email)
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "text-white" })
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary rounded-0">Login</button><br />
+                    <span class="text-white">Have an account?</span>
+                    @Html.ActionLink("Sign In", "Login")
+                </div>
+
+            </div>
+        </div>
+    }
+</body>
+</html>

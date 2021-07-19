@@ -1,0 +1,35 @@
+﻿@model IEnumerable<OnlineMovieBooking.Models.City>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cities</title>
+</head>
+<body>
+    <div>
+        <h4>City</h4>
+        <hr />
+        @foreach (var item in Model)
+        {
+            <dl class="dl-horizontal">
+                
+    
+                <dd>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </dd>
+    
+            </dl>
+        }
+    </div>
+    <p>
+        @*@Html.ActionLink("Select", "Theatres", new { id =  }) |*@
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
