@@ -10,5 +10,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.PaymentService.Payment
 {
     interface IPaymentCommandService
     {
+        void Add(Payment payment);
     }
 }
