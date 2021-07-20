@@ -50,5 +50,17 @@ namespace OnlineMovieBooking.Domain.Repository
             var cinema = db.Cinemas.Find(id);
             return cinema;
         }
+
+        public List<Cinema> GetByCityId(int cityId)
+        {
+            List<Cinema> cinemas = new List<Cinema>();
+            cinemas = db.Cinemas.Where(m => m.CityId == cityId).ToList();
+            return cinemas;
+        }
+
+        public Cinema GetByName(string name)
+        {
+            return (Cinema)db.Cinemas.Where(m => m.Name == name);
+        }
     }
 }
