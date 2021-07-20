@@ -18,14 +18,16 @@ namespace OnlineMovieBooking.Domain.Services.UserService
             this.repository = repository;
         }
 
-        public void AddUser(User user)
+        public void Add(User user)
         {
-            Repository.Entities.User u = new Repository.Entities.User();
-            u.UserId = user.UserId;
-            u.Username = user.Username;
-            u.Email = user.Email;
-            u.MobileNo = user.MobileNo;
-            u.Password = user.Password;
+            Repository.Entities.User u = new Repository.Entities.User
+            {
+                UserId = user.UserId,
+                Username = user.Username,
+                Email = user.Email,
+                MobileNo = user.MobileNo,
+                Password = user.Password
+            };
             ur.Add(u);
         }
 
@@ -35,16 +37,15 @@ namespace OnlineMovieBooking.Domain.Services.UserService
             ur.Delete(id);
         }
 
-        public void Edit(int id,User user)
+        public void Update(int id,User user)
         {
             Repository.Entities.User u = ur.GetById(id);
-
             u.UserId = user.UserId;
             u.Username = user.Username;
             u.Email = user.Email;
             u.MobileNo = user.MobileNo;
             u.Password = user.Password;
-            ur.Add(u);
+            ur.Update(id, u);
         }
 
         
