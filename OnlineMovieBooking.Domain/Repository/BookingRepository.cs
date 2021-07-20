@@ -53,5 +53,29 @@ namespace OnlineMovieBooking.Domain.Repository
         {
             return db.Bookings.Find(id);
         }
+
+        public int GetNumberOfSeats(int id)
+        {
+            Booking booking = db.Bookings.Find(id);
+            return booking.NumberOfSeats;
+        }
+
+        public string GetStatus(int id)
+        {
+            Booking booking = db.Bookings.Find(id);
+            return booking.Status;
+        }
+
+        public List<Booking> GetByUserId(int id)
+        {
+            List<Booking> list = db.Bookings.Where(m => m.UserId == id).ToList();
+            return list;
+        }
+
+        public List<Booking> GetByShowId(int id)
+        {
+            List<Booking> list = db.Bookings.Where(m => m.ShowId == id).ToList();
+            return list;
+        }
     }
 }

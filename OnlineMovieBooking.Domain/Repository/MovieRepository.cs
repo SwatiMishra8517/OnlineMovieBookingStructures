@@ -44,5 +44,25 @@ namespace OnlineMovieBooking.Domain.Repository
         {
             return db.Movies.ToList();
         }
+
+        public Movie GetByName(string name)
+        {
+            return (Movie)db.Movies.Where(m => m.Name == name);
+        }
+
+        public List<Movie> GetByLanguage(string language)
+        {
+            return db.Movies.Where(m => m.Language == language).ToList();
+        }
+
+        public List<Movie> GetByGenre(string genre)
+        {
+            return db.Movies.Where(m => m.Genre == genre).ToList();
+        }
+
+        public List<Movie> GetByReleaseDate(DateTime date)
+        {
+            return db.Movies.Where(m => m.ReleaseDate == date).ToList();
+        }
     }
 }

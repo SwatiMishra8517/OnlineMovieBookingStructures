@@ -10,5 +10,10 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.ShowService.ShowQueryS
 {
     interface IShowQueryService
     {
+        Show GetById(int id);
+        List<Show> GetByDate(DateTime date);
+        List<Show> GetByStartTime(DateTime time);
+        List<Show> GetByCinemaHallId(int id);
+        List<Show> GetByMovieId(int id);
     }
 }
