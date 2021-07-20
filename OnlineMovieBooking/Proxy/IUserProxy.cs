@@ -1,4 +1,5 @@
-﻿using OnlineMovieBooking.Domain.Services;
+﻿using OnlineMovieBooking.Domain.Services.UserService;
+using OnlineMovieBooking.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,5 +9,11 @@ namespace OnlineMovieBooking.Proxy
 {
     public interface IUserProxy
     {
+        void Add(UserModel user);
+        void Delete(int id);
+        void Update(int id, UserModel user);
+        UserModel GetById(int id);
+        List<UserModel> GetAll();
+
     }
 }

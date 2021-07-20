@@ -10,9 +10,13 @@ namespace OnlineMovieBooking.Domain.Services.UserService
 {
     public class UserQueryService : IUserQueryService
     {
-        private readonly IUserRepository repository;
-        private UserRepository ur = new UserRepository(); 
 
+        private readonly IUserRepository repository;
+        private UserRepository ur = new UserRepository();
+
+        public UserQueryService()
+        {
+        }
 
         public UserQueryService(IUserRepository repository)
         {
