@@ -10,5 +10,10 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.CinemaSeatService.Cine
 {
     interface ICinemaSeatQueryService
     {
+        List<CinemaSeat> GetAll();
+        List<CinemaSeat> GetByCinemaHallId(int id);
+        CinemaSeat GetBySeatId(int id);
+        CinemaSeat GetBySeatNumber(string number);
+
     }
 }
