@@ -10,6 +10,7 @@ namespace OnlineMovieBooking.Domain.Services.UserService
 {
     public interface IUserQueryService
     {
-        User Find(int id);
+        User Get(int id);
+        List<User> GetAll();
     }
 }

@@ -10,9 +10,8 @@ namespace OnlineMovieBooking.Domain.Services.UserService
 {
     public interface IUserCommandService
     {
-       
-        void AddUser(User user);
+        void Add(User user);
         void Delete(int id);
-        void Edit(int id, User u);
+        void Update(int id, User user);
     }
 }
