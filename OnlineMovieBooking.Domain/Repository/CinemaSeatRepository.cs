@@ -41,5 +41,15 @@ namespace OnlineMovieBooking.Domain.Repository
         {
             return db.CinemaSeats.Find(id);
         }
+
+        public List<CinemaSeat> GetByCinemaHallId(int id)
+        {
+            return db.CinemaSeats.Where(m => m.CinemaHallId == id).ToList();
+        }
+
+        public CinemaSeat GetBySeatNumber(string number)
+        {
+            return (CinemaSeat)db.CinemaSeats.Where(m => m.SeatNumber == number);
+        }
     }
 }

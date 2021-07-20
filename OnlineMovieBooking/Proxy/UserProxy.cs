@@ -1,4 +1,5 @@
-﻿using OnlineMovieBooking.Domain.Services;
+﻿using OnlineMovieBooking.Domain.Services.UserService;
+using OnlineMovieBooking.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,82 @@ namespace OnlineMovieBooking.Proxy
 {
     public class UserProxy : IUserProxy
     {
+        private readonly UserCommandService ucs = new UserCommandService();
+        private readonly UserQueryService uqs = new UserQueryService();
+        public UserProxy() { }
+        public UserProxy(UserQueryService userQueryService, UserCommandService userCommandService)
+        {
+            this.ucs = userCommandService;
+            this.uqs = userQueryService;
+        }
 
+        public void Add(UserModel user)
+        {
+            var u = new OnlineMovieBooking.Domain.DTO.User
+            {
+                UserId = user.UserId,
+                Username = user.Username,
+                Name = user.Name,
+                MobileNo = user.MobileNo,
+                Email = user.Email,
+                Password = user.Password
+            };
+            ucs.Add(u);
+        }
+
+        public void Delete(int id)
+        {
+            ucs.Delete(id);
+        }
+
+        public List<UserModel> GetAll()
+        {
+            List<OnlineMovieBooking.Domain.DTO.User> users = uqs.GetAll();
+            List<UserModel> ums = new List<UserModel>();
+            foreach (var user in users)
+            {
+                UserModel u = new UserModel
+                {
+                    UserId = user.UserId,
+                    Username = user.Username,
+                    Name = user.Name,
+                    MobileNo = user.MobileNo,
+                    Email = user.Email,
+                    Password = user.Password
+                };
+                ums.Add(u);
+            }
+            return ums;
+        }
+
+        public UserModel GetById(int id)
+        {
+            var user = uqs.Get(id);
+            UserModel u = new UserModel
+            {
+                UserId = user.UserId,
+                Username = user.Username,
+                Name = user.Name,
+                MobileNo = user.MobileNo,
+                Email = user.Email,
+                Password = user.Password
+            };
+            return u;
+        }
+
+        public void Update(int id, UserModel user)
+        {
+            var u = new OnlineMovieBooking.Domain.DTO.User
+            {
+                UserId = user.UserId,
+                Username = user.Username,
+                Name = user.Name,
+                MobileNo = user.MobileNo,
+                Email = user.Email,
+                Password = user.Password
+            };
+            ucs.Update(id, u);
+
+        }
     }
 }

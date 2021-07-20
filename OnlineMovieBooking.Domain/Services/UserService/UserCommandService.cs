@@ -12,7 +12,11 @@ namespace OnlineMovieBooking.Domain.Services.UserService
     {
         private readonly IUserRepository repository;
         private UserRepository ur;
-        
+
+        public UserCommandService()
+        {
+        }
+
         public UserCommandService(IUserRepository repository)
         {
             this.repository = repository;
