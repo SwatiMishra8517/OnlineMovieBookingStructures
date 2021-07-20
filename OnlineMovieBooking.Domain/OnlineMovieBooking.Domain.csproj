@@ -143,10 +143,6 @@
     <Compile Include="Services\ShowService\IShowQueryService.cs" />
     <Compile Include="Services\ShowService\ShowCommandService.cs" />
     <Compile Include="Services\ShowService\ShowQueryService.cs" />
-    <Compile Include="Services\Show\IShowCommandService.cs" />
-    <Compile Include="Services\Show\IShowQueryService.cs" />
-    <Compile Include="Services\Show\ShowCommandService.cs" />
-    <Compile Include="Services\Show\ShowQueryService.cs" />
     <Compile Include="Services\UserServices\BookingService\BookingQueryService\BookingQueryService.cs" />
     <Compile Include="Services\UserServices\BookingService\BookingQueryService\IBookingQueryService.cs" />
     <Compile Include="Services\UserServices\CinemaHallService\CinemaHallQueryService\CinemaHallQueryService.cs" />

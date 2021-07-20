@@ -13,6 +13,7 @@ namespace OnlineMovieBooking.Domain.Services.ShowSeatService
         private readonly IShowSeatRepository repository;
         private ShowSeatRepository ssr;
 
+        public ShowSeatQueryService() { }
         public ShowSeatQueryService(IShowSeatRepository repository)
         {
             this.repository = repository;

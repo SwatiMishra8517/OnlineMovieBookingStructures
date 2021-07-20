@@ -14,8 +14,8 @@ namespace OnlineMovieBooking.Models
         public int ShowId { get; set; }
         public int BookingId { get; set; }
 
-        public virtual Booking Booking { get; set; }
-        public virtual CinemaSeat CinemaSeat { get; set; }
-        public virtual Show Show { get; set; }
+        public virtual BookingModel Booking { get; set; }
+        public virtual CinemaSeatModel CinemaSeat { get; set; }
+        public virtual ShowModel Show { get; set; }
     }
 }

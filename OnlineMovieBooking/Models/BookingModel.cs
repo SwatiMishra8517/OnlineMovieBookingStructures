@@ -15,9 +15,9 @@ namespace OnlineMovieBooking.Models
         public int UserId { get; set; }
         public int ShowId { get; set; }
 
-        public virtual Show Show { get; set; }
-        public virtual User User { get; set; }
-        public virtual ICollection<Payment> Payments { get; set; }
-        public virtual ICollection<ShowSeat> ShowSeats { get; set; }
+        public virtual ShowModel Show { get; set; }
+        public virtual UserModel User { get; set; }
+        public virtual ICollection<PaymentModel> Payments { get; set; }
+        public virtual ICollection<ShowSeatModel> ShowSeats { get; set; }
     }
 }

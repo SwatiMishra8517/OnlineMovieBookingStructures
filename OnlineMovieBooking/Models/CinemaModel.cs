@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 
-namespace OnlineMovieBooking.Domain.DTO
+namespace OnlineMovieBooking.Models
 {
     public class CinemaModel
     {
@@ -13,7 +13,7 @@ namespace OnlineMovieBooking.Domain.DTO
         public int TotalHalls { get; set; }
         public int CityId { get; set; }
 
-        public virtual City City { get; set; }
-        public virtual ICollection<CinemaHall> CinemaHalls { get; set; }
+        public virtual CityModel City { get; set; }
+        public virtual ICollection<CinemaHallModel> CinemaHalls { get; set; }
     }
 }

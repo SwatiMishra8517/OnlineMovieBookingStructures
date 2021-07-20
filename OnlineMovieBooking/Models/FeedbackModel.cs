@@ -14,7 +14,7 @@ namespace OnlineMovieBooking.Models
 
         public int UserId { get; set; }
         public int MovieId { get; set; }
-        public User User { get; set; }
-        public Movie Movie { get; set; }
+        public UserModel User { get; set; }
+        public MovieModel Movie { get; set; }
     }
 }

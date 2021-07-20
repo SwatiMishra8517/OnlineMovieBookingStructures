@@ -12,7 +12,7 @@ namespace OnlineMovieBooking.Domain.Services.CinemaService
     {
         private readonly ICinemaRepository repository;
         private CinemaRepository cr;
-
+        public CinemaQueryService() { }
         public CinemaQueryService(ICinemaRepository repository)
         {
             this.repository = repository;

@@ -13,6 +13,6 @@ namespace OnlineMovieBooking.Models
         public string State { get; set; }
         public string ZipCode { get; set; }
 
-        public virtual ICollection<Cinema> Cinemas { get; set; }
+        public virtual ICollection<CinemaModel> Cinemas { get; set; }
     }
 }

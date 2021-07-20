@@ -15,6 +15,6 @@ namespace OnlineMovieBooking.Models
         public string Email { get; set; }
         public string Password { get; set; }
 
-        public virtual ICollection<Booking> Bookings { get; set; }
+        public virtual ICollection<BookingModel> Bookings { get; set; }
     }
 }

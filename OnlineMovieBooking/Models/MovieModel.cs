@@ -17,6 +17,6 @@ namespace OnlineMovieBooking.Models
         public string Description { get; set; }
         public Nullable<DateTime> ReleaseDate { get; set; }
 
-        public virtual ICollection<Show> Shows { get; set; }
+        public virtual ICollection<ShowModel> Shows { get; set; }
     }
 }

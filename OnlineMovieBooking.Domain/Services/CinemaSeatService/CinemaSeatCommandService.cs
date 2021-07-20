@@ -12,6 +12,7 @@ namespace OnlineMovieBooking.Domain.Services.CinemaSeatService
     {
         private readonly ICinemaSeatRepository repository;
         private CinemaSeatRepository csr;
+        public CinemaSeatCommandService() { }
         public CinemaSeatCommandService(ICinemaSeatRepository repository)
         {
             this.repository = repository;

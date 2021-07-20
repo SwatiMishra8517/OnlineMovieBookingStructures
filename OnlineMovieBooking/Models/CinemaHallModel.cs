@@ -14,8 +14,8 @@ namespace OnlineMovieBooking.Models
         public int TotalSeats { get; set; }
         public int CinemaId { get; set; }
 
-        public virtual Cinema Cinema { get; set; }
-        public virtual ICollection<CinemaSeat> CinemaSeats { get; set; }
-        public virtual ICollection<Show> Shows { get; set; }
+        public virtual CinemaModel Cinema { get; set; }
+        public virtual ICollection<CinemaSeatModel> CinemaSeats { get; set; }
+        public virtual ICollection<ShowModel> Shows { get; set; }
     }
 }

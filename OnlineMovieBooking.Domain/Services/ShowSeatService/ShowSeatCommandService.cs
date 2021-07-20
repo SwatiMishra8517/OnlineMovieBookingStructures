@@ -11,6 +11,7 @@ namespace OnlineMovieBooking.Domain.Services.ShowSeatService
     public class ShowSeatCommandService : IShowSeatCommandService
     {
         private readonly IShowSeatRepository repository;
+        public ShowSeatCommandService() { }
         
         public ShowSeatCommandService(IShowSeatRepository repository)
         {

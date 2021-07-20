@@ -12,6 +12,7 @@ namespace OnlineMovieBooking.Domain.Services.CinemaHallService
     {
         private readonly ICinemaHallRepository repository;
         private CinemaHallRepository chr;
+        public CinemaHallQueryService() { }
         public CinemaHallQueryService(ICinemaHallRepository repository)
         {
             this.repository = repository;

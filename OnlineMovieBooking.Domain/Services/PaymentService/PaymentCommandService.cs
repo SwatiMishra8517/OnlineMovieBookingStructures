@@ -13,6 +13,7 @@ namespace OnlineMovieBooking.Domain.Services.PaymentService
         private readonly IPaymentRepository repository;
         private PaymentRepository pr;
 
+        public PaymentCommandService() { }
         public PaymentCommandService(IPaymentRepository repository)
         {
             this.repository = repository;

@@ -12,6 +12,7 @@ namespace OnlineMovieBooking.Domain.Services.ShowService
     {
         private readonly IShowRepository repository;
         private ShowRepository sr;
+        public ShowCommandService() { }
         
         public ShowCommandService(IShowRepository repository)
         {

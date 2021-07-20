@@ -19,6 +19,6 @@ namespace OnlineMovieBooking.Models
         public string PaymentMethod { get; set; }
         public int BookingId { get; set; }
 
-        public virtual Booking Booking { get; set; }
+        public virtual BookingModel Booking { get; set; }
     }
 }

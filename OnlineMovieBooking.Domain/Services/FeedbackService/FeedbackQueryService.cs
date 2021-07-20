@@ -12,6 +12,7 @@ namespace OnlineMovieBooking.Domain.Services.FeedbackService
     {
         private readonly IFeedbackRepository repository;
         private FeedbackRepository fr;
+        public FeedbackQueryService() { }
         public FeedbackQueryService(IFeedbackRepository repository)
         {
             this.repository = repository;
