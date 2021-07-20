@@ -16,5 +16,10 @@ namespace OnlineMovieBooking.Domain.DTO
         public string Password { get; set; }
 
         public virtual ICollection<Booking> Bookings { get; set; }
+
+        public static explicit operator User(Repository.Entities.User v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

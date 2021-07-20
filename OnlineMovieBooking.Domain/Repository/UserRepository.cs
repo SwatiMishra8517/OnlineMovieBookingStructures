@@ -46,5 +46,17 @@ namespace OnlineMovieBooking.Domain.Repository
         {
             return db.Users.ToList();
         }
+
+        public User GetByUserName(string userName)
+        {
+            var user = db.Users.Where(m => m.Username == userName);
+            return (User)user;
+        }
+
+        public User GetByEmail(string email)
+        {
+            var user = db.Users.Where(m => m.Email == email);
+            return (User)user;
+        }
     }
 }

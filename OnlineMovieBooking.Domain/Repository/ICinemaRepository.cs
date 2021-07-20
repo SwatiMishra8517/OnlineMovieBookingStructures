@@ -15,6 +15,8 @@ namespace OnlineMovieBooking.Domain.Repository
         Cinema GetById(int id);
         void Update(int id, Cinema cinema);
         void Delete(int id);
+        List<Cinema> GetByCityId(int cityId);
+        Cinema GetByName(string name);
 
     }
 }
