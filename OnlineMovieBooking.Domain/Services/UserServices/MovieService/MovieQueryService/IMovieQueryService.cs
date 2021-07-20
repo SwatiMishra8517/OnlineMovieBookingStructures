@@ -10,5 +10,11 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.MovieService.MovieQuer
 {
     interface IMovieQueryService
     {
+        List<Movie> GetAll();
+        Movie GetById(int id);
+        Movie GetByName(string name);
+        List<Movie> GetByLanguage(string language);
+        List<Movie> GetByGenre(string genre);
+        List<Movie> GetByReleaseDate(DateTime date);
     }
 }

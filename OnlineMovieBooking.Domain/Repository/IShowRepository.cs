@@ -15,5 +15,9 @@ namespace OnlineMovieBooking.Domain.Repository
         void Update(int id,Show show);
         void Delete(int id);
         List<Show> GetAll();
+        List<Show> GetByDate(DateTime date);
+        List<Show> GetByStartTime(DateTime time);
+        List<Show> GetByCinemaHallId(int id);
+        List<Show> GetByMovieId(int id);
     }
 }

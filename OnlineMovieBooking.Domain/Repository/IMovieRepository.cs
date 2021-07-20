@@ -15,5 +15,9 @@ namespace OnlineMovieBooking.Domain.Repository
         void Update(int id, Movie movie);
         void Delete(int id);
         List<Movie> GetAll();
+        Movie GetByName(string name);
+        List<Movie> GetByLanguage(string language);
+        List<Movie> GetByGenre(string genre);
+        List<Movie> GetByReleaseDate(DateTime date);
     }
 }

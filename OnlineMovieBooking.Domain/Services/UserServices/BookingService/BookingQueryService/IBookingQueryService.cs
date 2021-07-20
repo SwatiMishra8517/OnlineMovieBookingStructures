@@ -10,5 +10,10 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.BookingService.Booking
 {
     interface IBookingQueryService
     {
+        Booking GetById(int id);
+        int GetNumberOfSeats(int id);
+        string GetStatus(int id);
+        List<Booking> GetByUserId(int id);
+        List<Booking> GetByShowId(int id);
     }
 }
