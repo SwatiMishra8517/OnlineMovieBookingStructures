@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel;
+using OnlineMovieBooking.Domain.DTO;
 
 namespace OnlineMovieBooking.Models
 {
@@ -16,5 +17,10 @@ namespace OnlineMovieBooking.Models
         public string Password { get; set; }
 
         public virtual ICollection<BookingModel> Bookings { get; set; }
+
+        public static explicit operator UserModel(User v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

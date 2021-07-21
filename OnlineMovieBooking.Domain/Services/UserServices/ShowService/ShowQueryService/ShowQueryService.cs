@@ -8,7 +8,7 @@ using OnlineMovieBooking.Domain.Repository;
 
 namespace OnlineMovieBooking.Domain.Services.UserServices.ShowService.ShowQueryService
 {
-    class ShowQueryService : IShowQueryService
+    public class ShowQueryService : IShowQueryService
     {
         ShowRepository sr = new ShowRepository();
         public List<Show> GetByCinemaHallId(int id)

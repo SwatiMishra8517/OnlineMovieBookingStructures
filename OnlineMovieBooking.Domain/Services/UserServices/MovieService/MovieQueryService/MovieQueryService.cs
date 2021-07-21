@@ -8,7 +8,7 @@ using OnlineMovieBooking.Domain.Repository;
 
 namespace OnlineMovieBooking.Domain.Services.UserServices.MovieService.MovieQueryService
 {
-    class MovieQueryService : IMovieQueryService
+    public class MovieQueryService : IMovieQueryService
     {
         MovieRepository mr = new MovieRepository();
         public List<Movie> GetAll()

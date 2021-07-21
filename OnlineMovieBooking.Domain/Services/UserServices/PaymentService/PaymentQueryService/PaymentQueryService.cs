@@ -8,7 +8,7 @@ using OnlineMovieBooking.Domain.Repository;
 
 namespace OnlineMovieBooking.Domain.Services.UserServices.PaymentService.PaymentQueryService
 {
-    class PaymentQueryService : IPaymentQueryService
+    public class PaymentQueryService : IPaymentQueryService
     {
         PaymentRepository pr = new PaymentRepository();
         public List<Payment> GetByBookingId(int id)

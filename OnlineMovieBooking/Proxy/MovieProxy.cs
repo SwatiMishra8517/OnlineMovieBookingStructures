@@ -11,11 +11,13 @@ namespace OnlineMovieBooking.Proxy
     {
         private readonly MovieCommandService mcs = new MovieCommandService();
         private readonly MovieQueryService mqs = new MovieQueryService();
+        private readonly OnlineMovieBooking.Domain.Services.UserServices.MovieService.MovieQueryService.MovieQueryService ums = new Domain.Services.UserServices.MovieService.MovieQueryService.MovieQueryService();
         public MovieProxy() { }
-        public MovieProxy(MovieQueryService movieQueryService, MovieCommandService movieCommandService)
+        public MovieProxy(MovieQueryService movieQueryService, MovieCommandService movieCommandService, OnlineMovieBooking.Domain.Services.UserServices.MovieService.MovieQueryService.MovieQueryService um)
         {
             this.mcs = movieCommandService;
             this.mqs = movieQueryService;
+            this.ums = um;
         }
 
         public void Add(MovieModel movie)
@@ -59,6 +61,25 @@ namespace OnlineMovieBooking.Proxy
             return mms;
         }
 
+        public List<MovieModel> GetByGenre(string genre)
+        {
+            List<MovieModel> m = new List<MovieModel>();
+            List<OnlineMovieBooking.Domain.DTO.Movie> ms = ums.GetByGenre(genre);
+            foreach (var mov in ms)
+            {
+                MovieModel dm = new MovieModel();
+                dm.MovieId = mov.MovieId;
+                dm.Name = mov.Name;
+                dm.Language = mov.Language;
+                dm.Genre = mov.Genre;
+                dm.Duration = mov.Duration;
+                dm.Description = mov.Description;
+                dm.ReleaseDate = mov.ReleaseDate;
+                m.Add(dm);
+            }
+            return m;
+        }
+
         public MovieModel GetById(int id)
         {
             var movie = mqs.Get(id);
@@ -72,6 +93,49 @@ namespace OnlineMovieBooking.Proxy
                 Description = movie.Description,
                 ReleaseDate = movie.ReleaseDate,
             };
+            return m;
+        }
+
+        public List<MovieModel> GetByLanguage(string language)
+        {
+            List<MovieModel> m = new List<MovieModel>();
+            List<OnlineMovieBooking.Domain.DTO.Movie> ms = ums.GetByLanguage(language);
+            foreach (var mov in ms)
+            {
+                MovieModel dm = new MovieModel();
+                dm.MovieId = mov.MovieId;
+                dm.Name = mov.Name;
+                dm.Language = mov.Language;
+                dm.Genre = mov.Genre;
+                dm.Duration = mov.Duration;
+                dm.Description = mov.Description;
+                dm.ReleaseDate = mov.ReleaseDate;
+                m.Add(dm);
+            }
+            return m;
+        }
+
+        public MovieModel GetByName(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<MovieModel> GetByReleaseDate(DateTime date)
+        {
+            List<MovieModel> m = new List<MovieModel>();
+            List<OnlineMovieBooking.Domain.DTO.Movie> ms = ums.GetByReleaseDate(date);
+            foreach (var mov in ms)
+            {
+                MovieModel dm = new MovieModel();
+                dm.MovieId = mov.MovieId;
+                dm.Name = mov.Name;
+                dm.Language = mov.Language;
+                dm.Genre = mov.Genre;
+                dm.Duration = mov.Duration;
+                dm.Description = mov.Description;
+                dm.ReleaseDate = mov.ReleaseDate;
+                m.Add(dm);
+            }
             return m;
         }
 

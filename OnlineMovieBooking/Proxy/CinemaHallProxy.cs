@@ -11,11 +11,13 @@ namespace OnlineMovieBooking.Proxy
     {
         private readonly CinemaHallCommandService chcs = new CinemaHallCommandService();
         private readonly CinemaHallQueryService chqs = new CinemaHallQueryService();
+        private readonly OnlineMovieBooking.Domain.Services.UserServices.CinemaHallService.CinemaHallQueryService.CinemaHallQueryService ucs = new Domain.Services.UserServices.CinemaHallService.CinemaHallQueryService.CinemaHallQueryService();
         public CinemaHallProxy() { }
-        public CinemaHallProxy(CinemaHallQueryService cinemaHallQueryService, CinemaHallCommandService cinemaHallCommandService)
+        public CinemaHallProxy(CinemaHallQueryService cinemaHallQueryService, CinemaHallCommandService cinemaHallCommandService, OnlineMovieBooking.Domain.Services.UserServices.CinemaHallService.CinemaHallQueryService.CinemaHallQueryService uc)
         {
             this.chcs = cinemaHallCommandService;
             this.chqs = cinemaHallQueryService;
+            this.ucs = uc;
         }
 
         public void Add(CinemaHallModel cinemaHall)
@@ -53,6 +55,22 @@ namespace OnlineMovieBooking.Proxy
             return chms;
         }
 
+        public List<CinemaHallModel> GetByCinemaId(int id)
+        {
+            List<CinemaHallModel> chs = new List<CinemaHallModel>();
+            List<OnlineMovieBooking.Domain.DTO.CinemaHall> halls = ucs.GetByCinemaId(id);
+            foreach (var ch in halls)
+            {
+                CinemaHallModel c = new CinemaHallModel();
+                c.CinemaHallId = ch.CinemaHallId;
+                c.Name = ch.Name;
+                c.TotalSeats = ch.TotalSeats;
+                c.CinemaId = ch.CinemaId;
+                chs.Add(c);
+            }
+            return chs;
+        }
+
         public CinemaHallModel GetById(int id)
         {
             var cinemaHall = chqs.Get(id);
@@ -64,6 +82,17 @@ namespace OnlineMovieBooking.Proxy
                 CinemaId = cinemaHall.CinemaId,
             };
             return ch;
+        }
+
+        public CinemaHallModel GetByName(string name)
+        {
+            OnlineMovieBooking.Domain.DTO.CinemaHall ch = new Domain.DTO.CinemaHall();
+            CinemaHallModel c = new CinemaHallModel();
+            c.CinemaHallId = ch.CinemaHallId;
+            c.Name = ch.Name;
+            c.TotalSeats = ch.TotalSeats;
+            c.CinemaId = ch.CinemaId;
+            return c;
         }
 
         public void Update(int id, CinemaHallModel cinemaHall)

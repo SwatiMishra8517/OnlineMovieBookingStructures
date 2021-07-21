@@ -14,5 +14,9 @@ namespace OnlineMovieBooking.Proxy
         void Update(int id, ShowModel showModel);
         ShowModel GetById(int id);
         List<ShowModel> GetAll();
+        List<ShowModel> GetByDate(DateTime date);
+        List<ShowModel> GetByStartTime(DateTime time);
+        List<ShowModel> GetByCinemaHallId(int id);
+        List<ShowModel> GetByMovieId(int id);
     }
 }
