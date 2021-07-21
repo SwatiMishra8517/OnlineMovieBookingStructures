@@ -11,7 +11,7 @@ namespace OnlineMovieBooking.Proxy
     {
         private readonly PaymentCommandService pcs = new PaymentCommandService();
         private readonly PaymentQueryService pqs = new PaymentQueryService();
-        private readonly OnlineMovieBooking.Domain.Services.UserServices.PaymentService.PaymentQueryService.PaymentQueryService ups = new Domain.Services.UserServices.PaymentService.PaymentQueryService.PaymentQueryService();
+        public  OnlineMovieBooking.Domain.Services.UserServices.PaymentService.PaymentQueryService.PaymentQueryService ups = new Domain.Services.UserServices.PaymentService.PaymentQueryService.PaymentQueryService();
 
         public PaymentProxy() { }
         public PaymentProxy(PaymentQueryService paymentQueryService, PaymentCommandService paymentCommandService, OnlineMovieBooking.Domain.Services.UserServices.PaymentService.PaymentQueryService.PaymentQueryService up)
@@ -94,7 +94,7 @@ namespace OnlineMovieBooking.Proxy
 
         }
 
-        List<PaymentModel> IPaymentProxy.GetByBookingId(int id)
+        public List<PaymentModel> GetByBookingId(int id)
         {
             List<PaymentModel> dps = new List<PaymentModel>();
             List<OnlineMovieBooking.Domain.DTO.Payment> rps = ups.GetByBookingId(id);
@@ -113,7 +113,7 @@ namespace OnlineMovieBooking.Proxy
             return dps;
         }
 
-        List<PaymentModel> IPaymentProxy.GetByPaymentMethod(string method)
+        public List<PaymentModel> GetByPaymentMethod(string method)
         {
             List<PaymentModel> dps = new List<PaymentModel>();
             List<OnlineMovieBooking.Domain.DTO.Payment> rps = ups.GetByPaymentMethod(method);
@@ -132,7 +132,7 @@ namespace OnlineMovieBooking.Proxy
             return dps;
         }
 
-        List<PaymentModel> IPaymentProxy.GetByShowId(int id)
+        public List<PaymentModel> GetByShowId(int id)
         {
             List<PaymentModel> dps = new List<PaymentModel>();
             List<OnlineMovieBooking.Domain.DTO.Payment> rps = ups.GetByShowId(id);
@@ -151,7 +151,7 @@ namespace OnlineMovieBooking.Proxy
             return dps;
         }
 
-        PaymentModel IPaymentProxy.GetByTransactionId(string id)
+        public PaymentModel GetByTransactionId(string id)
         {
             PaymentModel dp = new PaymentModel();
             OnlineMovieBooking.Domain.DTO.Payment rp = ups.GetByTransactionId(id);
@@ -165,7 +165,7 @@ namespace OnlineMovieBooking.Proxy
             return dp;
         }
 
-        List<PaymentModel> IPaymentProxy.GetByUserId(int id)
+        public List<PaymentModel> GetByUserId(int id)
         {
             List<PaymentModel> dps = new List<PaymentModel>();
             List<OnlineMovieBooking.Domain.DTO.Payment> rps = ups.GetByUserId(id);
