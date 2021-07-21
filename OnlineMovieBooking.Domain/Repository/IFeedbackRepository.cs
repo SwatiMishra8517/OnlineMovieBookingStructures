@@ -15,5 +15,6 @@ namespace OnlineMovieBooking.Domain.Repository
         void Update(int id, Feedback feedback);
         void Delete(int id);
         List<Feedback> GetAll();
+        List<Feedback> GetByMovieId(int id);
     }
 }

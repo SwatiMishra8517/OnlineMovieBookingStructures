@@ -8,7 +8,7 @@ using OnlineMovieBooking.Domain.Repository;
 
 namespace OnlineMovieBooking.Domain.Services.UserServices.UserService.UserQueryService
 {
-    class UserQueryService : IUserQueryService
+    public class UserQueryService : IUserQueryService
     {
         UserRepository ur = new UserRepository();
         public User GetByEmail(string email)

@@ -11,11 +11,14 @@ namespace OnlineMovieBooking.Proxy
     {
         private readonly FeedbackCommandService fcs = new FeedbackCommandService();
         private readonly FeedbackQueryService fqs = new FeedbackQueryService();
+        private readonly OnlineMovieBooking.Domain.Services.UserServices.FeedbackService.FeedbackQueryService.FeedbackQueryService ufs = new Domain.Services.UserServices.FeedbackService.FeedbackQueryService.FeedbackQueryService();
+
         public FeedbackProxy() { }
-        public FeedbackProxy(FeedbackQueryService feedbackQueryService, FeedbackCommandService feedbackCommandService)
+        public FeedbackProxy(FeedbackQueryService feedbackQueryService, FeedbackCommandService feedbackCommandService, OnlineMovieBooking.Domain.Services.UserServices.FeedbackService.FeedbackQueryService.FeedbackQueryService uf)
         {
             this.fcs = feedbackCommandService;
             this.fqs = feedbackQueryService;
+            this.ufs = uf;
         }
 
         public void Add(FeedbackModel feedback)
@@ -68,6 +71,24 @@ namespace OnlineMovieBooking.Proxy
             };
             return f;
         }
+
+        public List<FeedbackModel> GetByMovieId(int id)
+        {
+            List<FeedbackModel> fb = new List<FeedbackModel>();
+            List<OnlineMovieBooking.Domain.DTO.Feedback> fl = ufs.GetByMovieId(id);
+            foreach (var f in fl)
+            {
+                FeedbackModel df = new FeedbackModel();
+                df.FeedbackId = f.FeedbackId;
+                df.Rating = f.Rating;
+                df.Review = f.Review;
+                df.UserId = f.UserId;
+                df.MovieId = f.MovieId;
+                fb.Add(df);
+            }
+            return fb;
+        }
+    
 
         public void Update(int id, FeedbackModel feedback)
         {

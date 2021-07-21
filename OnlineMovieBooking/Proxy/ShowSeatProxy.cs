@@ -11,11 +11,13 @@ namespace OnlineMovieBooking.Proxy
     {
         private readonly ShowSeatCommandService sscs = new ShowSeatCommandService();
         private readonly ShowSeatQueryService ssqs = new ShowSeatQueryService();
+        private readonly OnlineMovieBooking.Domain.Services.UserServices.ShowSeatService.ShowSeatQueryService.ShowSeatQueryService uss = new Domain.Services.UserServices.ShowSeatService.ShowSeatQueryService.ShowSeatQueryService();
         public ShowSeatProxy() { }
-        public ShowSeatProxy(ShowSeatQueryService userQueryService, ShowSeatCommandService userCommandService)
+        public ShowSeatProxy(ShowSeatQueryService userQueryService, ShowSeatCommandService userCommandService, OnlineMovieBooking.Domain.Services.UserServices.ShowSeatService.ShowSeatQueryService.ShowSeatQueryService us)
         {
             this.sscs = userCommandService;
             this.ssqs = userQueryService;
+            this.uss = us;
         }
 
         public void Add(ShowSeatModel showSeat)
@@ -57,6 +59,19 @@ namespace OnlineMovieBooking.Proxy
             return ums;
         }
 
+        public ShowSeatModel GetByBookinId(int id)
+        {
+            OnlineMovieBooking.Domain.DTO.ShowSeat res = uss.GetByBookinId(id);
+            ShowSeatModel dts = new ShowSeatModel();
+            dts.ShowSeatId = res.ShowSeatId;
+            dts.Status = res.Status;
+            dts.Price = res.Price;
+            dts.CinemaSeatId = res.CinemaSeatId;
+            dts.ShowId = res.ShowId;
+            dts.BookingId = res.BookingId;
+            return dts;
+        }
+
         public ShowSeatModel GetById(int id)
         {
             var showSeat = ssqs.Get(id);
@@ -70,6 +85,34 @@ namespace OnlineMovieBooking.Proxy
                 BookingId = showSeat.BookingId
             };
             return ss;
+        }
+
+        public List<ShowSeatModel> GetByShowId(int id)
+        {
+            List<ShowSeatModel> ds = new List<ShowSeatModel>();
+            List<OnlineMovieBooking.Domain.DTO.ShowSeat> es = uss.GetByShowId(id);
+            foreach (var res in es)
+            {
+                ShowSeatModel dts = new ShowSeatModel();
+                dts.ShowSeatId = res.ShowSeatId;
+                dts.Status = res.Status;
+                dts.Price = res.Price;
+                dts.CinemaSeatId = res.CinemaSeatId;
+                dts.ShowId = res.ShowId;
+                dts.BookingId = res.BookingId;
+                ds.Add(dts);
+            }
+            return ds;
+        }
+
+        public double GetPrice(int id)
+        {
+            return uss.GetPrice(id);
+        }
+
+        public string GetStatus(int id)
+        {
+            return uss.GetStatus(id);
         }
 
         public void Update(int id, ShowSeatModel showSeat)

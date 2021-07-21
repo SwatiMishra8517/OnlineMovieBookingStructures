@@ -8,7 +8,7 @@ using OnlineMovieBooking.Domain.Repository;
 
 namespace OnlineMovieBooking.Domain.Services.UserServices.CinemaHallService.CinemaHallQueryService
 {
-    class CinemaHallQueryService : ICinemaHallQueryService
+    public class CinemaHallQueryService : ICinemaHallQueryService
     {
         private CinemaHallRepository chr = new CinemaHallRepository();
         public List<CinemaHall> GetAll()

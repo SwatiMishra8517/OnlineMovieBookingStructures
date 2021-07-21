@@ -8,7 +8,7 @@ using OnlineMovieBooking.Domain.Repository;
 
 namespace OnlineMovieBooking.Domain.Services.UserServices.BookingService.BookingQueryService
 {
-    class BookingQueryService : IBookingQueryService
+    public class BookingQueryService : IBookingQueryService
     {
         BookingRepository br = new BookingRepository();
         public Booking GetById(int id)

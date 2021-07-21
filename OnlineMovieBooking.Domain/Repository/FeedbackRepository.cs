@@ -44,5 +44,10 @@ namespace OnlineMovieBooking.Domain.Repository
         {
             return db.Feedbacks.ToList();
         }
+
+        public List<Feedback> GetByMovieId(int id)
+        {
+            return db.Feedbacks.Where(m => m.MovieId == id).ToList();
+        }
     }
 }

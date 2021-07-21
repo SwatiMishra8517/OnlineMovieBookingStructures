@@ -8,7 +8,7 @@ using OnlineMovieBooking.Domain.Repository;
 
 namespace OnlineMovieBooking.Domain.Services.UserServices.CinemaSeatService.CinemaSeatQueryService
 {
-    class CinemaSeatQueryService : ICinemaSeatQueryService
+    public class CinemaSeatQueryService : ICinemaSeatQueryService
     {
         CinemaSeatRepository csr = new CinemaSeatRepository();
         public List<CinemaSeat> GetAll()

@@ -14,5 +14,11 @@ namespace OnlineMovieBooking.Proxy
         void Update(int id, PaymentModel payment);
         PaymentModel GetById(int id);
         List<PaymentModel> GetAll();
+        List<PaymentModel> GetByUserId(int id);
+        List<PaymentModel> GetByShowId(int id);
+
+        PaymentModel GetByTransactionId(string id);
+        List<PaymentModel> GetByPaymentMethod(string method);
+        List<PaymentModel> GetByBookingId(int id);
     }
 }

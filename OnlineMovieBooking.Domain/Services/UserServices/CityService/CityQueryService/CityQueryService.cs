@@ -8,7 +8,7 @@ using OnlineMovieBooking.Domain.Repository;
 
 namespace OnlineMovieBooking.Domain.Services.UserServices.CityService.CityQueryService
 {
-    class CityQueryService : ICityQueryService
+    public class CityQueryService : ICityQueryService
     {
         CityRepository cr = new CityRepository();
         public DTO.City GetById(int id)

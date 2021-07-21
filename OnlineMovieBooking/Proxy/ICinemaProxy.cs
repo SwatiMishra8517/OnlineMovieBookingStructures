@@ -14,5 +14,8 @@ namespace OnlineMovieBooking.Proxy
         void Update(int id, CinemaModel cinema);
         CinemaModel GetById(int id);
         List<CinemaModel> GetAll();
+        List<CinemaModel> GetByCityId(int id);
+        CinemaModel GetByName(string name);
+
     }
 }

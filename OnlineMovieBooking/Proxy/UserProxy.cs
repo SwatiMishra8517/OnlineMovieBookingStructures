@@ -11,11 +11,13 @@ namespace OnlineMovieBooking.Proxy
     {
         private readonly UserCommandService ucs = new UserCommandService();
         private readonly UserQueryService uqs = new UserQueryService();
+        private readonly OnlineMovieBooking.Domain.Services.UserServices.UserService.UserQueryService.UserQueryService uss = new Domain.Services.UserServices.UserService.UserQueryService.UserQueryService();
         public UserProxy() { }
-        public UserProxy(UserQueryService userQueryService, UserCommandService userCommandService)
+        public UserProxy(UserQueryService userQueryService, UserCommandService userCommandService, OnlineMovieBooking.Domain.Services.UserServices.UserService.UserQueryService.UserQueryService us)
         {
             this.ucs = userCommandService;
             this.uqs = userQueryService;
+            this.uss = us;
         }
 
         public void Add(UserModel user)
@@ -57,6 +59,12 @@ namespace OnlineMovieBooking.Proxy
             return ums;
         }
 
+        public UserModel GetByEmail(string email)
+        {
+            OnlineMovieBooking.Domain.DTO.User user = uss.GetByEmail(email);
+            return (UserModel)user;
+        }
+
         public UserModel GetById(int id)
         {
             var user = uqs.Get(id);
@@ -70,6 +78,12 @@ namespace OnlineMovieBooking.Proxy
                 Password = user.Password
             };
             return u;
+        }
+
+        public UserModel GetByUserName(string username)
+        {
+            OnlineMovieBooking.Domain.DTO.User user = uss.GetByUserName(username);
+            return (UserModel)user;
         }
 
         public void Update(int id, UserModel user)

@@ -11,11 +11,13 @@ namespace OnlineMovieBooking.Proxy
     {
         private readonly CinemaCommandService ccs = new CinemaCommandService();
         private readonly CinemaQueryService cqs = new CinemaQueryService();
+        private readonly OnlineMovieBooking.Domain.Services.UserServices.CinemaService.CinemaQueryService.CinemaQueryService ucs = new Domain.Services.UserServices.CinemaService.CinemaQueryService.CinemaQueryService();
         public CinemaProxy() { }
-        public CinemaProxy(CinemaQueryService cinemaQueryService, CinemaCommandService cinemaCommandService)
+        public CinemaProxy(CinemaQueryService cinemaQueryService, CinemaCommandService cinemaCommandService, OnlineMovieBooking.Domain.Services.UserServices.CinemaService.CinemaQueryService.CinemaQueryService uc)
         {
             this.ccs = cinemaCommandService;
             this.cqs = cinemaQueryService;
+            this.ucs = uc;
         }
 
         public void Add(CinemaModel cinema)
@@ -53,6 +55,23 @@ namespace OnlineMovieBooking.Proxy
             return cms;
         }
 
+        public List<CinemaModel> GetByCityId(int id)
+        {
+            List<CinemaModel> cinemas = new List<CinemaModel>();
+            List<OnlineMovieBooking.Domain.DTO.Cinema> c = ucs.GetByCityId(id);
+            foreach (var cit in c)
+            {
+                CinemaModel cine = new CinemaModel();
+                cine.CinemaId = cit.CinemaId;
+                cine.Name = cit.Name;
+                cine.TotalHalls = cit.TotalHalls;
+                cine.CityId = cit.CityId;
+                cine.City = cine.City;
+                cinemas.Add(cine);
+            }
+            return cinemas;
+        }
+
         public CinemaModel GetById(int id)
         {
             var cinema = cqs.Get(id);
@@ -64,6 +83,18 @@ namespace OnlineMovieBooking.Proxy
                 CityId = cinema.CityId,
             };
             return c;
+        }
+
+        public CinemaModel GetByName(string name)
+        {
+            CinemaModel cine = new CinemaModel();
+            OnlineMovieBooking.Domain.DTO.Cinema cit = ucs.GetByName(name);
+            cine.CinemaId = cit.CinemaId;
+            cine.Name = cit.Name;
+            cine.TotalHalls = cit.TotalHalls;
+            cine.CityId = cit.CityId;
+            cine.City = cine.City;
+            return cine;
         }
 
         public void Update(int id, CinemaModel cinema)

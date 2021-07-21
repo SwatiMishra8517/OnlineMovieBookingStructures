@@ -1,6 +1,6 @@
 ﻿using OnlineMovieBooking.Domain.Services.BookingService;
 using OnlineMovieBooking.Models;
-using System;
+using OnlineMovieBooking.Domain.Services.UserServices.BookingService;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,11 +11,13 @@ namespace OnlineMovieBooking.Proxy
     {
         private readonly BookingCommandService bcs = new BookingCommandService();
         private readonly BookingQueryService bqs = new BookingQueryService();
+        private readonly OnlineMovieBooking.Domain.Services.UserServices.BookingService.BookingQueryService.BookingQueryService ubs = new Domain.Services.UserServices.BookingService.BookingQueryService.BookingQueryService();
         public BookingProxy() { }
-        public BookingProxy(BookingQueryService bookingQueryService, BookingCommandService bookingCommandService)
+        public BookingProxy(BookingQueryService bookingQueryService, BookingCommandService bookingCommandService, OnlineMovieBooking.Domain.Services.UserServices.BookingService.BookingQueryService.BookingQueryService ub)
         {
             this.bcs = bookingCommandService;
             this.bqs = bookingQueryService;
+            this.ubs = ub;
         }
 
         public void Add(BookingModel booking)
@@ -70,6 +72,52 @@ namespace OnlineMovieBooking.Proxy
                 UserId = booking.UserId,
             };
             return b;
+        }
+
+        public List<BookingModel> GetByShowId(int id)
+        {
+            List<BookingModel> book = new List<BookingModel>();
+            List<OnlineMovieBooking.Domain.DTO.Booking> bl = ubs.GetByShowId(id);
+            foreach (var booking in bl)
+            {
+                BookingModel b = new BookingModel();
+                b.BookingId = booking.BookingId;
+                b.NumberOfSeats = booking.NumberOfSeats;
+                b.Time = booking.Time;
+                b.Status = booking.Status;
+                b.UserId = booking.UserId;
+                b.ShowId = booking.ShowId;
+                book.Add(b);
+            }
+            return book;
+        }
+
+        public List<BookingModel> GetByUserId(int id)
+        {
+            List<BookingModel> book = new List<BookingModel>();
+            List<OnlineMovieBooking.Domain.DTO.Booking> bl = ubs.GetByUserId(id);
+            foreach (var booking in bl)
+            {
+                BookingModel b = new BookingModel();
+                b.BookingId = booking.BookingId;
+                b.NumberOfSeats = booking.NumberOfSeats;
+                b.Time = booking.Time;
+                b.Status = booking.Status;
+                b.UserId = booking.UserId;
+                b.ShowId = booking.ShowId;
+                book.Add(b);
+            }
+            return book;
+        }
+
+        public int GetNumberOfSeats(int id)
+        {
+            return ubs.GetNumberOfSeats(id);
+        }
+
+        public string GetStatus(int id)
+        {
+            return ubs.GetStatus(id);
         }
 
         public void Update(int id, BookingModel booking)

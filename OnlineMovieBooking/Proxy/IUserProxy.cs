@@ -14,6 +14,8 @@ namespace OnlineMovieBooking.Proxy
         void Update(int id, UserModel user);
         UserModel GetById(int id);
         List<UserModel> GetAll();
+        UserModel GetByUserName(string username);
+        UserModel GetByEmail(string email);
 
     }
 }
