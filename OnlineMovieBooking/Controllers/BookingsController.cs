@@ -15,6 +15,8 @@ namespace OnlineMovieBooking.Controllers
     public class BookingsController : Controller
     {
         private BookingControllerService bcs = new BookingControllerService();
+        private ShowControllerService scs = new ShowControllerService();
+        private UserControllerService ucs = new UserControllerService();
 
         // GET: Bookings
         public ActionResult Index()
@@ -38,13 +40,13 @@ namespace OnlineMovieBooking.Controllers
         }
 
         // GET: Bookings/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BookingModel booking = bcs.GetById(id);
+            BookingModel booking = bcs.GetById((int)id);
             BookingModel b = new BookingModel
             {
                 BookingId = booking.BookingId,
@@ -66,8 +68,8 @@ namespace OnlineMovieBooking.Controllers
         public ActionResult Create()
         {
 
-            ViewBag.ShowId = new SelectList(db.Shows, "ShowId", "ShowId");
-            ViewBag.UserId = new SelectList(db.Users, "UserId", "Name");
+            ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId");
+            ViewBag.UserId = new SelectList(ucs.GetAll(), "UserId", "Name");
             return View();
         }
 
@@ -93,25 +95,25 @@ namespace OnlineMovieBooking.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ShowId = new SelectList(db.Shows, "ShowId", "ShowId", booking.ShowId);
-            ViewBag.UserId = new SelectList(db.Users, "UserId", "Name", booking.UserId);
+            ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId", booking.ShowId);
+            ViewBag.UserId = new SelectList(ucs.GetAll(), "UserId", "Name", booking.UserId);
             return View(booking);
         }
 
         // GET: Bookings/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BookingModel booking = bcs.GetById(id);
+            BookingModel booking = bcs.GetById((int)id);
             if (booking == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ShowId = new SelectList(db.Shows, "ShowId", "ShowId", booking.ShowId);
-            ViewBag.UserId = new SelectList(db.Users, "UserId", "Name", booking.UserId);
+            ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId", booking.ShowId);
+            ViewBag.UserId = new SelectList(ucs.GetAll(), "UserId", "Name", booking.UserId);
             return View(booking);
         }
 
@@ -136,8 +138,8 @@ namespace OnlineMovieBooking.Controllers
                 bcs.Update(id, b);
                 return RedirectToAction("Index");
             }
-            ViewBag.ShowId = new SelectList(db.Shows, "ShowId", "ShowId", booking.ShowId);
-            ViewBag.UserId = new SelectList(db.Users, "UserId", "Name", booking.UserId);
+            ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId", booking.ShowId);
+            ViewBag.UserId = new SelectList(ucs.GetAll(), "UserId", "Name", booking.UserId);
             return View(booking);
         }
 
