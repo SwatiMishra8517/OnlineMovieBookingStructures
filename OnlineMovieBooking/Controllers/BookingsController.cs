@@ -120,7 +120,7 @@ namespace OnlineMovieBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id,[Bind(Include = "BookingId,NumberOfSeats,Time,Status,UserId,ShowId")] BookingModel booking)
+        public ActionResult Edit(int id,[Bind(Include = "BookingId,NumberOfSeats,Time,Status,UserId,ShowId")] BookingViewModel booking)
         {
             if (ModelState.IsValid)
             {
