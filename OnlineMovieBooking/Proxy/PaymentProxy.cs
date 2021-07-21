@@ -11,7 +11,7 @@ namespace OnlineMovieBooking.Proxy
     {
         private readonly PaymentCommandService pcs = new PaymentCommandService();
         private readonly PaymentQueryService pqs = new PaymentQueryService();
-        private readonly OnlineMovieBooking.Domain.Services.UserServices.PaymentService.PaymentQueryService.PaymentQueryService ups = new Domain.Services.UserServices.PaymentService.PaymentQueryService.PaymentQueryService();
+        public  OnlineMovieBooking.Domain.Services.UserServices.PaymentService.PaymentQueryService.PaymentQueryService ups = new Domain.Services.UserServices.PaymentService.PaymentQueryService.PaymentQueryService();
 
         public PaymentProxy() { }
         public PaymentProxy(PaymentQueryService paymentQueryService, PaymentCommandService paymentCommandService, OnlineMovieBooking.Domain.Services.UserServices.PaymentService.PaymentQueryService.PaymentQueryService up)

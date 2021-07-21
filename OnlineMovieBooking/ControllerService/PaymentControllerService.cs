@@ -30,13 +30,13 @@ namespace OnlineMovieBooking.ControllerService
         {
             return paymentProxy.GetAll();
         }
+        public List<PaymentModel> GetByUserId(int id)
+        {
+            return paymentProxy.GetByUserId(id);
+        }
         public List<PaymentModel> GetByBookingId(int id)
         {
             return paymentProxy.GetByBookingId(id);
-        }
-        public List<PaymentModel> GetByPaymentMethod(string method)
-        {
-            return paymentProxy.GetByPaymentMethod(method);
         }
         public List<PaymentModel> GetByShowId(int id)
         {
@@ -46,9 +46,10 @@ namespace OnlineMovieBooking.ControllerService
         {
             return paymentProxy.GetByTransactionId(id);
         }
-        public List<PaymentModel> GetByUserId(int id)
+        public List<PaymentModel> GetByPaymentMethod(string method)
         {
-            return paymentProxy.GetByUserId(id);
+            return paymentProxy.GetByPaymentMethod(method);
         }
+        
     }
 }
