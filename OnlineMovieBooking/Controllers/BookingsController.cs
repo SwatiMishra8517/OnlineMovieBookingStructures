@@ -6,40 +6,66 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using OnlineMovieBooking.Context;
+using OnlineMovieBooking.ControllerService;
 using OnlineMovieBooking.Models;
+using OnlineMovieBooking.ViewModels;
 
 namespace OnlineMovieBooking.Controllers
 {
     public class BookingsController : Controller
     {
-        private MovieContext db = new MovieContext();
+        private BookingControllerService bcs = new BookingControllerService();
 
         // GET: Bookings
         public ActionResult Index()
         {
-            var bookings = db.Bookings.Include(b => b.Show).Include(b => b.User);
-            return View(bookings.ToList());
+            List<BookingViewModel> bList = new List<BookingViewModel>();
+            List<Models.BookingModel> bms = bcs.GetAll();
+            foreach (var booking in bList)
+            {
+                BookingModel b = new BookingModel
+                {
+                    BookingId = booking.BookingId,
+                    NumberOfSeats = booking.NumberOfSeats,
+                    Time = booking.Time,
+                    Status = booking.Status,
+                    ShowId = booking.ShowId,
+                    UserId = booking.UserId,
+                };
+                bms.Add(b);
+            }
+            return View(bms);
         }
 
         // GET: Bookings/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Booking booking = db.Bookings.Find(id);
-            if (booking == null)
+            BookingModel booking = bcs.GetById(id);
+            BookingModel b = new BookingModel
+            {
+                BookingId = booking.BookingId,
+                NumberOfSeats = booking.NumberOfSeats,
+                Time = booking.Time,
+                Status = booking.Status,
+                ShowId = booking.ShowId,
+                UserId = booking.UserId,
+            };
+
+            if (b == null)
             {
                 return HttpNotFound();
             }
-            return View(booking);
+            return View(b);
         }
 
         // GET: Bookings/Create
         public ActionResult Create()
         {
+
             ViewBag.ShowId = new SelectList(db.Shows, "ShowId", "ShowId");
             ViewBag.UserId = new SelectList(db.Users, "UserId", "Name");
             return View();
@@ -50,12 +76,20 @@ namespace OnlineMovieBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BookingId,NumberOfSeats,Time,Status,UserId,ShowId")] Booking booking)
+        public ActionResult Create([Bind(Include = "BookingId,NumberOfSeats,Time,Status,UserId,ShowId")] BookingViewModel booking)
         {
             if (ModelState.IsValid)
             {
-                db.Bookings.Add(booking);
-                db.SaveChanges();
+                BookingModel b = new BookingModel
+                {
+                    BookingId = booking.BookingId,
+                    NumberOfSeats = booking.NumberOfSeats,
+                    Time = booking.Time,
+                    Status = booking.Status,
+                    ShowId = booking.ShowId,
+                    UserId = booking.UserId,
+                };
+                bcs.Add(b);
                 return RedirectToAction("Index");
             }
 
@@ -65,13 +99,13 @@ namespace OnlineMovieBooking.Controllers
         }
 
         // GET: Bookings/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Booking booking = db.Bookings.Find(id);
+            BookingModel booking = bcs.GetById(id);
             if (booking == null)
             {
                 return HttpNotFound();
@@ -86,12 +120,20 @@ namespace OnlineMovieBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BookingId,NumberOfSeats,Time,Status,UserId,ShowId")] Booking booking)
+        public ActionResult Edit(int id,[Bind(Include = "BookingId,NumberOfSeats,Time,Status,UserId,ShowId")] BookingModel booking)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(booking).State = EntityState.Modified;
-                db.SaveChanges();
+                BookingModel b = new BookingModel
+                {
+                    BookingId = booking.BookingId,
+                    NumberOfSeats = booking.NumberOfSeats,
+                    Time = booking.Time,
+                    Status = booking.Status,
+                    ShowId = booking.ShowId,
+                    UserId = booking.UserId,
+                };
+                bcs.Update(id, b);
                 return RedirectToAction("Index");
             }
             ViewBag.ShowId = new SelectList(db.Shows, "ShowId", "ShowId", booking.ShowId);
@@ -100,13 +142,9 @@ namespace OnlineMovieBooking.Controllers
         }
 
         // GET: Bookings/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Booking booking = db.Bookings.Find(id);
+            BookingModel booking = bcs.GetById(id);
             if (booking == null)
             {
                 return HttpNotFound();
@@ -119,19 +157,9 @@ namespace OnlineMovieBooking.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Booking booking = db.Bookings.Find(id);
-            db.Bookings.Remove(booking);
-            db.SaveChanges();
+            bcs.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

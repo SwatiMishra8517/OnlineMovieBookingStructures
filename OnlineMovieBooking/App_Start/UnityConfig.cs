@@ -1,17 +1,17 @@
 using System;
 using OnlineMovieBooking.Domain.Repository;
 using OnlineMovieBooking.Proxy;
-using OnlineMovieBooking.Domain.Services.Booking;
-using OnlineMovieBooking.Domain.Services.Cinema;
-using OnlineMovieBooking.Domain.Services.CinemaHall;
-using OnlineMovieBooking.Domain.Services.CinemaSeat;
-using OnlineMovieBooking.Domain.Services.City;
-using OnlineMovieBooking.Domain.Services.Feedback;
-using OnlineMovieBooking.Domain.Services.Movie;
-using OnlineMovieBooking.Domain.Services.Payment;
-using OnlineMovieBooking.Domain.Services.Show;
-using OnlineMovieBooking.Domain.Services.ShowSeat;
-using OnlineMovieBooking.Domain.Services.User;
+using OnlineMovieBooking.Domain.Services.BookingService;
+using OnlineMovieBooking.Domain.Services.CinemaService;
+using OnlineMovieBooking.Domain.Services.CinemaHallService;
+using OnlineMovieBooking.Domain.Services.CinemaSeatService;
+using OnlineMovieBooking.Domain.Services.CityService;
+using OnlineMovieBooking.Domain.Services.FeedbackService;
+using OnlineMovieBooking.Domain.Services.MovieService;
+using OnlineMovieBooking.Domain.Services.PaymentService;
+using OnlineMovieBooking.Domain.Services.ShowService;
+using OnlineMovieBooking.Domain.Services.ShowSeatService;
+using OnlineMovieBooking.Domain.Services.UserService;
 
 
 using Unity;
