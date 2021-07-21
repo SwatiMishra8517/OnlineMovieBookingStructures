@@ -1,5 +1,4 @@
 ﻿using OnlineMovieBooking.Proxy;
-using OnlineMovieBooking.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,14 +33,11 @@ namespace OnlineMovieBooking.ControllerService
         {
             return paymentProxy.GetByUserId(id);
         }
-        public List<PaymentModel> GetByBookingId(int id)
-        {
-            return paymentProxy.GetByBookingId(id);
-        }
         public List<PaymentModel> GetByShowId(int id)
         {
             return paymentProxy.GetByShowId(id);
         }
+
         public PaymentModel GetByTransactionId(string id)
         {
             return paymentProxy.GetByTransactionId(id);
@@ -50,6 +46,9 @@ namespace OnlineMovieBooking.ControllerService
         {
             return paymentProxy.GetByPaymentMethod(method);
         }
-        
+        public List<PaymentModel> GetByBookingId(int id)
+        {
+            return paymentProxy.GetByBookingId(id);
+        }
     }
 }
