@@ -1,5 +1,8 @@
 ﻿using OnlineMovieBooking.Domain.DTO;
 using OnlineMovieBooking.Domain.Repository;
+using OnlineMovieBooking.Domain.Services.ShowService;
+using OnlineMovieBooking.Domain.Services.BookingService;
+using OnlineMovieBooking.Domain.Services.CinemaSeatService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +15,9 @@ namespace OnlineMovieBooking.Domain.Services.ShowSeatService
     {
         private readonly IShowSeatRepository repository;
         private ShowSeatRepository ssr;
+        private ShowQueryService sqr;
+        private BookingQueryService sbr;
+        private CinemaSeatQueryService csqr;
 
         public ShowSeatQueryService() { }
         public ShowSeatQueryService(IShowSeatRepository repository)
@@ -43,7 +49,10 @@ namespace OnlineMovieBooking.Domain.Services.ShowSeatService
                 Price = showSeat.Price,
                 BookingId = showSeat.BookingId,
                 CinemaSeatId = showSeat.CinemaSeatId,
-                ShowId = showSeat.ShowId
+                ShowId = showSeat.ShowId,
+                Show = sqr.Get(showSeat.ShowId),
+                Booking = sbr.Get(showSeat.BookingId),
+                CinemaSeat = csqr.Get(showSeat.BookingId)
             }).ToList();
             return retList;
         }

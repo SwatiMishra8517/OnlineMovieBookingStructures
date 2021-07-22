@@ -6,18 +6,21 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using OnlineMovieBooking.Context;
 using OnlineMovieBooking.Models;
+using OnlineMovieBooking.ControllerService;
+using OnlineMovieBooking.ViewModels;
 
 namespace OnlineMovieBooking.Controllers
 {
     public class ShowSeatsController : Controller
     {
-        private MovieContext db = new MovieContext();
+        private readonly ShowSeatControllerService sscs = new ShowSeatControllerService();
 
         // GET: ShowSeats
         public ActionResult Index()
         {
+            List<ShowSeatModel> ssms = sscs.GetAll();
+            
             var showSeats = db.ShowSeats.Include(s => s.Booking).Include(s => s.CinemaSeat).Include(s => s.Show);
             return View(showSeats.ToList());
         }
