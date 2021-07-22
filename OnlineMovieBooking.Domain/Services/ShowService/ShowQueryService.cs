@@ -1,5 +1,7 @@
 ﻿using OnlineMovieBooking.Domain.DTO;
 using OnlineMovieBooking.Domain.Repository;
+using OnlineMovieBooking.Domain.Services.CinemaHallService;
+using OnlineMovieBooking.Domain.Services.MovieService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,9 @@ namespace OnlineMovieBooking.Domain.Services.ShowService
     public class ShowQueryService : IShowQueryService
     {
         private readonly IShowRepository repository;
-        private ShowRepository sr;
+        private ShowRepository sr = new ShowRepository();
+        private CinemaHallQueryService chqs = new CinemaHallQueryService();
+        private MovieQueryService mqs = new MovieQueryService();
 
         public ShowQueryService() { }
         public ShowQueryService(IShowRepository repository)
@@ -44,7 +48,9 @@ namespace OnlineMovieBooking.Domain.Services.ShowService
                 StartTime = show.StartTime,
                 EndTime = show.EndTime,
                 MovieId = show.MovieId,
-                CinemaHallId = show.CinemaHallId
+                CinemaHallId = show.CinemaHallId,
+                CinemaHall = chqs.Get(show.CinemaHallId),
+                Movie = mqs.Get(show.MovieId)
             }).ToList();
             return retList;
         }

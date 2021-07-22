@@ -17,7 +17,7 @@ namespace OnlineMovieBooking.Domain.Services.ShowSeatService
         {
             this.repository = repository;
         }
-        private ShowSeatRepository ssr;
+        private ShowSeatRepository ssr = new ShowSeatRepository();
 
         public void Add(ShowSeat showSeat)
         {
