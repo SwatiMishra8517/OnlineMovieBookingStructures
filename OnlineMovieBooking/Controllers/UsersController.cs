@@ -122,12 +122,21 @@ namespace OnlineMovieBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserId,Name,Username,MobileNo,Email,Password")] User user)
+        public ActionResult Edit([Bind(Include = "UserId,Name,Username,MobileNo,Email,Password")] UserViewModel user)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(user).State = EntityState.Modified;
+                UserModel u = new UserModel
+                {
+                    UserId = user.UserId,
+                    Name = user.Name,
+                    Username = user.Username,
+                    MobileNo = user.MobileNo,
+                    Email = user.Email,
+                    Password = user.Password
+                };
+                ucs.Update(user.UserId, u);
                 return RedirectToAction("Index");
             }
             return View(user);
@@ -140,12 +149,21 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            UserModel user = ucs.GetById((int)id);
+            UserModel u = new UserModel
+            {
+                UserId = user.UserId,
+                Name = user.Name,
+                Username = user.Username,
+                MobileNo = user.MobileNo,
+                Email = user.Email,
+                Password = user.Password
+            };
             if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(u);
         }
 
         // POST: Users/Delete/5
@@ -153,19 +171,10 @@ namespace OnlineMovieBooking.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
+            UserModel user = ucs.GetById(id);
+            ucs.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

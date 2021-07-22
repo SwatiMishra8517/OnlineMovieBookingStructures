@@ -3,6 +3,7 @@ using OnlineMovieBooking.Domain.Repository.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -42,7 +43,7 @@ namespace OnlineMovieBooking.Domain.Repository
         }
         public List<ShowSeat> GetAll()
         {
-            return db.ShowSeats.ToList();
+            return db.ShowSeats.Include(s => s.Booking).Include(s => s.CinemaSeat).Include(s => s.Show).ToList();
         }
 
         public List<ShowSeat> GetByShowId(int id)
