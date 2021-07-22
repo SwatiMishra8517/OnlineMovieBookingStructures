@@ -6,20 +6,35 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using OnlineMovieBooking.Context;
 using OnlineMovieBooking.Models;
+using OnlineMovieBooking.ControllerService;
+using OnlineMovieBooking.ViewModels;
+
 
 namespace OnlineMovieBooking.Controllers
 {
     public class CinemasController : Controller
     {
-        private MovieContext db = new MovieContext();
+        private CinemaControllerService ccs = new CinemaControllerService();
+        private CityControllerService cts = new CityControllerService();
 
         // GET: Cinemas
         public ActionResult Index()
         {
-            var cinemas = db.Cinemas.Include(c => c.City);
-            return View(cinemas.ToList());
+            List<CinemaViewModel> cms = new List<CinemaViewModel>();
+            List<CinemaModel> cinemas = ccs.GetAll();
+            foreach (var cinema in cinemas)
+            {
+                CinemaViewModel c = new CinemaViewModel
+                {
+                    CinemaId = cinema.CinemaId,
+                    Name = cinema.Name,
+                    TotalHalls = cinema.TotalHalls,
+                    CityId = cinema.CityId,
+                };
+                cms.Add(c);
+            }
+            return View(cms);
         }
 
         // GET: Cinemas/Details/5
@@ -29,18 +44,26 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cinema cinema = db.Cinemas.Find(id);
+            CinemaModel cinema = ccs.GetById((int)id);
+            CinemaViewModel c = new CinemaViewModel
+            {
+                CinemaId = cinema.CinemaId,
+                Name = cinema.Name,
+                TotalHalls = cinema.TotalHalls,
+                CityId = cinema.CityId,
+            };
             if (cinema == null)
             {
                 return HttpNotFound();
             }
-            return View(cinema);
+            return View(c);
         }
 
         // GET: Cinemas/Create
         public ActionResult Create()
         {
-            ViewBag.CityId = new SelectList(db.Cities, "CityId", "Name");
+
+            ViewBag.CityId = new SelectList(cts.GetAll(), "CityId", "Name");
             return View();
         }
 
@@ -49,16 +72,22 @@ namespace OnlineMovieBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CinemaId,Name,TotalHalls,CityId")] Cinema cinema)
+        public ActionResult Create([Bind(Include = "CinemaId,Name,TotalHalls,CityId")] CinemaViewModel cinema)
         {
             if (ModelState.IsValid)
             {
-                db.Cinemas.Add(cinema);
-                db.SaveChanges();
+                CinemaModel c = new CinemaModel
+                {
+                    CinemaId = cinema.CinemaId,
+                    Name = cinema.Name,
+                    TotalHalls = cinema.TotalHalls,
+                    CityId = cinema.CityId,
+                };
+                ccs.Add(c);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityId = new SelectList(db.Cities, "CityId", "Name", cinema.CityId);
+            ViewBag.CityId = new SelectList(cts.GetAll(), "CityId", "Name", cinema.CityId);
             return View(cinema);
         }
 
@@ -69,12 +98,12 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cinema cinema = db.Cinemas.Find(id);
+            CinemaModel cinema = ccs.GetById((int)id);
             if (cinema == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CityId = new SelectList(db.Cities, "CityId", "Name", cinema.CityId);
+            ViewBag.CityId = new SelectList(cts.GetAll(), "CityId", "Name", cinema.CityId);
             return View(cinema);
         }
 
@@ -83,15 +112,21 @@ namespace OnlineMovieBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CinemaId,Name,TotalHalls,CityId")] Cinema cinema)
+        public ActionResult Edit([Bind(Include = "CinemaId,Name,TotalHalls,CityId")] CinemaViewModel cinema)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cinema).State = EntityState.Modified;
-                db.SaveChanges();
+                CinemaModel c = new CinemaModel
+                {
+                    CinemaId = cinema.CinemaId,
+                    Name = cinema.Name,
+                    TotalHalls = cinema.TotalHalls,
+                    CityId = cinema.CityId,
+                };
+                ccs.Update(c.CinemaId, c);
                 return RedirectToAction("Index");
             }
-            ViewBag.CityId = new SelectList(db.Cities, "CityId", "Name", cinema.CityId);
+            ViewBag.CityId = new SelectList(cts.GetAll(), "CityId", "Name", cinema.CityId);
             return View(cinema);
         }
 
@@ -102,7 +137,7 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cinema cinema = db.Cinemas.Find(id);
+            CinemaModel cinema = ccs.GetById((int)id);
             if (cinema == null)
             {
                 return HttpNotFound();
@@ -115,19 +150,11 @@ namespace OnlineMovieBooking.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Cinema cinema = db.Cinemas.Find(id);
-            db.Cinemas.Remove(cinema);
-            db.SaveChanges();
+            CinemaModel cinema = ccs.GetById(id);
+            ccs.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }
