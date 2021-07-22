@@ -6,20 +6,35 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using OnlineMovieBooking.Context;
+using OnlineMovieBooking.ViewModels;
+using OnlineMovieBooking.ControllerService;
 using OnlineMovieBooking.Models;
 
 namespace OnlineMovieBooking.Controllers
 {
     public class FeedbacksController : Controller
     {
-        private MovieContext db = new MovieContext();
+        private FeedbackControllerService fcs = new FeedbackControllerService();
+
 
         // GET: Feedbacks
         public ActionResult Index()
         {
-            var feedbacks = db.Feedbacks.Include(f => f.Movie).Include(f => f.User);
-            return View(feedbacks.ToList());
+            List<FeedbackModel> fml = fcs.GetAll();
+            List<FeedbackViewModel> fvl = new List<FeedbackViewModel>();
+            foreach(var feedback in fml)
+            {
+                var f = new FeedbackViewModel
+                {
+                    FeedbackId = feedback.FeedbackId,
+                    Rating = feedback.Rating,
+                    Review = feedback.Review,
+                    UserId = feedback.UserId,
+                    MovieId = feedback.MovieId,
+                };
+                fvl.Add(f);
+            }
+            return View(fvl);
         }
 
         // GET: Feedbacks/Details/5
@@ -29,12 +44,20 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Feedback feedback = db.Feedbacks.Find(id);
+            FeedbackModel feedback = fcs.GetById(id: (int)id);
+            FeedbackViewModel f =new FeedbackViewModel()
+            {
+                FeedbackId = feedback.FeedbackId,
+                Rating = feedback.Rating,
+                Review = feedback.Review,
+                UserId = feedback.UserId,
+                MovieId = feedback.MovieId,
+            };
             if (feedback == null)
             {
                 return HttpNotFound();
             }
-            return View(feedback);
+            return View(f);
         }
 
         // GET: Feedbacks/Delete/5
@@ -44,12 +67,20 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Feedback feedback = db.Feedbacks.Find(id);
+            FeedbackModel feedback = fcs.GetById((int)id);
+            var f = new FeedbackViewModel()
+            {
+                FeedbackId = feedback.FeedbackId,
+                Rating = feedback.Rating,
+                Review = feedback.Review,
+                UserId = feedback.UserId,
+                MovieId = feedback.MovieId,
+            };
             if (feedback == null)
             {
                 return HttpNotFound();
             }
-            return View(feedback);
+            return View(f);
         }
 
         // POST: Feedbacks/Delete/5
@@ -57,19 +88,8 @@ namespace OnlineMovieBooking.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Feedback feedback = db.Feedbacks.Find(id);
-            db.Feedbacks.Remove(feedback);
-            db.SaveChanges();
+            fcs.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
