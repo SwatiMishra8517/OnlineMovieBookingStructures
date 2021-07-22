@@ -6,19 +6,36 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using OnlineMovieBooking.Context;
+using OnlineMovieBooking.ControllerService;
+using OnlineMovieBooking.ViewModels;
 using OnlineMovieBooking.Models;
 
 namespace OnlineMovieBooking.Controllers
 {
     public class MoviesController : Controller
     {
-        private MovieContext db = new MovieContext();
+        private MovieControllerService mcs = new MovieControllerService();
 
         // GET: Movies
         public ActionResult Index()
         {
-            return View(db.Movies.ToList());
+            List<MovieModel> movies = mcs.GetAll();
+            List<MovieViewModel> mms = new List<MovieViewModel>();
+            foreach (var movie in movies)
+            {
+                MovieViewModel m = new MovieViewModel
+                {
+                    MovieId = movie.MovieId,
+                    Name = movie.Name,
+                    Language = movie.Language,
+                    Genre = movie.Genre,
+                    Duration = movie.Duration,
+                    Description = movie.Description,
+                    ReleaseDate = movie.ReleaseDate,
+                };
+                mms.Add(m);
+            }
+            return View(mms);
         }
 
         // GET: Movies/Details/5
@@ -28,12 +45,22 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = db.Movies.Find(id);
+            MovieModel movie = mcs.GetById((int)id);
+            MovieViewModel m = new MovieViewModel
+            {
+                MovieId = movie.MovieId,
+                Name = movie.Name,
+                Language = movie.Language,
+                Genre = movie.Genre,
+                Duration = movie.Duration,
+                Description = movie.Description,
+                ReleaseDate = movie.ReleaseDate,
+            };
             if (movie == null)
             {
                 return HttpNotFound();
             }
-            return View(movie);
+            return View(m);
         }
 
         // GET: Movies/Create
@@ -47,12 +74,22 @@ namespace OnlineMovieBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MovieId,Name,Language,Genre,Duration,Description,ReleaseDate")] Movie movie)
+        public ActionResult Create([Bind(Include = "MovieId,Name,Language,Genre,Duration,Description,ReleaseDate")] MovieViewModel movie)
         {
             if (ModelState.IsValid)
             {
-                db.Movies.Add(movie);
-                db.SaveChanges();
+
+                MovieModel m = new MovieModel
+                {
+                    MovieId = movie.MovieId,
+                    Name = movie.Name,
+                    Language = movie.Language,
+                    Genre = movie.Genre,
+                    Duration = movie.Duration,
+                    Description = movie.Description,
+                    ReleaseDate = movie.ReleaseDate,
+                };
+                mcs.Add(m);
                 return RedirectToAction("Index");
             }
 
@@ -66,12 +103,22 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = db.Movies.Find(id);
+            MovieModel movie = mcs.GetById((int)id);
+            MovieViewModel m = new MovieViewModel
+            {
+                MovieId = movie.MovieId,
+                Name = movie.Name,
+                Language = movie.Language,
+                Genre = movie.Genre,
+                Duration = movie.Duration,
+                Description = movie.Description,
+                ReleaseDate = movie.ReleaseDate,
+            };
             if (movie == null)
             {
                 return HttpNotFound();
             }
-            return View(movie);
+            return View(m);
         }
 
         // POST: Movies/Edit/5
@@ -79,12 +126,21 @@ namespace OnlineMovieBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MovieId,Name,Language,Genre,Duration,Description,ReleaseDate")] Movie movie)
+        public ActionResult Edit([Bind(Include = "MovieId,Name,Language,Genre,Duration,Description,ReleaseDate")] MovieViewModel movie)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(movie).State = EntityState.Modified;
-                db.SaveChanges();
+                MovieModel m = new MovieModel
+                {
+                    MovieId = movie.MovieId,
+                    Name = movie.Name,
+                    Language = movie.Language,
+                    Genre = movie.Genre,
+                    Duration = movie.Duration,
+                    Description = movie.Description,
+                    ReleaseDate = movie.ReleaseDate,
+                };
+                mcs.Update(m.MovieId, m);
                 return RedirectToAction("Index");
             }
             return View(movie);
@@ -97,12 +153,22 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = db.Movies.Find(id);
+            MovieModel movie = mcs.GetById((int)id);
+            MovieViewModel m = new MovieViewModel
+            {
+                MovieId = movie.MovieId,
+                Name = movie.Name,
+                Language = movie.Language,
+                Genre = movie.Genre,
+                Duration = movie.Duration,
+                Description = movie.Description,
+                ReleaseDate = movie.ReleaseDate,
+            };
             if (movie == null)
             {
                 return HttpNotFound();
             }
-            return View(movie);
+            return View(m);
         }
 
         // POST: Movies/Delete/5
@@ -110,19 +176,9 @@ namespace OnlineMovieBooking.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Movie movie = db.Movies.Find(id);
-            db.Movies.Remove(movie);
-            db.SaveChanges();
+            mcs.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

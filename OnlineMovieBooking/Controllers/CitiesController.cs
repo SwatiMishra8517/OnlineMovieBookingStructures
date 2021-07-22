@@ -6,19 +6,33 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using OnlineMovieBooking.Context;
+using OnlineMovieBooking.ControllerService;
+using OnlineMovieBooking.ViewModels;
 using OnlineMovieBooking.Models;
 
 namespace OnlineMovieBooking.Controllers
 {
     public class CitiesController : Controller
     {
-        private MovieContext db = new MovieContext();
+        private CityControllerService cts = new CityControllerService();
 
         // GET: Cities
         public ActionResult Index()
         {
-            return View(db.Cities.ToList());
+            List<CityModel> cls = cts.GetAll();
+            List<CityViewModel> cms = new List<CityViewModel>();
+            foreach (var city in cls)
+            {
+                CityViewModel c = new CityViewModel
+                {
+                    CityId = city.CityId,
+                    Name = city.Name,
+                    State = city.State,
+                    ZipCode = city.ZipCode,
+                };
+                cms.Add(c);
+            }
+            return View(cms);
         }
 
         // GET: Cities/Details/5
@@ -28,12 +42,20 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            City city = db.Cities.Find(id);
+            CityViewModel ct = new CityViewModel();
+            CityModel city = cts.GetById((int)id);
+            CityViewModel c = new CityViewModel
+            {
+                CityId = city.CityId,
+                Name = city.Name,
+                State = city.State,
+                ZipCode = city.ZipCode,
+            };
             if (city == null)
             {
                 return HttpNotFound();
             }
-            return View(city);
+            return View(c);
         }
 
         // GET: Cities/Create
@@ -47,12 +69,18 @@ namespace OnlineMovieBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CityId,Name,State,ZipCode")] City city)
+        public ActionResult Create([Bind(Include = "CityId,Name,State,ZipCode")] CityViewModel city)
         {
             if (ModelState.IsValid)
             {
-                db.Cities.Add(city);
-                db.SaveChanges();
+                CityModel c = new CityModel
+                {
+                    CityId = city.CityId,
+                    Name = city.Name,
+                    State = city.State,
+                    ZipCode = city.ZipCode,
+                };
+                cts.Add(c);
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +94,7 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            City city = db.Cities.Find(id);
+            CityModel city = cts.GetById((int)id);
             if (city == null)
             {
                 return HttpNotFound();
@@ -79,12 +107,18 @@ namespace OnlineMovieBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CityId,Name,State,ZipCode")] City city)
+        public ActionResult Edit([Bind(Include = "CityId,Name,State,ZipCode")] CityViewModel city)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(city).State = EntityState.Modified;
-                db.SaveChanges();
+                CityModel c = new CityModel
+                {
+                    CityId = city.CityId,
+                    Name = city.Name,
+                    State = city.State,
+                    ZipCode = city.ZipCode,
+                };
+                cts.Update(c.CityId, c);
                 return RedirectToAction("Index");
             }
             return View(city);
@@ -97,12 +131,19 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            City city = db.Cities.Find(id);
+            CityModel city = cts.GetById((int)id);
             if (city == null)
             {
                 return HttpNotFound();
             }
-            return View(city);
+            CityViewModel c = new CityViewModel
+            {
+                CityId = city.CityId,
+                Name = city.Name,
+                State = city.State,
+                ZipCode = city.ZipCode,
+            };
+            return View(c);
         }
 
         // POST: Cities/Delete/5
@@ -110,19 +151,11 @@ namespace OnlineMovieBooking.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            City city = db.Cities.Find(id);
-            db.Cities.Remove(city);
-            db.SaveChanges();
+            CityModel city = cts.GetById(id);
+            cts.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+
     }
 }
