@@ -10,6 +10,7 @@ namespace OnlineMovieBooking.ViewModels
     public class PaymentViewModel
     {
         public int PaymentId { get; set; }
+        [DataType(DataType.Currency)]
         public double Amount { get; set; }
         public DateTime Time { get; set; }
         [DisplayName("Discout Coupon Id")]
