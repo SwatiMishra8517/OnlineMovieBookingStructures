@@ -175,6 +175,7 @@
     <Compile Include="Controllers\UserMovieController.cs" />
     <Compile Include="Controllers\UserMovieSelectionController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\UserLoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -322,12 +323,15 @@
     <Content Include="Views\UserMovie\Details.cshtml" />
     <Content Include="Views\UserMovie\FeedBack.cshtml" />
     <Content Include="Views\UserMovie\AddFeedBack.cshtml" />
+    <Content Include="Views\UserLogin\Login.cshtml" />
+    <Content Include="Views\UserLogin\SignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\Movies\" />
     <Folder Include="Views\Default\" />
     <Folder Include="Views\Movie\" />
+    <Folder Include="Views\User_Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
