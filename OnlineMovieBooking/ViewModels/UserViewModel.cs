@@ -5,7 +5,6 @@ using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using OnlineMovieBooking.Domain.DTO;
 
 namespace OnlineMovieBooking.ViewModels
 {
@@ -35,10 +34,6 @@ namespace OnlineMovieBooking.ViewModels
         [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$", ErrorMessage = "Password (Min Length - 8, 1 letter, 1 char, 1 special character)")]
         public string Password { get; set; }
 
-        public virtual ICollection<BookingViewModel> Bookings { get; set;
-            public static explicit operator UserModel(User v)
-        {
-            throw new NotImplementedException();
-        }
+        public virtual ICollection<BookingViewModel> Bookings { get; set; }
     }
 }
