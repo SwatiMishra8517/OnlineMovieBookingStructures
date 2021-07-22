@@ -15,6 +15,8 @@ namespace OnlineMovieBooking.Controllers
     public class ShowSeatsController : Controller
     {
         private readonly ShowSeatControllerService sscs = new ShowSeatControllerService();
+        private readonly BookingControllerService bcs = new BookingControllerService();
+        private readonly ShowControllerService scs = new ShowControllerService();
 
         // GET: ShowSeats
         public ActionResult Index()
@@ -32,7 +34,7 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShowSeat showSeat = db.ShowSeats.Find(id);
+            ShowSeatModel showSeat = sscs.GetById((int)id);
             if (showSeat == null)
             {
                 return HttpNotFound();
@@ -43,7 +45,7 @@ namespace OnlineMovieBooking.Controllers
         // GET: ShowSeats/Create
         public ActionResult Create()
         {
-            ViewBag.BookingId = new SelectList(db.Bookings, "BookingId", "Status");
+            ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status");
             var cinemaseats = db.CinemaSeats.Select(
             c => new
             {
@@ -52,7 +54,7 @@ namespace OnlineMovieBooking.Controllers
             });
             ViewBag.CinemaSeatId = new SelectList(cinemaseats, "CinemaSeatId", "Name");
 
-            ViewBag.ShowId = new SelectList(db.Shows, "ShowId", "ShowId");
+            ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId");
             return View();
         }
 
@@ -61,7 +63,7 @@ namespace OnlineMovieBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ShowSeatId,Status,Price,CinemaSeatId,ShowId,BookingId")] ShowSeat showSeat)
+        public ActionResult Create([Bind(Include = "ShowSeatId,Status,Price,CinemaSeatId,ShowId,BookingId")] ShowSeatViewModel showSeat)
         {
             if (ModelState.IsValid)
             {
@@ -70,9 +72,9 @@ namespace OnlineMovieBooking.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BookingId = new SelectList(db.Bookings, "BookingId", "Status", showSeat.BookingId);
+            ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status", showSeat.BookingId);
             ViewBag.CinemaSeatId = new SelectList(db.CinemaSeats, "CinemaSeatId", "SeatNumber", showSeat.CinemaSeatId);
-            ViewBag.ShowId = new SelectList(db.Shows, "ShowId", "ShowId", showSeat.ShowId);
+            ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId", showSeat.ShowId);
             return View(showSeat);
         }
 
@@ -83,7 +85,7 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShowSeat showSeat = db.ShowSeats.Find(id);
+            ShowSeatModel showSeat = sscs.GetById((int)id);
             if (showSeat == null)
             {
                 return HttpNotFound();
