@@ -78,6 +78,25 @@ namespace OnlineMovieBooking.Proxy
             return s;
         }
 
+        public List<ShowModel> GetByCinemaId(int id)
+        {
+            List<ShowModel> s = new List<ShowModel>();
+            List<OnlineMovieBooking.Domain.DTO.Show> sl = uss.GetByCinemaId(id);
+            foreach (var show in sl)
+            {
+                ShowModel sh = new ShowModel();
+                sh.ShowId = show.ShowId;
+                sh.Date = show.Date;
+                sh.StartTime = show.StartTime;
+                sh.EndTime = show.EndTime;
+                sh.CinemaHallId = show.CinemaHallId;
+                sh.MovieId = show.MovieId;
+                s.Add(sh);
+
+            }
+            return s;
+        }
+
         public List<ShowModel> GetByDate(DateTime date)
         {
             List<ShowModel> s = new List<ShowModel>();

@@ -169,6 +169,8 @@
     <Compile Include="Controllers\PaymentsController.cs" />
     <Compile Include="Controllers\ShowsController.cs" />
     <Compile Include="Controllers\ShowSeatsController.cs" />
+    <Compile Include="Controllers\UserMovieController.cs" />
+    <Compile Include="Controllers\UserMovieSelectionController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -307,10 +309,21 @@
     <Content Include="Views\Feedbacks\Delete.cshtml" />
     <Content Include="Views\Feedbacks\Details.cshtml" />
     <Content Include="Views\Feedbacks\Index.cshtml" />
+    <Content Include="Views\UserMovieSelection\SelectCinemaByCity.cshtml" />
+    <Content Include="Views\UserMovieSelection\SelectCity.cshtml" />
+    <Content Include="Views\UserMovieSelection\SelectShowByCinema.cshtml" />
+    <Content Include="Views\UserMovieSelection\SelectShowByMovie.cshtml" />
+    <Content Include="Views\UserInterface\Index.cshtml" />
+    <Content Include="Views\UserFilter\Cities.cshtml" />
+    <Content Include="Views\UserMovie\Index.cshtml" />
+    <Content Include="Views\UserMovie\Details.cshtml" />
+    <Content Include="Views\UserMovie\FeedBack.cshtml" />
+    <Content Include="Views\UserMovie\AddFeedBack.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\Movies\" />
+    <Folder Include="Views\Movie\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

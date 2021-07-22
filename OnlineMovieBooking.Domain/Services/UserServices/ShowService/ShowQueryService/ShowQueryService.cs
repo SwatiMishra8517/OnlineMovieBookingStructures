@@ -32,6 +32,27 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.ShowService.ShowQueryS
             return s;
         }
 
+        public List<Show> GetByCinemaId(int id)
+        {
+            List<DTO.Show> s = new List<Show>();
+            List<Repository.Entities.Show> sl = sr.GetByCinemaId(id);
+            foreach (var show in sl)
+            {
+                DTO.Show sh = new Show();
+                sh.ShowId = show.ShowId;
+                sh.Date = show.Date;
+                sh.StartTime = show.StartTime;
+                sh.EndTime = show.EndTime;
+                sh.CinemaHallId = show.CinemaHallId;
+                sh.MovieId = show.MovieId;
+                sh.Bookings = (ICollection<Booking>)show.Bookings;
+                sh.ShowSeats = (ICollection<ShowSeat>)show.ShowSeats;
+                s.Add(sh);
+
+            }
+            return s;
+        }
+
         public List<Show> GetByDate(DateTime date)
         {
             List<DTO.Show> s = new List<Show>();
