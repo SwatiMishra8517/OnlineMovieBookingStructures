@@ -46,5 +46,9 @@ namespace OnlineMovieBooking.ControllerService
         {
             return showProxy.GetByStartTime(time);
         }
+        public List<ShowModel> GetByCinemaId(int id)
+        {
+            return showProxy.GetByCinemaId(id);
+        }
     }
 }

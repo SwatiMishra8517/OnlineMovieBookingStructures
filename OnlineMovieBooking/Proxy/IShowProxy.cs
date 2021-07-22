@@ -18,5 +18,6 @@ namespace OnlineMovieBooking.Proxy
         List<ShowModel> GetByStartTime(DateTime time);
         List<ShowModel> GetByCinemaHallId(int id);
         List<ShowModel> GetByMovieId(int id);
+        List<ShowModel> GetByCinemaId(int id);
     }
 }
