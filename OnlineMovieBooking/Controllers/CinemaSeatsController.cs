@@ -6,20 +6,34 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using OnlineMovieBooking.Context;
+using OnlineMovieBooking.ViewModels;
+using OnlineMovieBooking.ControllerService;
 using OnlineMovieBooking.Models;
 
 namespace OnlineMovieBooking.Controllers
 {
     public class CinemaSeatsController : Controller
     {
-        private MovieContext db = new MovieContext();
+        private CinemaSeatControllerService css = new CinemaSeatControllerService();
+        private CinemaHallControllerService chs = new CinemaHallControllerService();
 
         // GET: CinemaSeats
         public ActionResult Index()
         {
-            var cinemaSeats = db.CinemaSeats.Include(c => c.CinemaHall);
-            return View(cinemaSeats.ToList());
+            var cinemaSeats = css.GetAll();
+            List<CinemaSeatViewModel> csms = new List<CinemaSeatViewModel>();
+            foreach (var cinemaSeat in cinemaSeats)
+            {
+                CinemaSeatViewModel cs = new CinemaSeatViewModel
+                {
+                    CinemaSeatId = cinemaSeat.CinemaSeatId,
+                    SeatNumber = cinemaSeat.SeatNumber,
+                    Type = cinemaSeat.Type,
+                    CinemaHallId = cinemaSeat.CinemaHallId,
+                };
+                csms.Add(cs);
+            }
+            return View(csms);
         }
 
         // GET: CinemaSeats/Details/5
@@ -29,18 +43,25 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CinemaSeat cinemaSeat = db.CinemaSeats.Find(id);
+            CinemaSeatModel cinemaSeat = css.GetById((int)id);
+            CinemaSeatViewModel cs = new CinemaSeatViewModel
+            {
+                CinemaSeatId = cinemaSeat.CinemaSeatId,
+                SeatNumber = cinemaSeat.SeatNumber,
+                Type = cinemaSeat.Type,
+                CinemaHallId = cinemaSeat.CinemaHallId,
+            };
             if (cinemaSeat == null)
             {
                 return HttpNotFound();
             }
-            return View(cinemaSeat);
+            return View(cs);
         }
 
         // GET: CinemaSeats/Create
         public ActionResult Create()
-        {
-            ViewBag.CinemaHallId = new SelectList(db.CinemaHalls, "CinemaHallId", "Name");
+        { 
+            ViewBag.CinemaHallId = new SelectList(chs.GetAll(), "CinemaHallId", "Name");
             return View();
         }
 
@@ -49,16 +70,23 @@ namespace OnlineMovieBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CinemaSeatId,SeatNumber,Type,CinemaHallId")] CinemaSeat cinemaSeat)
+        public ActionResult Create([Bind(Include = "CinemaSeatId,SeatNumber,Type,CinemaHallId")] CinemaSeatViewModel cinemaSeat)
         {
             if (ModelState.IsValid)
             {
-                db.CinemaSeats.Add(cinemaSeat);
-                db.SaveChanges();
+                CinemaSeatModel cs = new CinemaSeatModel
+                {
+                    CinemaSeatId = cinemaSeat.CinemaSeatId,
+                    SeatNumber = cinemaSeat.SeatNumber,
+                    Type = cinemaSeat.Type,
+                    CinemaHallId = cinemaSeat.CinemaHallId,
+                };
+
+                css.Add(cs);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CinemaHallId = new SelectList(db.CinemaHalls, "CinemaHallId", "Name", cinemaSeat.CinemaHallId);
+            ViewBag.CinemaHallId = new SelectList(chs.GetAll(), "CinemaHallId", "Name", cinemaSeat.CinemaHallId);
             return View(cinemaSeat);
         }
 
@@ -69,7 +97,7 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CinemaSeat cinemaSeat = db.CinemaSeats.Find(id);
+            CinemaSeatModel cinemaSeat = css.GetById((int)id);
             if (cinemaSeat == null)
             {
                 return HttpNotFound();
@@ -89,15 +117,22 @@ namespace OnlineMovieBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CinemaSeatId,SeatNumber,Type,CinemaHallId")] CinemaSeat cinemaSeat)
+        public ActionResult Edit([Bind(Include = "CinemaSeatId,SeatNumber,Type,CinemaHallId")] CinemaSeatViewModel cinemaSeat)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cinemaSeat).State = EntityState.Modified;
-                db.SaveChanges();
+                CinemaSeatModel cs = new CinemaSeatModel
+                {
+                    CinemaSeatId = cinemaSeat.CinemaSeatId,
+                    SeatNumber = cinemaSeat.SeatNumber,
+                    Type = cinemaSeat.Type,
+                    CinemaHallId = cinemaSeat.CinemaHallId,
+                };
+
+                css.Update(cs.CinemaSeatId,cs);
                 return RedirectToAction("Index");
             }
-            ViewBag.CinemaHallId = new SelectList(db.CinemaHalls, "CinemaHallId", "Name", cinemaSeat.CinemaHallId);
+            ViewBag.CinemaHallId = new SelectList(chs.GetAll(), "CinemaHallId", "Name", cinemaSeat.CinemaHallId);
             return View(cinemaSeat);
         }
 
@@ -108,12 +143,20 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CinemaSeat cinemaSeat = db.CinemaSeats.Find(id);
+            CinemaSeatModel cinemaSeat = css.GetById((int)id);
             if (cinemaSeat == null)
             {
                 return HttpNotFound();
             }
-            return View(cinemaSeat);
+            CinemaSeatViewModel cs = new CinemaSeatViewModel
+            {
+                CinemaSeatId = cinemaSeat.CinemaSeatId,
+                SeatNumber = cinemaSeat.SeatNumber,
+                Type = cinemaSeat.Type,
+                CinemaHallId = cinemaSeat.CinemaHallId,
+            };
+
+            return View(cs);
         }
 
         // POST: CinemaSeats/Delete/5
@@ -121,19 +164,8 @@ namespace OnlineMovieBooking.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            CinemaSeat cinemaSeat = db.CinemaSeats.Find(id);
-            db.CinemaSeats.Remove(cinemaSeat);
-            db.SaveChanges();
+            css.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
