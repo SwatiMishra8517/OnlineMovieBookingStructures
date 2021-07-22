@@ -6,19 +6,35 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using OnlineMovieBooking.Context;
 using OnlineMovieBooking.Models;
+using OnlineMovieBooking.ControllerService;
+using OnlineMovieBooking.ViewModels;
 
 namespace OnlineMovieBooking.Controllers
 {
     public class UsersController : Controller
     {
-        private MovieContext db = new MovieContext();
+        private readonly UserControllerService ucs = new UserControllerService();
 
         // GET: Users
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            List<UserViewModel> uList = new List<UserViewModel>();
+            List<UserModel> ums = ucs.GetAll();
+            foreach (var user in uList)
+            {
+                UserViewModel u = new UserViewModel
+                {
+                    UserId = user.UserId,
+                    Name = user.Name,
+                    Username = user.Username,
+                    MobileNo = user.MobileNo,
+                    Email = user.Email,
+                    Password = user.Password
+                };
+                uList.Add(u);
+            }
+            return View(ums);
         }
 
         // GET: Users/Details/5
@@ -28,12 +44,21 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            UserModel user = ucs.GetById((int)id);
+            UserViewModel u = new UserViewModel
+            {
+                UserId = user.UserId,
+                Name = user.Name,
+                Username = user.Username,
+                MobileNo = user.MobileNo,
+                Email = user.Email,
+                Password = user.Password
+            };
             if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(u);
         }
 
         // GET: Users/Create
@@ -47,12 +72,21 @@ namespace OnlineMovieBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserId,Name,Username,MobileNo,Email,Password")] User user)
+        public ActionResult Create([Bind(Include = "UserId,Name,Username,MobileNo,Email,Password")] UserViewModel user)
         {
+            
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
-                db.SaveChanges();
+                UserModel u = new UserModel
+                {
+                    UserId = user.UserId,
+                    Name = user.Name,
+                    Username = user.Username,
+                    MobileNo = user.MobileNo,
+                    Email = user.Email,
+                    Password = user.Password
+                };
+                ucs.Add(u);
                 return RedirectToAction("Index");
             }
 
@@ -66,12 +100,21 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            UserModel user = ucs.GetById((int)id);
             if (user == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            UserViewModel u = new UserViewModel
+            {
+                UserId = user.UserId,
+                Name = user.Name,
+                Username = user.Username,
+                MobileNo = user.MobileNo,
+                Email = user.Email,
+                Password = user.Password
+            };
+            return View(u);
         }
 
         // POST: Users/Edit/5

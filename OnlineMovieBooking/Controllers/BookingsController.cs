@@ -6,26 +6,26 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using OnlineMovieBooking.ControllerService;
 using OnlineMovieBooking.Models;
+using OnlineMovieBooking.ControllerService;
 using OnlineMovieBooking.ViewModels;
 
 namespace OnlineMovieBooking.Controllers
 {
     public class BookingsController : Controller
     {
-        private BookingControllerService bcs = new BookingControllerService();
-        private ShowControllerService scs = new ShowControllerService();
-        private UserControllerService ucs = new UserControllerService();
+        private readonly BookingControllerService bcs = new BookingControllerService();
+        private readonly ShowControllerService scs = new ShowControllerService();
+        private readonly UserControllerService ucs = new UserControllerService();
 
         // GET: Bookings
         public ActionResult Index()
         {
             List<BookingViewModel> bList = new List<BookingViewModel>();
-            List<Models.BookingModel> bms = bcs.GetAll();
-            foreach (var booking in bList)
+            List<BookingModel> bms = bcs.GetAll();
+            foreach (var booking in bms)
             {
-                BookingModel b = new BookingModel
+                BookingViewModel b = new BookingViewModel
                 {
                     BookingId = booking.BookingId,
                     NumberOfSeats = booking.NumberOfSeats,
@@ -34,9 +34,9 @@ namespace OnlineMovieBooking.Controllers
                     ShowId = booking.ShowId,
                     UserId = booking.UserId,
                 };
-                bms.Add(b);
+                bList.Add(b);
             }
-            return View(bms);
+            return View(bList);
         }
 
         // GET: Bookings/Details/5
@@ -47,7 +47,7 @@ namespace OnlineMovieBooking.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             BookingModel booking = bcs.GetById((int)id);
-            BookingModel b = new BookingModel
+            BookingViewModel b = new BookingViewModel
             {
                 BookingId = booking.BookingId,
                 NumberOfSeats = booking.NumberOfSeats,
@@ -114,7 +114,16 @@ namespace OnlineMovieBooking.Controllers
             }
             ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId", booking.ShowId);
             ViewBag.UserId = new SelectList(ucs.GetAll(), "UserId", "Name", booking.UserId);
-            return View(booking);
+            BookingViewModel b = new BookingViewModel
+            {
+                BookingId = booking.BookingId,
+                NumberOfSeats = booking.NumberOfSeats,
+                Time = booking.Time,
+                Status = booking.Status,
+                ShowId = booking.ShowId,
+                UserId = booking.UserId,
+            };
+            return View(b);
         }
 
         // POST: Bookings/Edit/5
