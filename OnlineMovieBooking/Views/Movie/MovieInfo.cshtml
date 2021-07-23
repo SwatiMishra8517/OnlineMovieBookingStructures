@@ -1,0 +1,228 @@
+﻿
+@{
+    ViewBag.Title = "MovieInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>MovieInfo</h2>
+
+<html>
+<head>
+    <title>Movie Info</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <style>
+        body {
+            background-color: cadetblue;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .column {
+            float: left;
+            width: 33.3%;
+        }
+
+        .column1 {
+            text-align: center;
+        }
+
+        .column2 {
+            width: 20%;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .column3 {
+            width: 50%;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .img1 {
+            width: 350px;
+            height: 300px;
+            border: 2px solid blue;
+        }
+
+        th {
+            padding: 30px 100px 10px;
+        }
+
+        td {
+            padding: 10px 100px 10px;
+        }
+
+        .button-book {
+            margin-top: 50px;
+            padding: 15px;
+            background-color: crimson;
+            border-radius: 5px;
+            border: none;
+            color: white;
+        }
+
+        .abt-div {
+            margin-top: 30px;
+            margin-bottom: 10px;
+            border-top: 2px solid blue;
+            padding: 5px;
+        }
+
+        .abt-div1 {
+            margin-top: 30px;
+            margin-bottom: 50px;
+            border-top: 2px solid blue;
+            padding: 5px;
+        }
+
+        .fdbk-cntr {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input1 {
+            margin-left: 300px;
+            padding: 25px 20px 25px;
+            border: 2px solid black;
+            outline: none;
+            border-radius: 5px;
+            text-align: left;
+            font-size: 16px;
+            background-color: cadetblue;
+            color: black;
+        }
+
+        .movie-watched {
+            margin-top: -10px;
+        }
+
+        .input2 {
+            background-color: cadetblue;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="column">
+
+
+            <img src="~/movieinfo/movie1.jpg" />
+        </div>
+        <div class="column1">
+            <h2>Movie Name</h2>
+            <table>
+                <tr>
+                    <th><h4>Release Date</h4></th>
+                    <th><h4>Ratings</h4></th>
+                    <th><h4>Duration</h4></th>
+                </tr>
+                <tr>
+                    <td><p>DD-MM-YYYY</p></td>
+                    <td><p>&#9734;&#9734;&#9734;&#9734;&#9734;</p></td>
+                    <td><p>HH:MM:SS</p></td>
+                </tr>
+            </table>
+            <div class="column1">
+                <button class="button-book">Book Now</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="abt-div">
+        <h2>About Movie</h2>
+        <p>
+            Dom`s peaceful life with his wife Letty and son Brian is shattered when Dom`s past catches up to him.
+            The gang is up against the most skilled assassin and high-performance driver - his little brother Jakob.
+        </p>
+    </div>
+    <div class="abt-div">
+        <h2>Cast</h2>
+        <div class="row">
+            <div class="column2">
+                <p>
+                    <img src="~/movieinfo/cast/cast1.png" />
+                </p>
+            </div>
+            <div class="column2">
+                <p>
+                    <img src="~/movieinfo/cast/cast2.png" />
+                </p>
+            </div>
+            <div class="column2">
+                <p>
+
+                    <img src="~/movieinfo/cast/cast3.png" />
+                </p>
+            </div>
+            <div class="column2">
+                <p>
+                    <img src="~/movieinfo/cast/cast4.png" />
+                </p>
+            </div>
+            <div class="column2"><p>Cast 5</p></div>
+        </div>
+    </div>
+    <div class="abt-div">
+        <h2>Crew</h2>
+        <div class="row">
+            <div class="column2">
+                <p>
+                    <img src="~/movieinfo/crew/crew1.png" />
+                </p>
+            </div>
+            <div class="column2">
+                <p>
+                    <img src="~/movieinfo/crew/crew2.png" />
+                </p>
+            </div>
+            <div class="column2">
+                <p>
+                    <img src="~/movieinfo/crew/crew3.png" />
+                </p>
+            </div>
+            <div class="column2">
+                <p>
+                    <img src="~/movieinfo/crew/crew4.png" />
+                </p>
+            </div>
+            <div class="column2"><p></p></div>
+        </div>
+    </div>
+
+    <div class="abt-div1">
+        <h2 class="fdbk-cntr">Feedback</h2>
+
+
+
+
+        <div class="row">
+            <div class="column3">
+
+                <div class="row">
+                    <div class="column3"><p class="movie-watched">Movie watched</p></div>
+                    <div class="column3"><input type="checkbox" name="" id="" class="input2"></div>
+                </div>
+
+
+                <div class="row">
+                    <div class="column3"><p>Ratings</p></div>
+                    <div class="column3"><p>&#9734;&#9734;&#9734;&#9734;&#9734;</p></div>
+                </div>
+
+
+            </div>
+            <div class="colunm3">
+                <input type="text" class="input1" value="Enter your feedback here">
+            </div>
+        </div>
+
+
+    </div>
+</body>
+</html>
