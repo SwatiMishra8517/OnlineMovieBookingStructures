@@ -33,8 +33,12 @@ namespace OnlineMovieBooking.Controllers
             }
             return View(cityList);
         }
-
-        public ActionResult SelectCinemaByCity(int cityId)
+        public ActionResult SelectCinemaByCity()
+        {
+            return View();
+        }
+        [HttpPost]
+            public ActionResult SelectCinemaByCity(int cityId)
         {
             List<CinemaViewModel> cms = new List<CinemaViewModel>();
             List<CinemaModel> cinemas = cinecs.GetByCityId(cityId);
@@ -53,8 +57,11 @@ namespace OnlineMovieBooking.Controllers
 
 
         }
-
-
+        public ActionResult SelectShowByCinema()
+        {
+            return View();
+        }
+        [HttpPost]
         public ActionResult SelectShowByCinema(int cinemaId)
         {
             List<ShowViewModel> shows = new List<ShowViewModel>();
@@ -74,6 +81,11 @@ namespace OnlineMovieBooking.Controllers
             }
             return View(shows);
         }
+        public ActionResult SelectShowByMovie()
+        {
+            return View();
+        }
+        [HttpPost]
         public ActionResult SelectShowByMovie(int movieId)
         {
             List<ShowViewModel> shows = new List<ShowViewModel>();

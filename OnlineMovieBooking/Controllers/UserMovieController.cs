@@ -92,6 +92,10 @@ namespace OnlineMovieBooking.Controllers
             }
             return View();
         }
+        public ActionResult MovieInfo()
+        {
+            return View();
+        }
 
     }
 
