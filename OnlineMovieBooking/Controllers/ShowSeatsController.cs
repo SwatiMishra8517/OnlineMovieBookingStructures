@@ -16,7 +16,6 @@ namespace OnlineMovieBooking.Controllers
     {
         private readonly ShowSeatControllerService sscs = new ShowSeatControllerService();
         private readonly BookingControllerService bcs = new BookingControllerService();
-        private readonly CinemaSeatControllerService cscs = new CinemaSeatControllerService();
         private readonly ShowControllerService scs = new ShowControllerService();
 
         // GET: ShowSeats
@@ -34,15 +33,6 @@ namespace OnlineMovieBooking.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ShowSeatModel showSeat = sscs.GetById((int)id);
-            ShowSeatViewModel ss = new ShowSeatViewModel
-            {
-                ShowSeatId = showSeat.ShowSeatId,
-                Status = showSeat.Status,
-                Price = showSeat.Price,
-                CinemaSeatId = showSeat.CinemaSeatId,
-                ShowId = showSeat.ShowId,
-                BookingId = showSeat.BookingId
-            };
             if (showSeat == null)
             {
                 return HttpNotFound();
@@ -55,6 +45,8 @@ namespace OnlineMovieBooking.Controllers
         {
             ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status");
             var cinemaseats = cscs.GetAll().Select(
+            ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status");
+            var cinemaseats = db.CinemaSeats.Select(
             c => new
             {
                 CinemaSeatId = c.CinemaSeatId,
@@ -89,7 +81,7 @@ namespace OnlineMovieBooking.Controllers
             }
 
             ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status", showSeat.BookingId);
-            ViewBag.CinemaSeatId = new SelectList(cscs.GetAll(), "CinemaSeatId", "SeatNumber", showSeat.CinemaSeatId);
+            ViewBag.CinemaSeatId = new SelectList(db.CinemaSeats, "CinemaSeatId", "SeatNumber", showSeat.CinemaSeatId);
             ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId", showSeat.ShowId);
             return View(showSeat);
         }

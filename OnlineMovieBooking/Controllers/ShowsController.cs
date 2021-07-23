@@ -6,20 +6,38 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using OnlineMovieBooking.Context;
+using OnlineMovieBooking.ViewModels;
+using OnlineMovieBooking.ControllerService;
 using OnlineMovieBooking.Models;
 
 namespace OnlineMovieBooking.Controllers
 {
     public class ShowsController : Controller
     {
-        private MovieContext db = new MovieContext();
+        private ShowControllerService scs = new ShowControllerService();
+        private MovieControllerService mvs = new MovieControllerService();
+        private CinemaHallControllerService ccs = new CinemaHallControllerService();
 
         // GET: Shows
         public ActionResult Index()
         {
+            List<ShowModel> shows = scs.GetAll();
+            List<ShowViewModel> sms = new List<ShowViewModel>();
+            foreach (var show in shows)
+            {
+                ShowViewModel s = new ShowViewModel
+                {
+                    ShowId = show.ShowId,
+                    Date = show.Date,
+                    StartTime = show.StartTime,
+                    EndTime = show.EndTime,
+                    CinemaHallId = show.CinemaHallId,
+                    MovieId = show.MovieId
+                };
+                sms.Add(s);
+            }
             var shows = db.Shows.Include(s => s.CinemaHall).Include(s => s.Movie);
-            return View(shows.ToList());
+            return View(sms);
         }
 
         // GET: Shows/Details/5
@@ -29,12 +47,21 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Show show = db.Shows.Find(id);
+            ShowModel show = scs.GetById((int)id);
+            ShowViewModel s = new ShowViewModel
+            {
+                ShowId = show.ShowId,
+                Date = show.Date,
+                StartTime = show.StartTime,
+                EndTime = show.EndTime,
+                CinemaHallId = show.CinemaHallId,
+                MovieId = show.MovieId
+            };
             if (show == null)
             {
                 return HttpNotFound();
             }
-            return View(show);
+            return View(s);
         }
 
         // GET: Shows/Create
@@ -47,7 +74,7 @@ namespace OnlineMovieBooking.Controllers
                 Name = c.Cinema.Name + "-" + c.Cinema.City.Name + " (" + c.Name + ")"
             });
             ViewBag.CinemaHallId = new SelectList(cinemahalls, "CinemaHallId", "Name");
-            ViewBag.MovieId = new SelectList(db.Movies, "MovieId", "Name");
+            ViewBag.MovieId = new SelectList(mvs.GetAll(), "MovieId", "Name");
             return View();
         }
 
@@ -56,17 +83,23 @@ namespace OnlineMovieBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ShowId,Date,StartTime,EndTime,CinemaHallId,MovieId")] Show show)
+        public ActionResult Create([Bind(Include = "ShowId,Date,StartTime,EndTime,CinemaHallId,MovieId")] ShowViewModel show)
         {
             if (ModelState.IsValid)
             {
-                db.Shows.Add(show);
-                db.SaveChanges();
+                ShowModel s = new ShowModel
+                {
+                    ShowId = show.ShowId,
+                    Date = show.Date,
+                    StartTime = show.StartTime,
+                    EndTime = show.EndTime,
+                    CinemaHallId = show.CinemaHallId,
+                    MovieId = show.MovieId
+                };
                 return RedirectToAction("Index");
             }
-
-            ViewBag.CinemaHallId = new SelectList(db.CinemaHalls, "CinemaHallId", "Name", show.CinemaHallId);
-            ViewBag.MovieId = new SelectList(db.Movies, "MovieId", "Name", show.MovieId);
+            ViewBag.CinemaHallId = new SelectList(ccs.GetAll(), "CinemaHallId", "Name", show.CinemaHallId);
+            ViewBag.MovieId = new SelectList(mvs.GetAll(), "MovieId", "Name", show.MovieId);
             return View(show);
         }
 
@@ -77,7 +110,7 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Show show = db.Shows.Find(id);
+            ShowModel show = scs.GetById((int)id);
             if (show == null)
             {
                 return HttpNotFound();
@@ -89,7 +122,7 @@ namespace OnlineMovieBooking.Controllers
                 Name = c.Cinema.Name + "-" + c.Cinema.City.Name + " (" + c.Name + ")"
             });
             ViewBag.CinemaHallId = new SelectList(cinemahalls, "CinemaHallId", "Name", show.CinemaHallId);
-            ViewBag.MovieId = new SelectList(db.Movies, "MovieId", "Name", show.MovieId);
+            ViewBag.MovieId = new SelectList(mvs.GetAll(), "MovieId", "Name", show.MovieId);
             return View(show);
         }
 
@@ -98,16 +131,24 @@ namespace OnlineMovieBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ShowId,Date,StartTime,EndTime,CinemaHallId,MovieId")] Show show)
+        public ActionResult Edit([Bind(Include = "ShowId,Date,StartTime,EndTime,CinemaHallId,MovieId")] ShowViewModel show)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(show).State = EntityState.Modified;
-                db.SaveChanges();
+                ShowModel s = new ShowModel
+                {
+                    ShowId = show.ShowId,
+                    Date = show.Date,
+                    StartTime = show.StartTime,
+                    EndTime = show.EndTime,
+                    CinemaHallId = show.CinemaHallId,
+                    MovieId = show.MovieId
+                };
+                scs.Update(s.ShowId, s);
                 return RedirectToAction("Index");
             }
-            ViewBag.CinemaHallId = new SelectList(db.CinemaHalls, "CinemaHallId", "Name", show.CinemaHallId);
-            ViewBag.MovieId = new SelectList(db.Movies, "MovieId", "Name", show.MovieId);
+            ViewBag.CinemaHallId = new SelectList(ccs.GetAll(), "CinemaHallId", "Name", show.CinemaHallId);
+            ViewBag.MovieId = new SelectList(mvs.GetAll(), "MovieId", "Name", show.MovieId);
             return View(show);
         }
 
@@ -118,12 +159,21 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Show show = db.Shows.Find(id);
+            ShowModel show = scs.GetById((int)id);
+            ShowViewModel s = new ShowViewModel
+            {
+                ShowId = show.ShowId,
+                Date = show.Date,
+                StartTime = show.StartTime,
+                EndTime = show.EndTime,
+                CinemaHallId = show.CinemaHallId,
+                MovieId = show.MovieId
+            };
             if (show == null)
             {
                 return HttpNotFound();
             }
-            return View(show);
+            return View(s);
         }
 
         // POST: Shows/Delete/5
@@ -131,19 +181,8 @@ namespace OnlineMovieBooking.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Show show = db.Shows.Find(id);
-            db.Shows.Remove(show);
-            db.SaveChanges();
+            scs.Delete(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
