@@ -17,10 +17,8 @@ namespace OnlineMovieBooking.Domain.Repository.Entities
         [RegularExpression("^[a-zA-Z0-9 ]*$", ErrorMessage = "Only Alphanumeric allowed")]
         [DisplayName("Cinema Hall")]
         public string Name { get; set; }
-        public int ShowId { get; set; }
         
 
         public virtual ICollection<Show> Shows { get; set; }
-        public virtual ICollection<ShowSeat> ShowSeats { get; set; }
     }
 }

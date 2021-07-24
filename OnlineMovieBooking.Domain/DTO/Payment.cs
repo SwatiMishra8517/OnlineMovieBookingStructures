@@ -11,14 +11,14 @@ namespace OnlineMovieBooking.Domain.DTO
         public int PaymentId { get; set; }
         public double Amount { get; set; }
         public DateTime Time { get; set; }
-        [DisplayName("Discout Coupon Id")]
-        public string DiscountCouponId { get; set; }
-        [DisplayName("Remote Transaction Id")]
-        public string RemoteTransactionId { get; set; }
-        [DisplayName("Payment Method")]
-        public string PaymentMethod { get; set; }
-        public int BookingId { get; set; }
 
-        public virtual Booking Booking { get; set; }
+        public int UserId { get; set; }
+        public int ShowId { get; set; }
+        public int MovieId { get; set; }
+
+        public virtual Show Show { get; set; }
+        public virtual Movie Movie { get; set; }
+        public virtual User User { get; set; }
+        public virtual ICollection<ShowSeat> ShowSeats { get; set; }
     }
 }

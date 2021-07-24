@@ -8,14 +8,11 @@ namespace OnlineMovieBooking.Domain.DTO
 {
     public class CinemaHall
     {
+   
         public int CinemaHallId { get; set; }
-        [DisplayName("Cinema Hall")]
         public string Name { get; set; }
-        public int TotalSeats { get; set; }
-        public int CinemaId { get; set; }
 
-        public virtual Cinema Cinema { get; set; }
-        public virtual ICollection<CinemaSeat> CinemaSeats { get; set; }
+
         public virtual ICollection<Show> Shows { get; set; }
     }
 }

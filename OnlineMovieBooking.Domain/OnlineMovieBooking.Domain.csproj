@@ -57,11 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\Booking.cs" />
-    <Compile Include="DTO\Cinema.cs" />
     <Compile Include="DTO\CinemaHall.cs" />
-    <Compile Include="DTO\CinemaSeat.cs" />
-    <Compile Include="DTO\City.cs" />
     <Compile Include="DTO\Feedback.cs" />
     <Compile Include="DTO\Movie.cs" />
     <Compile Include="DTO\Payment.cs" />

@@ -15,6 +15,5 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.ShowService.ShowQueryS
         List<Show> GetByStartTime(DateTime time);
         List<Show> GetByCinemaHallId(int id);
         List<Show> GetByMovieId(int id);
-        List<Show> GetByCinemaId(int id);
     }
 }
