@@ -19,7 +19,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.FeedbackService.Feedba
             {
                 DTO.Feedback df= new Feedback();
                 df.FeedbackId = f.FeedbackId;
-                df.Rating = f.Rating;
                 df.Review = f.Review;
                 df.UserId = f.UserId;
                 df.MovieId = f.MovieId;

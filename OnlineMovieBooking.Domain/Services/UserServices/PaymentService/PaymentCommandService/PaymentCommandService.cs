@@ -17,10 +17,9 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.PaymentService.Payment
             dp.PaymentId = rp.PaymentId;
             dp.Amount = rp.Amount;
             dp.Time = rp.Time;
-            dp.DiscountCouponId = rp.DiscountCouponId;
-            dp.RemoteTransactionId = rp.RemoteTransactionId;
-            dp.PaymentMethod = rp.PaymentMethod;
-            dp.BookingId = rp.BookingId;
+            dp.UserId = rp.UserId;
+            dp.ShowId = rp.ShowId;
+            dp.MovieId = rp.MovieId;
             pr.Add(dp);
         }
     }

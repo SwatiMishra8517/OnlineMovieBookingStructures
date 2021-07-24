@@ -20,32 +20,12 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.CinemaHallService.Cine
                 DTO.CinemaHall c = new CinemaHall();
                 c.CinemaHallId = ch.CinemaHallId;
                 c.Name = ch.Name;
-                c.TotalSeats = ch.TotalSeats;
-                c.CinemaId = ch.CinemaId;
-                c.CinemaSeats = (ICollection<CinemaSeat>)ch.CinemaSeats;
                 c.Shows = (ICollection<Show>)ch.Shows;
                 chs.Add(c);
             }
             return chs;
         }
 
-        public List<CinemaHall> GetByCinemaId(int id)
-        {
-            List<DTO.CinemaHall> chs = new List<CinemaHall>();
-            List<Repository.Entities.CinemaHall> halls = chr.GetByCinemaId(id);
-            foreach (var ch in halls)
-            {
-                DTO.CinemaHall c = new CinemaHall();
-                c.CinemaHallId = ch.CinemaHallId;
-                c.Name = ch.Name;
-                c.TotalSeats = ch.TotalSeats;
-                c.CinemaId = ch.CinemaId;
-                c.CinemaSeats = (ICollection<CinemaSeat>)ch.CinemaSeats;
-                c.Shows = (ICollection<Show>)ch.Shows;
-                chs.Add(c);
-            }
-            return chs;
-        }
 
         public CinemaHall GetById(int id)
         {
@@ -53,9 +33,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.CinemaHallService.Cine
                 DTO.CinemaHall c = new CinemaHall();
                 c.CinemaHallId = ch.CinemaHallId;
                 c.Name = ch.Name;
-                c.TotalSeats = ch.TotalSeats;
-                c.CinemaId = ch.CinemaId;
-                c.CinemaSeats = (ICollection<CinemaSeat>)ch.CinemaSeats;
                 c.Shows = (ICollection<Show>)ch.Shows;
             
             return c;
@@ -67,9 +44,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.CinemaHallService.Cine
             DTO.CinemaHall c = new CinemaHall();
             c.CinemaHallId = ch.CinemaHallId;
             c.Name = ch.Name;
-            c.TotalSeats = ch.TotalSeats;
-            c.CinemaId = ch.CinemaId;
-            c.CinemaSeats = (ICollection<CinemaSeat>)ch.CinemaSeats;
             c.Shows = (ICollection<Show>)ch.Shows;
 
             return c;
