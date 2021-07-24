@@ -13,7 +13,7 @@ namespace OnlineMovieBooking.Domain.Services.ShowService
     public class ShowQueryService : IShowQueryService
     {
         private readonly IShowRepository repository;
-        private ShowRepository sr = new ShowRepository();
+        private ShowRepository sr;
         private CinemaHallQueryService chqs = new CinemaHallQueryService();
         private MovieQueryService mqs = new MovieQueryService();
 
@@ -25,6 +25,7 @@ namespace OnlineMovieBooking.Domain.Services.ShowService
 
         public Show Get(int id)
         {
+            sr = new ShowRepository();
             Repository.Entities.Show show = sr.GetById(id);
             Show s = new Show
             {
@@ -40,6 +41,7 @@ namespace OnlineMovieBooking.Domain.Services.ShowService
 
         public List<Show> GetAll()
         {
+            sr = new ShowRepository();
             var retList = sr.GetAll()
             .Select(show => new Show()
             {

@@ -1,9 +1,9 @@
-﻿@model OnlineMovieBooking.Models.Movie
+﻿@model OnlineMovieBooking.ViewModels.MovieViewModel
 
 @{
     ViewBag.Title = "Details";
 }
-
+@Html.Partial("PartialAdminPanel")
 <h2>@Model.Name Movie Details</h2>
 
 <div>

@@ -12,7 +12,7 @@ namespace OnlineMovieBooking.Domain.Services.UserService
     {
 
         private readonly IUserRepository repository;
-        private UserRepository ur = new UserRepository();
+        private UserRepository ur;
 
         public UserQueryService()
         {
@@ -26,6 +26,7 @@ namespace OnlineMovieBooking.Domain.Services.UserService
 
         public User Get(int id)
         {
+           ur = new UserRepository();
            Repository.Entities.User user = ur.GetById(id);
             User u = new User
             {
@@ -40,6 +41,7 @@ namespace OnlineMovieBooking.Domain.Services.UserService
 
         public List<User> GetAll()
         {
+            ur = new UserRepository();
             var retList = ur.GetAll()
             .Select(user => new User() {
                 UserId = user.UserId,

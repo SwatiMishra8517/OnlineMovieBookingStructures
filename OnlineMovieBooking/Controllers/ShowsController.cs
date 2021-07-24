@@ -36,7 +36,6 @@ namespace OnlineMovieBooking.Controllers
                 };
                 sms.Add(s);
             }
-            var shows = db.Shows.Include(s => s.CinemaHall).Include(s => s.Movie);
             return View(sms);
         }
 
@@ -67,7 +66,7 @@ namespace OnlineMovieBooking.Controllers
         // GET: Shows/Create
         public ActionResult Create()
         {
-            var cinemahalls = db.CinemaHalls.Select(
+            var cinemahalls = ccs.GetAll().Select(
             c => new
             {
                 CinemaHallId = c.CinemaHallId,
@@ -115,7 +114,7 @@ namespace OnlineMovieBooking.Controllers
             {
                 return HttpNotFound();
             }
-            var cinemahalls = db.CinemaHalls.Select(
+            var cinemahalls = ccs.GetAll().Select(
             c => new
             {
                 CinemaHallId = c.CinemaHallId,

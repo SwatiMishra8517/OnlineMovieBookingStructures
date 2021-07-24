@@ -335,6 +335,7 @@
     <Content Include="Views\UserLogin\Login.cshtml" />
     <Content Include="Views\UserLogin\SignUp.cshtml" />
     <Content Include="Views\Movie\MovieInfo.cshtml" />
+    <Content Include="Views\Shared\PartialAdminPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

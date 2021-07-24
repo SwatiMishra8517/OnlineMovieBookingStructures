@@ -37,7 +37,7 @@ namespace OnlineMovieBooking.Controllers
                 };
                 pvms.Add(p);
             }
-            var payments = db.Payments.Include(p => p.Booking);
+            var payments = pcs.GetAll();
             return View(pvms);
         }
 

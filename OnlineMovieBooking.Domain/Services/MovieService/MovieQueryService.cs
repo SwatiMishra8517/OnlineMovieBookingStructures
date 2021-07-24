@@ -11,7 +11,7 @@ namespace OnlineMovieBooking.Domain.Services.MovieService
     public class MovieQueryService : IMovieQueryService
     {
         private readonly IMovieRepository repository;
-        private MovieRepository mr;
+        public MovieRepository mr;
         public MovieQueryService() { }
         public MovieQueryService(IMovieRepository repository)
         {
@@ -19,6 +19,7 @@ namespace OnlineMovieBooking.Domain.Services.MovieService
         }
         public Movie Get(int id)
         {
+            mr = new MovieRepository();
             Repository.Entities.Movie movie = mr.GetById(id);
             Movie m = new Movie
             {
@@ -35,6 +36,7 @@ namespace OnlineMovieBooking.Domain.Services.MovieService
 
         public List<Movie> GetAll()
         {
+            mr = new MovieRepository();
             var retList = mr.GetAll()
             .Select(movie => new Movie()
             {

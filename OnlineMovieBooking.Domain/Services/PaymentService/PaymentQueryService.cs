@@ -19,6 +19,7 @@ namespace OnlineMovieBooking.Domain.Services.PaymentService
         }
         public Payment Get(int id)
         {
+            pr = new PaymentRepository();
             Repository.Entities.Payment payment = pr.GetById(id);
             Payment p = new Payment
             {
@@ -35,6 +36,7 @@ namespace OnlineMovieBooking.Domain.Services.PaymentService
 
         public List<Payment> GetAll()
         {
+            pr = new PaymentRepository();
             var retList = pr.GetAll()
             .Select(payment => new Payment()
             {

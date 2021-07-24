@@ -20,6 +20,7 @@ namespace OnlineMovieBooking.Domain.Services.ShowService
         }
         public void Add(Show show)
         {
+            sr = new ShowRepository();
             Repository.Entities.Show s = new Repository.Entities.Show
             {
                 ShowId = show.ShowId,
@@ -34,12 +35,14 @@ namespace OnlineMovieBooking.Domain.Services.ShowService
 
         public void Delete(int id)
         {
+            sr = new ShowRepository();
             Repository.Entities.Show s = new Repository.Entities.Show();
             sr.Delete(id);
         }
 
         public void Update(int id, Show show)
         {
+            sr = new ShowRepository();
             Repository.Entities.Show s = sr.GetById(id);
             s.ShowId = show.ShowId;
             s.Date = show.Date;

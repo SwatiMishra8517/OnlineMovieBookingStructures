@@ -24,6 +24,7 @@ namespace OnlineMovieBooking.Domain.Services.UserService
 
         public void Add(User user)
         {
+            ur = new UserRepository();
             Repository.Entities.User u = new Repository.Entities.User
             {
                 UserId = user.UserId,
@@ -37,12 +38,14 @@ namespace OnlineMovieBooking.Domain.Services.UserService
 
         public void Delete(int id)
         {
+            ur = new UserRepository();
             Repository.Entities.User u = new Repository.Entities.User();
             ur.Delete(id);
         }
 
         public void Update(int id,User user)
         {
+            ur = new UserRepository();
             Repository.Entities.User u = ur.GetById(id);
             u.UserId = user.UserId;
             u.Username = user.Username;

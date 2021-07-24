@@ -14,7 +14,7 @@ namespace OnlineMovieBooking.Domain.Services.ShowSeatService
     public class ShowSeatQueryService : IShowSeatQueryService
     {
         private readonly IShowSeatRepository repository;
-        private ShowSeatRepository ssr = new ShowSeatRepository();
+        private ShowSeatRepository ssr;
 
         public ShowSeatQueryService() { }
         public ShowSeatQueryService(IShowSeatRepository repository)
@@ -23,6 +23,7 @@ namespace OnlineMovieBooking.Domain.Services.ShowSeatService
         }
         public ShowSeat Get(int id)
         {
+            ssr = new ShowSeatRepository();
             Repository.Entities.ShowSeat showSeat= ssr.GetById(id);
             ShowSeat ss = new ShowSeat
             {
@@ -38,6 +39,7 @@ namespace OnlineMovieBooking.Domain.Services.ShowSeatService
 
         public List<ShowSeat> GetAll()
         {
+            ssr = new ShowSeatRepository();
             var retList = ssr.GetAll()
             .Select(showSeat => new ShowSeat()
             {

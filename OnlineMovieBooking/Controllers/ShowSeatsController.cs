@@ -17,6 +17,7 @@ namespace OnlineMovieBooking.Controllers
         private readonly ShowSeatControllerService sscs = new ShowSeatControllerService();
         private readonly BookingControllerService bcs = new BookingControllerService();
         private readonly ShowControllerService scs = new ShowControllerService();
+        private readonly CinemaSeatControllerService cscs = new CinemaSeatControllerService();
 
         // GET: ShowSeats
         public ActionResult Index()
@@ -44,9 +45,8 @@ namespace OnlineMovieBooking.Controllers
         public ActionResult Create()
         {
             ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status");
-            var cinemaseats = cscs.GetAll().Select(
             ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status");
-            var cinemaseats = db.CinemaSeats.Select(
+            var cinemaseats = cscs.GetAll().Select(
             c => new
             {
                 CinemaSeatId = c.CinemaSeatId,
@@ -81,7 +81,7 @@ namespace OnlineMovieBooking.Controllers
             }
 
             ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status", showSeat.BookingId);
-            ViewBag.CinemaSeatId = new SelectList(db.CinemaSeats, "CinemaSeatId", "SeatNumber", showSeat.CinemaSeatId);
+            ViewBag.CinemaSeatId = new SelectList(cscs.GetAll(), "CinemaSeatId", "SeatNumber", showSeat.CinemaSeatId);
             ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId", showSeat.ShowId);
             return View(showSeat);
         }
