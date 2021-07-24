@@ -1,16 +1,16 @@
-﻿@model OnlineMovieBooking.Models.Movie
+﻿@model OnlineMovieBooking.ViewModels.MovieViewModel
 
 @{
     ViewBag.Title = "Edit";
 }
-
-<h2>Edit @Model.Name Movie</h2>
+@Html.Partial("PartialAdminPanel")
+<h2>Edit Movie</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })

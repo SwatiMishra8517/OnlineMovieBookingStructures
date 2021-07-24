@@ -43,7 +43,7 @@ namespace OnlineMovieBooking.Domain.Repository
         }
         public List<Show> GetAll()
         {
-            return db.Shows.ToList();
+            return db.Shows.Include(s => s.Movie).Include(s => s.CinemaHall).ToList();
         }
 
         public List<Show> GetByDate(DateTime date)

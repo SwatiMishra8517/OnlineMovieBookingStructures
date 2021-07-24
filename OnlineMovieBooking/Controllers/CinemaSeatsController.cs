@@ -102,7 +102,7 @@ namespace OnlineMovieBooking.Controllers
             {
                 return HttpNotFound();
             }
-            var cinemahalls = db.CinemaHalls.Select(
+            var cinemahalls = chs.GetAll().Select(
             c => new
             {
                 CinemaHallId = c.CinemaHallId,

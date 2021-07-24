@@ -17,14 +17,13 @@ namespace OnlineMovieBooking.Controllers
         private readonly ShowSeatControllerService sscs = new ShowSeatControllerService();
         private readonly BookingControllerService bcs = new BookingControllerService();
         private readonly ShowControllerService scs = new ShowControllerService();
+        private readonly CinemaSeatControllerService cscs = new CinemaSeatControllerService();
 
         // GET: ShowSeats
         public ActionResult Index()
         {
             List<ShowSeatModel> ssms = sscs.GetAll();
-            
-            var showSeats = db.ShowSeats.Include(s => s.Booking).Include(s => s.CinemaSeat).Include(s => s.Show);
-            return View(showSeats.ToList());
+            return View(ssms); 
         }
 
         // GET: ShowSeats/Details/5
@@ -46,7 +45,8 @@ namespace OnlineMovieBooking.Controllers
         public ActionResult Create()
         {
             ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status");
-            var cinemaseats = db.CinemaSeats.Select(
+            ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status");
+            var cinemaseats = cscs.GetAll().Select(
             c => new
             {
                 CinemaSeatId = c.CinemaSeatId,
@@ -67,13 +67,21 @@ namespace OnlineMovieBooking.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.ShowSeats.Add(showSeat);
-                db.SaveChanges();
+                ShowSeatModel s = new ShowSeatModel
+                {
+                    ShowSeatId = showSeat.ShowSeatId,
+                    Status = showSeat.Status,
+                    Price = showSeat.Price,
+                    CinemaSeatId = showSeat.CinemaSeatId,
+                    ShowId = showSeat.ShowId,
+                    BookingId = showSeat.BookingId
+                };
+                sscs.Add(s);
                 return RedirectToAction("Index");
             }
 
             ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status", showSeat.BookingId);
-            ViewBag.CinemaSeatId = new SelectList(db.CinemaSeats, "CinemaSeatId", "SeatNumber", showSeat.CinemaSeatId);
+            ViewBag.CinemaSeatId = new SelectList(cscs.GetAll(), "CinemaSeatId", "SeatNumber", showSeat.CinemaSeatId);
             ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId", showSeat.ShowId);
             return View(showSeat);
         }
@@ -90,9 +98,9 @@ namespace OnlineMovieBooking.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BookingId = new SelectList(db.Bookings, "BookingId", "Status", showSeat.BookingId);
-            ViewBag.CinemaSeatId = new SelectList(db.CinemaSeats, "CinemaSeatId", "SeatNumber", showSeat.CinemaSeatId);
-            ViewBag.ShowId = new SelectList(db.Shows, "ShowId", "ShowId", showSeat.ShowId);
+            ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status", showSeat.BookingId);
+            ViewBag.CinemaSeatId = new SelectList(cscs.GetAll(), "CinemaSeatId", "SeatNumber", showSeat.CinemaSeatId);
+            ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId", showSeat.ShowId);
             return View(showSeat);
         }
 
@@ -101,17 +109,25 @@ namespace OnlineMovieBooking.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ShowSeatId,Status,Price,CinemaSeatId,ShowId,BookingId")] ShowSeat showSeat)
+        public ActionResult Edit([Bind(Include = "ShowSeatId,Status,Price,CinemaSeatId,ShowId,BookingId")] ShowSeatViewModel showSeat)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(showSeat).State = EntityState.Modified;
-                db.SaveChanges();
+                ShowSeatModel s = new ShowSeatModel
+                {
+                    ShowSeatId = showSeat.ShowSeatId,
+                    Status = showSeat.Status,
+                    Price = showSeat.Price,
+                    CinemaSeatId = showSeat.CinemaSeatId,
+                    ShowId = showSeat.ShowId,
+                    BookingId = showSeat.BookingId
+                };
+                sscs.Update(showSeat.ShowId, s);
                 return RedirectToAction("Index");
             }
-            ViewBag.BookingId = new SelectList(db.Bookings, "BookingId", "Status", showSeat.BookingId);
-            ViewBag.CinemaSeatId = new SelectList(db.CinemaSeats, "CinemaSeatId", "SeatNumber", showSeat.CinemaSeatId);
-            ViewBag.ShowId = new SelectList(db.Shows, "ShowId", "ShowId", showSeat.ShowId);
+            ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status", showSeat.BookingId);
+            ViewBag.CinemaSeatId = new SelectList(cscs.GetAll(), "CinemaSeatId", "SeatNumber", showSeat.CinemaSeatId);
+            ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId", showSeat.ShowId);
             return View(showSeat);
         }
 
@@ -122,12 +138,21 @@ namespace OnlineMovieBooking.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ShowSeat showSeat = db.ShowSeats.Find(id);
+            ShowSeatModel showSeat = sscs.GetById((int)id);
+            ShowSeatModel s = new ShowSeatModel
+            {
+                ShowSeatId = showSeat.ShowSeatId,
+                Status = showSeat.Status,
+                Price = showSeat.Price,
+                CinemaSeatId = showSeat.CinemaSeatId,
+                ShowId = showSeat.ShowId,
+                BookingId = showSeat.BookingId
+            };
             if (showSeat == null)
             {
                 return HttpNotFound();
             }
-            return View(showSeat);
+            return View(s);
         }
 
         // POST: ShowSeats/Delete/5
@@ -135,19 +160,10 @@ namespace OnlineMovieBooking.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ShowSeat showSeat = db.ShowSeats.Find(id);
-            db.ShowSeats.Remove(showSeat);
-            db.SaveChanges();
+            ShowSeatModel showSeat = sscs.GetById(id);
+            sscs.Delete(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

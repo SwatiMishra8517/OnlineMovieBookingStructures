@@ -19,6 +19,7 @@ namespace OnlineMovieBooking.Domain.Services.MovieService
         }
         public void Add(Movie movie)
         {
+            mr = new MovieRepository();
             Repository.Entities.Movie m = new Repository.Entities.Movie
             {
                 MovieId = movie.MovieId,
@@ -34,12 +35,14 @@ namespace OnlineMovieBooking.Domain.Services.MovieService
 
         public void Delete(int id)
         {
+            mr = new MovieRepository();
             Repository.Entities.Movie u = new Repository.Entities.Movie();
             mr.Delete(id);
         }
 
         public void Update(int id, Movie movie)
         {
+            mr = new MovieRepository();
             Repository.Entities.Movie m = mr.GetById(id);
             m.MovieId = movie.MovieId;
             m.Name = movie.Name;

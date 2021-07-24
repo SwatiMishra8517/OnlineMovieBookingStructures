@@ -52,7 +52,8 @@ namespace OnlineMovieBooking.Proxy
                     StartTime = show.StartTime,
                     EndTime = show.EndTime,
                     CinemaHallId = show.CinemaHallId,
-                    MovieId = show.MovieId
+                    MovieId = show.MovieId,
+
                 };
                 sms.Add(s);
             }

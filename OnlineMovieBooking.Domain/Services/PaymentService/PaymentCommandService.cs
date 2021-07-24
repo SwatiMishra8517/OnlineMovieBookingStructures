@@ -20,6 +20,7 @@ namespace OnlineMovieBooking.Domain.Services.PaymentService
         }
         public void Add(Payment payment)
         {
+            pr = new PaymentRepository();
             Repository.Entities.Payment p = new Repository.Entities.Payment
             {
                 PaymentId = payment.PaymentId,
@@ -35,12 +36,14 @@ namespace OnlineMovieBooking.Domain.Services.PaymentService
 
         public void Delete(int id)
         {
+            pr = new PaymentRepository();
             Repository.Entities.Payment p = new Repository.Entities.Payment();
             pr.Delete(id);
         }
 
         public void Update(int id, Payment payment)
         {
+            pr = new PaymentRepository();
             Repository.Entities.Payment p = pr.GetById(id);
             p.PaymentId = payment.PaymentId;
             p.Amount = payment.Amount;
