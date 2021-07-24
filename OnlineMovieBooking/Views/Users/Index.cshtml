@@ -3,7 +3,20 @@
 @{
     ViewBag.Title = "Index";
 }
+<script>
+    $(function() {
 
+    $("#showPass").change(function() {
+        var checked = $(this).is(":checked");           
+        if (checked) {
+            $("#password").attr("type", "text");
+        } else {
+            $("#password").attr("type", "password");
+        }
+    });
+
+});
+</script>
 <h2>Users List</h2>
 
 <p>
@@ -44,7 +57,8 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Password)
+            <span id="Password">@Html.DisplayFor(modelItem => item.Password)</span>
+            <input type="checkbox" id="showPass" />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |

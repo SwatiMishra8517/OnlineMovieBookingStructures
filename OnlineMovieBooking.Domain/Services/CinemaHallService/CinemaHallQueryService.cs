@@ -23,9 +23,7 @@ namespace OnlineMovieBooking.Domain.Services.CinemaHallService
             CinemaHall ch = new CinemaHall
             {
                 CinemaHallId = cinemaHall.CinemaHallId,
-                Name = cinemaHall.Name,
-                TotalSeats = cinemaHall.TotalSeats,
-                CinemaId = cinemaHall.CinemaId
+                Name = cinemaHall.Name
             };
             return ch;
         }
@@ -37,8 +35,6 @@ namespace OnlineMovieBooking.Domain.Services.CinemaHallService
             {
                 CinemaHallId = cinemaHall.CinemaHallId,
                 Name = cinemaHall.Name,
-                TotalSeats = cinemaHall.TotalSeats,
-                CinemaId = cinemaHall.CinemaId
             })
             .ToList();
             return retList;

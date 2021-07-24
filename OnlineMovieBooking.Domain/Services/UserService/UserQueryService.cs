@@ -31,6 +31,7 @@ namespace OnlineMovieBooking.Domain.Services.UserService
             User u = new User
             {
                 UserId = user.UserId,
+                Name = user.Name,
                 Username = user.Username,
                 Email = user.Email,
                 MobileNo = user.MobileNo,
@@ -45,6 +46,7 @@ namespace OnlineMovieBooking.Domain.Services.UserService
             var retList = ur.GetAll()
             .Select(user => new User() {
                 UserId = user.UserId,
+                Name = user.Name,
                 Username = user.Username,
                 Email = user.Email,
                 MobileNo = user.MobileNo,

@@ -28,6 +28,7 @@ namespace OnlineMovieBooking.Domain.Services.UserService
             Repository.Entities.User u = new Repository.Entities.User
             {
                 UserId = user.UserId,
+                Name = user.Name,
                 Username = user.Username,
                 Email = user.Email,
                 MobileNo = user.MobileNo,
@@ -48,6 +49,7 @@ namespace OnlineMovieBooking.Domain.Services.UserService
             ur = new UserRepository();
             Repository.Entities.User u = ur.GetById(id);
             u.UserId = user.UserId;
+            u.Name = user.Name;
             u.Username = user.Username;
             u.Email = user.Email;
             u.MobileNo = user.MobileNo;

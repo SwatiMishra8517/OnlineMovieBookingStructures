@@ -23,7 +23,6 @@ namespace OnlineMovieBooking.Domain.Services.FeedbackService
             Feedback f = new Feedback
             {
                 FeedbackId = feedback.FeedbackId,
-                Rating = feedback.Rating,
                 Review = feedback.Review,
                 UserId = feedback.UserId,
                 MovieId = feedback.MovieId
@@ -37,7 +36,6 @@ namespace OnlineMovieBooking.Domain.Services.FeedbackService
             .Select(feedback => new Feedback()
             {
                 FeedbackId = feedback.FeedbackId,
-                Rating = feedback.Rating,
                 Review = feedback.Review,
                 UserId = feedback.UserId,
                 MovieId = feedback.MovieId

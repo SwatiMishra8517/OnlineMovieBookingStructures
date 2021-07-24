@@ -21,7 +21,7 @@ namespace OnlineMovieBooking.Controllers
         {
             List<UserViewModel> uList = new List<UserViewModel>();
             List<UserModel> ums = ucs.GetAll();
-            foreach (var user in uList)
+            foreach (var user in ums)
             {
                 UserViewModel u = new UserViewModel
                 {
@@ -34,7 +34,7 @@ namespace OnlineMovieBooking.Controllers
                 };
                 uList.Add(u);
             }
-            return View(ums);
+            return View(uList);
         }
 
         // GET: Users/Details/5
@@ -150,7 +150,7 @@ namespace OnlineMovieBooking.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             UserModel user = ucs.GetById((int)id);
-            UserModel u = new UserModel
+            UserViewModel u = new UserViewModel
             {
                 UserId = user.UserId,
                 Name = user.Name,

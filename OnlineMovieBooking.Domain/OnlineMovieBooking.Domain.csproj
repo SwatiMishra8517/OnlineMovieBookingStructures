@@ -91,10 +91,6 @@
     <Compile Include="Services\CinemaHallService\CinemaHallQueryService.cs" />
     <Compile Include="Services\CinemaHallService\ICinemaHallCommandService.cs" />
     <Compile Include="Services\CinemaHallService\ICinemaHallQueryService.cs" />
-    <Compile Include="Services\CinemaService\CinemaCommandService.cs" />
-    <Compile Include="Services\CinemaService\CinemaQueryService.cs" />
-    <Compile Include="Services\CinemaService\ICinemaCommandService.cs" />
-    <Compile Include="Services\CinemaService\ICinemaQueryService.cs" />
     <Compile Include="Services\FeedbackService\FeedbackCommandService.cs" />
     <Compile Include="Services\FeedbackService\FeedbackQueryService.cs" />
     <Compile Include="Services\FeedbackService\IFeedbackCommandService.cs" />

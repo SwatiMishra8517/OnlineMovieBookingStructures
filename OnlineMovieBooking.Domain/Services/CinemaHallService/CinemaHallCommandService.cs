@@ -23,8 +23,6 @@ namespace OnlineMovieBooking.Domain.Services.CinemaHallService
             {
                 CinemaHallId = cinemaHall.CinemaHallId,
                 Name = cinemaHall.Name,
-                TotalSeats = cinemaHall.TotalSeats,
-                CinemaId = cinemaHall.CinemaId
             };
             chr.Add(ch);
         }
@@ -40,8 +38,6 @@ namespace OnlineMovieBooking.Domain.Services.CinemaHallService
             Repository.Entities.CinemaHall ch = chr.GetById(id);
             ch.CinemaHallId = cinemaHall.CinemaHallId;
             ch.Name = cinemaHall.Name;
-            ch.TotalSeats = cinemaHall.TotalSeats;
-            ch.CinemaId = cinemaHall.CinemaId;
             chr.Update(id, ch);
         }
     }

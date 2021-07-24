@@ -26,9 +26,6 @@ namespace OnlineMovieBooking.Domain.Services.ShowSeatService
             {
                 ShowSeatId = showSeat.ShowSeatId,
                 Status = showSeat.Status,
-                Price = showSeat.Price,
-                BookingId = showSeat.BookingId,
-                CinemaSeatId = showSeat.CinemaSeatId,
                 ShowId = showSeat.ShowId
             };
             ssr.Add(ss);
@@ -47,9 +44,6 @@ namespace OnlineMovieBooking.Domain.Services.ShowSeatService
             Repository.Entities.ShowSeat ss = ssr.GetById(id);
             ss.ShowSeatId = showSeat.ShowSeatId;
             ss.Status = showSeat.Status;
-            ss.Price = showSeat.Price;
-            ss.BookingId = showSeat.BookingId;
-            ss.CinemaSeatId = showSeat.CinemaSeatId;
             ss.ShowId = showSeat.ShowId;
             ssr.Update(id, ss);
         }
