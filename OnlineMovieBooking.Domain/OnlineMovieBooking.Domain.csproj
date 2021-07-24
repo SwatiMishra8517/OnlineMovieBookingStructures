@@ -69,12 +69,7 @@
     <Compile Include="DTO\ShowSeat.cs" />
     <Compile Include="DTO\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\BookingRepository.cs" />
     <Compile Include="Repository\CinemaHallRepository.cs" />
-    <Compile Include="Repository\CinemaRepository.cs" />
-    <Compile Include="Repository\CinemaSeatRepository.cs" />
-    <Compile Include="Repository\CityRepository.cs" />
-    <Compile Include="Repository\IBookingRepository.cs" />
     <Compile Include="Repository\IPaymentRepository.cs" />
     <Compile Include="Repository\Configuration\MovieContext.cs" />
     <Compile Include="Repository\IShowRepository.cs" />
@@ -89,9 +84,6 @@
     <Compile Include="Repository\Entities\User.cs" />
     <Compile Include="Repository\FeedbackRepository.cs" />
     <Compile Include="Repository\ICinemaHallRepository.cs" />
-    <Compile Include="Repository\ICinemaRepository.cs" />
-    <Compile Include="Repository\ICinemaSeatRepository.cs" />
-    <Compile Include="Repository\ICityRepository.cs" />
     <Compile Include="Repository\IFeedbackRepository.cs" />
     <Compile Include="Repository\IMovieRepository.cs" />
     <Compile Include="Repository\IUserRepository.cs" />

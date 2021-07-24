@@ -41,10 +41,7 @@ namespace OnlineMovieBooking.Domain.Repository
             db.ShowSeats.Remove(showSeat);
             db.SaveChanges();
         }
-        public List<ShowSeat> GetAll()
-        {
-            return db.ShowSeats.Include(s => s.Booking).Include(s => s.CinemaSeat).Include(s => s.Show).ToList();
-        }
+
 
         public List<ShowSeat> GetByShowId(int id)
         {
@@ -52,10 +49,6 @@ namespace OnlineMovieBooking.Domain.Repository
 
         }
 
-        public ShowSeat GetByBookinId(int id)
-        {
-            return (ShowSeat)db.ShowSeats.Where(m => m.BookingId == id);
-        }
 
         public string GetStatus(int id)
         {
@@ -63,10 +56,9 @@ namespace OnlineMovieBooking.Domain.Repository
             return ss.Status;
         }
 
-        public double GetPrice(int id)
+        public List<ShowSeat> GetAll()
         {
-            ShowSeat ss = GetById(id);
-            return ss.Price;
+            return db.ShowSeats.ToList();
         }
     }
 }

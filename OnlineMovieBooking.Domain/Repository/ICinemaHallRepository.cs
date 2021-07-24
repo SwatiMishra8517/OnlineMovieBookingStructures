@@ -11,7 +11,6 @@ namespace OnlineMovieBooking.Domain.Repository
     public interface ICinemaHallRepository
     {
         List<CinemaHall> GetAll();
-        List<CinemaHall> GetByCinemaId(int id);
         CinemaHall GetByName(string name);
         CinemaHall GetById(int id);
         void Add(CinemaHall cinemaHall);
