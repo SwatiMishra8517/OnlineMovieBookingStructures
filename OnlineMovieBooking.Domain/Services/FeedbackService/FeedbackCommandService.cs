@@ -22,7 +22,6 @@ namespace OnlineMovieBooking.Domain.Services.FeedbackService
             Repository.Entities.Feedback f = new Repository.Entities.Feedback
             {
                 FeedbackId = feedback.FeedbackId,
-                Rating = feedback.Rating,
                 Review = feedback.Review,
                 UserId = feedback.UserId,
                 MovieId = feedback.MovieId
@@ -40,7 +39,6 @@ namespace OnlineMovieBooking.Domain.Services.FeedbackService
         {
             Repository.Entities.Feedback f = fr.GetById(id);
             f.FeedbackId = feedback.FeedbackId;
-            f.Rating = feedback.Rating;
             f.Review = feedback.Review;
             f.UserId = feedback.UserId;
             f.MovieId = feedback.MovieId;

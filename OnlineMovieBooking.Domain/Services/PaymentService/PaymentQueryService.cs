@@ -26,10 +26,9 @@ namespace OnlineMovieBooking.Domain.Services.PaymentService
                 PaymentId = payment.PaymentId,
                 Amount = payment.Amount,
                 Time = payment.Time,
-                DiscountCouponId = payment.DiscountCouponId,
-                RemoteTransactionId = payment.RemoteTransactionId,
-                PaymentMethod = payment.PaymentMethod,
-                BookingId = payment.BookingId
+                UserId = payment.UserId,
+                ShowId = payment.ShowId,
+                MovieId = payment.MovieId
             };
             return p;
         }
@@ -43,10 +42,9 @@ namespace OnlineMovieBooking.Domain.Services.PaymentService
                 PaymentId = payment.PaymentId,
                 Amount = payment.Amount,
                 Time = payment.Time,
-                DiscountCouponId = payment.DiscountCouponId,
-                RemoteTransactionId = payment.RemoteTransactionId,
-                PaymentMethod = payment.PaymentMethod,
-                BookingId = payment.BookingId
+                UserId = payment.UserId,
+                ShowId = payment.ShowId,
+                MovieId = payment.MovieId
             }).ToList();
             return retList;
         }
