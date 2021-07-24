@@ -15,7 +15,6 @@ namespace OnlineMovieBooking.Controllers
     public class PaymentsController : Controller
     {
         private PaymentControllerService pcs = new PaymentControllerService();
-        private BookingControllerService bcs = new BookingControllerService();
         
 
         // GET: Payments
@@ -30,10 +29,9 @@ namespace OnlineMovieBooking.Controllers
                     PaymentId = payment.PaymentId,
                     Amount = payment.Amount,
                     Time = payment.Time,
-                    DiscountCouponId = payment.DiscountCouponId,
-                    RemoteTransactionId = payment.RemoteTransactionId,
-                    PaymentMethod = payment.PaymentMethod,
-                    BookingId = payment.BookingId
+                    UserId = payment.UserId,
+                    ShowId = payment.ShowId,
+                    MovieId = payment.MovieId
                 };
                 pvms.Add(p);
             }
@@ -54,10 +52,9 @@ namespace OnlineMovieBooking.Controllers
                 PaymentId = payment.PaymentId,
                 Amount = payment.Amount,
                 Time = payment.Time,
-                DiscountCouponId = payment.DiscountCouponId,
-                RemoteTransactionId = payment.RemoteTransactionId,
-                PaymentMethod = payment.PaymentMethod,
-                BookingId = payment.BookingId
+                UserId = payment.UserId,
+                ShowId = payment.ShowId,
+                MovieId = payment.MovieId
             };
             if (payment == null)
             {
@@ -65,40 +62,43 @@ namespace OnlineMovieBooking.Controllers
             }
             return View(p);
         }
+        //Commented in view of not able to alter booking data
+
 
         // GET: Payments/Create
-        public ActionResult Create()
-        {
-            ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status");
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status");
+        //    ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status");
+        //    ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status");
+        //    return View();
+        //}
 
-        // POST: Payments/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PaymentId,Amount,Time,DiscountCouponId,RemoteTransactionId,PaymentMethod,BookingId")] PaymentViewModel payment)
-        {
-            if (ModelState.IsValid)
-            {
-                payment.Time = DateTime.Now;
-                PaymentModel p = new PaymentModel
-                {
-                    PaymentId = payment.PaymentId,
-                    Amount = payment.Amount,
-                    Time = DateTime.Now,
-                    DiscountCouponId = payment.DiscountCouponId,
-                    RemoteTransactionId = payment.RemoteTransactionId,
-                    PaymentMethod = payment.PaymentMethod,
-                    BookingId = payment.BookingId
-                };
-                pcs.Add(p);
-                return RedirectToAction("Index");
-            }
+        //// POST: Payments/Create
+        //// To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        //// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "PaymentId,Amount,Time,DiscountCouponId,RemoteTransactionId,PaymentMethod,BookingId")] PaymentViewModel payment)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        payment.Time = DateTime.Now;
+        //        PaymentModel p = new PaymentModel
+        //        {
+        //            PaymentId = payment.PaymentId,
+        //            Amount = payment.Amount,
+        //            Time = payment.Time,
+        //            UserId = payment.UserId,
+        //            ShowId = payment.ShowId,
+        //            MovieId = payment.MovieId
+        //        };
+        //        pcs.Add(p);
+        //        return RedirectToAction("Index");
+        //    }
 
-            ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status", payment.BookingId);
-            return View(payment);
-        }
+        //    ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status", payment.BookingId);
+        //    return View(payment);
+        //}
     }
 }

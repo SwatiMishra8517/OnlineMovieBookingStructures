@@ -66,13 +66,7 @@ namespace OnlineMovieBooking.Controllers
         // GET: Shows/Create
         public ActionResult Create()
         {
-            var cinemahalls = ccs.GetAll().Select(
-            c => new
-            {
-                CinemaHallId = c.CinemaHallId,
-                Name = c.Cinema.Name + "-" + c.Cinema.City.Name + " (" + c.Name + ")"
-            });
-            ViewBag.CinemaHallId = new SelectList(cinemahalls, "CinemaHallId", "Name");
+            ViewBag.CinemaHallId = new SelectList(ccs.GetAll(), "CinemaHallId", "Name");
             ViewBag.MovieId = new SelectList(mvs.GetAll(), "MovieId", "Name");
             return View();
         }
@@ -114,13 +108,7 @@ namespace OnlineMovieBooking.Controllers
             {
                 return HttpNotFound();
             }
-            var cinemahalls = ccs.GetAll().Select(
-            c => new
-            {
-                CinemaHallId = c.CinemaHallId,
-                Name = c.Cinema.Name + "-" + c.Cinema.City.Name + " (" + c.Name + ")"
-            });
-            ViewBag.CinemaHallId = new SelectList(cinemahalls, "CinemaHallId", "Name", show.CinemaHallId);
+            ViewBag.CinemaHallId = new SelectList(ccs.GetAll(), "CinemaHallId", "Name", show.CinemaHallId);
             ViewBag.MovieId = new SelectList(mvs.GetAll(), "MovieId", "Name", show.MovieId);
             return View(show);
         }

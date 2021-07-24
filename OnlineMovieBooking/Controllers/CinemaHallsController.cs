@@ -15,7 +15,6 @@ namespace OnlineMovieBooking.Controllers
     public class CinemaHallsController : Controller
     {
         private CinemaHallControllerService chs = new CinemaHallControllerService();
-        private CinemaControllerService ccs = new CinemaControllerService();
 
         // GET: CinemaHalls
         public ActionResult Index()
@@ -28,8 +27,6 @@ namespace OnlineMovieBooking.Controllers
                 {
                     CinemaHallId = cinemaHall.CinemaHallId,
                     Name = cinemaHall.Name,
-                    TotalSeats = cinemaHall.TotalSeats,
-                    CinemaId = cinemaHall.CinemaId,
                 };
                 chvs.Add(ch);
             }
@@ -48,8 +45,6 @@ namespace OnlineMovieBooking.Controllers
             {
                 CinemaHallId = cinemaHall.CinemaHallId,
                 Name = cinemaHall.Name,
-                TotalSeats = cinemaHall.TotalSeats,
-                CinemaId = cinemaHall.CinemaId,
             };
             if (cinemaHall == null)
             {
@@ -77,14 +72,11 @@ namespace OnlineMovieBooking.Controllers
                 {
                     CinemaHallId = cinemaHall.CinemaHallId,
                     Name = cinemaHall.Name,
-                    TotalSeats = cinemaHall.TotalSeats,
-                    CinemaId = cinemaHall.CinemaId,
                 };
                 chs.Add(ch);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CinemaId = new SelectList(ccs.GetAll(), "CinemaId", "Name", cinemaHall.CinemaId);
             return View(cinemaHall);
         }
 
@@ -100,7 +92,6 @@ namespace OnlineMovieBooking.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CinemaId = new SelectList(ccs.GetAll(), "CinemaId", "Name", cinemaHall.CinemaId);
             return View(cinemaHall);
         }
 
@@ -117,13 +108,10 @@ namespace OnlineMovieBooking.Controllers
                 {
                     CinemaHallId = cinemaHall.CinemaHallId,
                     Name = cinemaHall.Name,
-                    TotalSeats = cinemaHall.TotalSeats,
-                    CinemaId = cinemaHall.CinemaId,
                 };
                 chs.Update(ch.CinemaHallId, ch);
                 return RedirectToAction("Index");
             }
-            ViewBag.CinemaId = new SelectList(ccs.GetAll(), "CinemaId", "Name", cinemaHall.CinemaId);
             return View(cinemaHall);
         }
 
@@ -143,8 +131,6 @@ namespace OnlineMovieBooking.Controllers
             {
                 CinemaHallId = cinemaHall.CinemaHallId,
                 Name = cinemaHall.Name,
-                TotalSeats = cinemaHall.TotalSeats,
-                CinemaId = cinemaHall.CinemaId,
             };
             return View(ch);
         }

@@ -27,7 +27,6 @@ namespace OnlineMovieBooking.Controllers
                 var f = new FeedbackViewModel
                 {
                     FeedbackId = feedback.FeedbackId,
-                    Rating = feedback.Rating,
                     Review = feedback.Review,
                     UserId = feedback.UserId,
                     MovieId = feedback.MovieId,
@@ -48,7 +47,6 @@ namespace OnlineMovieBooking.Controllers
             FeedbackViewModel f =new FeedbackViewModel()
             {
                 FeedbackId = feedback.FeedbackId,
-                Rating = feedback.Rating,
                 Review = feedback.Review,
                 UserId = feedback.UserId,
                 MovieId = feedback.MovieId,
@@ -71,7 +69,6 @@ namespace OnlineMovieBooking.Controllers
             var f = new FeedbackViewModel()
             {
                 FeedbackId = feedback.FeedbackId,
-                Rating = feedback.Rating,
                 Review = feedback.Review,
                 UserId = feedback.UserId,
                 MovieId = feedback.MovieId,

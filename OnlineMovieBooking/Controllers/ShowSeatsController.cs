@@ -15,9 +15,7 @@ namespace OnlineMovieBooking.Controllers
     public class ShowSeatsController : Controller
     {
         private readonly ShowSeatControllerService sscs = new ShowSeatControllerService();
-        private readonly BookingControllerService bcs = new BookingControllerService();
         private readonly ShowControllerService scs = new ShowControllerService();
-        private readonly CinemaSeatControllerService cscs = new CinemaSeatControllerService();
 
         // GET: ShowSeats
         public ActionResult Index()
@@ -44,15 +42,6 @@ namespace OnlineMovieBooking.Controllers
         // GET: ShowSeats/Create
         public ActionResult Create()
         {
-            ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status");
-            ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status");
-            var cinemaseats = cscs.GetAll().Select(
-            c => new
-            {
-                CinemaSeatId = c.CinemaSeatId,
-                Name = c.SeatNumber + "-" + c.CinemaHall.Cinema.Name + " " +c.CinemaHall.Cinema.City.Name + " (" + c.CinemaHall.Name + ")"
-            });
-            ViewBag.CinemaSeatId = new SelectList(cinemaseats, "CinemaSeatId", "Name");
 
             ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId");
             return View();
@@ -71,17 +60,12 @@ namespace OnlineMovieBooking.Controllers
                 {
                     ShowSeatId = showSeat.ShowSeatId,
                     Status = showSeat.Status,
-                    Price = showSeat.Price,
-                    CinemaSeatId = showSeat.CinemaSeatId,
                     ShowId = showSeat.ShowId,
-                    BookingId = showSeat.BookingId
                 };
                 sscs.Add(s);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status", showSeat.BookingId);
-            ViewBag.CinemaSeatId = new SelectList(cscs.GetAll(), "CinemaSeatId", "SeatNumber", showSeat.CinemaSeatId);
             ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId", showSeat.ShowId);
             return View(showSeat);
         }
@@ -98,8 +82,6 @@ namespace OnlineMovieBooking.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status", showSeat.BookingId);
-            ViewBag.CinemaSeatId = new SelectList(cscs.GetAll(), "CinemaSeatId", "SeatNumber", showSeat.CinemaSeatId);
             ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId", showSeat.ShowId);
             return View(showSeat);
         }
@@ -117,16 +99,11 @@ namespace OnlineMovieBooking.Controllers
                 {
                     ShowSeatId = showSeat.ShowSeatId,
                     Status = showSeat.Status,
-                    Price = showSeat.Price,
-                    CinemaSeatId = showSeat.CinemaSeatId,
                     ShowId = showSeat.ShowId,
-                    BookingId = showSeat.BookingId
                 };
                 sscs.Update(showSeat.ShowId, s);
                 return RedirectToAction("Index");
             }
-            ViewBag.BookingId = new SelectList(bcs.GetAll(), "BookingId", "Status", showSeat.BookingId);
-            ViewBag.CinemaSeatId = new SelectList(cscs.GetAll(), "CinemaSeatId", "SeatNumber", showSeat.CinemaSeatId);
             ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId", showSeat.ShowId);
             return View(showSeat);
         }
@@ -143,10 +120,7 @@ namespace OnlineMovieBooking.Controllers
             {
                 ShowSeatId = showSeat.ShowSeatId,
                 Status = showSeat.Status,
-                Price = showSeat.Price,
-                CinemaSeatId = showSeat.CinemaSeatId,
                 ShowId = showSeat.ShowId,
-                BookingId = showSeat.BookingId
             };
             if (showSeat == null)
             {
