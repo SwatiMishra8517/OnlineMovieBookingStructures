@@ -30,10 +30,6 @@ namespace OnlineMovieBooking.ControllerService
         {
             return cinemaHallProxy.GetAll();
         }
-        public List<CinemaHallModel> GetByCinemaId(int id)
-        {
-            return cinemaHallProxy.GetByCinemaId(id);
-        }
         public CinemaHallModel GetByName(string name)
         {
             return cinemaHallProxy.GetByName(name);

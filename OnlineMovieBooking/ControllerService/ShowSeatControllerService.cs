@@ -30,17 +30,9 @@ namespace OnlineMovieBooking.ControllerService
         {
             return showSeatProxy.GetAll();
         }
-        public ShowSeatModel GetByBookingId(int id)
-        {
-            return showSeatProxy.GetByBookinId(id);
-        }
         public List<ShowSeatModel> GetByShowId(int id)
         {
             return showSeatProxy.GetByShowId(id);
-        }
-        public double GetPrice(int id)
-        {
-            return showSeatProxy.GetPrice(id);
         }
         public string GetStatus(int id)
         {
