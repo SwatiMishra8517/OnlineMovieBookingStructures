@@ -11,7 +11,7 @@ namespace OnlineMovieBooking.Domain.Services.FeedbackService
     public class FeedbackCommandService : IFeedbackCommandService
     {
         private readonly IFeedbackRepository repository;
-        private FeedbackRepository fr;
+        private FeedbackRepository fr = new FeedbackRepository();
         public FeedbackCommandService() { }
         public FeedbackCommandService(IFeedbackRepository repository)
         {

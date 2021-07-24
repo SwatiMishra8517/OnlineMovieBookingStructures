@@ -11,7 +11,7 @@ namespace OnlineMovieBooking.Domain.Services.CinemaHallService
     public class CinemaHallQueryService : ICinemaHallQueryService
     {
         private readonly ICinemaHallRepository repository;
-        private CinemaHallRepository chr;
+        private CinemaHallRepository chr = new CinemaHallRepository();
         public CinemaHallQueryService() { }
         public CinemaHallQueryService(ICinemaHallRepository repository)
         {
