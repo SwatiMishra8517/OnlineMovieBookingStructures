@@ -19,7 +19,6 @@ namespace OnlineMovieBooking.Domain.Repository.Entities
         public string Name { get; set; }
         [Required(ErrorMessage = "Please enter Language")]
         [RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Only Alphabets are allowed.")]
-        public string Language { get; set; }
         public string Genre { get; set; }
         [DisplayName("Duration(in mins)")]
         [Required(ErrorMessage = "Please enter Duration")]
@@ -34,5 +33,6 @@ namespace OnlineMovieBooking.Domain.Repository.Entities
         public Nullable<DateTime> ReleaseDate { get; set; }
 
         public virtual ICollection<Show> Shows { get; set; }
+        public virtual ICollection<Feedback> Feedbacks { get; set; }
     }
 }
