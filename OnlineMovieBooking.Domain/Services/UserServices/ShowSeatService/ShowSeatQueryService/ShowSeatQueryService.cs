@@ -20,27 +20,13 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.ShowSeatService.ShowSe
                 DTO.ShowSeat dts = new ShowSeat();
                 dts.ShowSeatId = res.ShowSeatId;
                 dts.Status = res.Status;
-                dts.Price = res.Price;
-                dts.CinemaSeatId = res.CinemaSeatId;
                 dts.ShowId = res.ShowId;
-                dts.BookingId = res.BookingId;
                 ds.Add(dts);
             }
             return ds;
         }
 
-        public ShowSeat GetByBookinId(int id)
-        {
-            Repository.Entities.ShowSeat res = sr.GetByBookinId(id);
-            DTO.ShowSeat dts = new ShowSeat();
-            dts.ShowSeatId = res.ShowSeatId;
-            dts.Status = res.Status;
-            dts.Price = res.Price;
-            dts.CinemaSeatId = res.CinemaSeatId;
-            dts.ShowId = res.ShowId;
-            dts.BookingId = res.BookingId;
-            return dts;
-        }
+
 
         public ShowSeat GetById(int id)
         {
@@ -48,10 +34,7 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.ShowSeatService.ShowSe
             DTO.ShowSeat dts = new ShowSeat();
             dts.ShowSeatId = res.ShowSeatId;
             dts.Status = res.Status;
-            dts.Price = res.Price;
-            dts.CinemaSeatId = res.CinemaSeatId;
             dts.ShowId = res.ShowId;
-            dts.BookingId = res.BookingId;
             return dts;
         }
 
@@ -64,19 +47,13 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.ShowSeatService.ShowSe
                 DTO.ShowSeat dts = new ShowSeat();
                 dts.ShowSeatId = res.ShowSeatId;
                 dts.Status = res.Status;
-                dts.Price = res.Price;
-                dts.CinemaSeatId = res.CinemaSeatId;
                 dts.ShowId = res.ShowId;
-                dts.BookingId = res.BookingId;
                 ds.Add(dts);
             }
             return ds;
         }
 
-        public double GetPrice(int id)
-        {
-            return sr.GetPrice(id);
-        }
+
 
         public string GetStatus(int id)
         {
