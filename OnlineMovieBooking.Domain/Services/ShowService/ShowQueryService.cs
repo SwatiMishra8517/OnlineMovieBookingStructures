@@ -51,8 +51,6 @@ namespace OnlineMovieBooking.Domain.Services.ShowService
                 EndTime = show.EndTime,
                 MovieId = show.MovieId,
                 CinemaHallId = show.CinemaHallId,
-                CinemaHall = chqs.Get(show.CinemaHallId),
-                Movie = mqs.Get(show.MovieId)
             }).ToList();
             return retList;
         }

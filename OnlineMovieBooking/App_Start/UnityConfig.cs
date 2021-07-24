@@ -1,11 +1,7 @@
 using System;
 using OnlineMovieBooking.Domain.Repository;
 using OnlineMovieBooking.Proxy;
-using OnlineMovieBooking.Domain.Services.BookingService;
-using OnlineMovieBooking.Domain.Services.CinemaService;
 using OnlineMovieBooking.Domain.Services.CinemaHallService;
-using OnlineMovieBooking.Domain.Services.CinemaSeatService;
-using OnlineMovieBooking.Domain.Services.CityService;
 using OnlineMovieBooking.Domain.Services.FeedbackService;
 using OnlineMovieBooking.Domain.Services.MovieService;
 using OnlineMovieBooking.Domain.Services.PaymentService;
@@ -64,11 +60,7 @@ namespace OnlineMovieBooking
             container.RegisterType<IPaymentProxy, PaymentProxy>();
             container.RegisterType<IMovieProxy, MovieProxy>();
             container.RegisterType<IFeedbackProxy, FeedbackProxy>();
-            container.RegisterType<ICityProxy, CityProxy>();
-            container.RegisterType<ICinemaSeatProxy, CinemaSeatProxy>();
             container.RegisterType<ICinemaHallProxy, CinemaHallProxy>();
-            container.RegisterType<ICinemaProxy, CinemaProxy>();
-            container.RegisterType<IBookingProxy, BookingProxy>();
 
             //Reopsitory
             container.RegisterType<IUserRepository, UserRepository>();
@@ -77,23 +69,11 @@ namespace OnlineMovieBooking
             container.RegisterType<IPaymentRepository, PaymentRepository>();
             container.RegisterType<IMovieRepository, MovieRepository>();
             container.RegisterType<IFeedbackRepository, FeedbackRepository>();
-            container.RegisterType<ICityRepository, CityRepository>();
-            container.RegisterType<ICinemaSeatRepository, CinemaSeatRepository>();
             container.RegisterType<ICinemaHallRepository, CinemaHallRepository>();
-            container.RegisterType<ICinemaRepository, CinemaRepository>();
-            container.RegisterType<IBookingRepository, BookingRepository>();
 
             //Services
-            container.RegisterType<IBookingCommandService, BookingCommandService>();
-            container.RegisterType<IBookingQueryService, BookingQueryService>();
-            container.RegisterType<ICinemaCommandService, CinemaCommandService>();
-            container.RegisterType<ICinemaQueryService, CinemaQueryService>();
             container.RegisterType<ICinemaHallCommandService, CinemaHallCommandService>();
             container.RegisterType<ICinemaHallQueryService, CinemaHallQueryService>();
-            container.RegisterType<ICinemaSeatCommandService, CinemaSeatCommandService>();
-            container.RegisterType<ICinemaSeatQueryService, CinemaSeatQueryService>();
-            container.RegisterType<ICityCommandService, CityCommandService>();
-            container.RegisterType<ICityQueryService, CityQueryService>();
             container.RegisterType<IFeedbackCommandService, FeedbackCommandService>();
             container.RegisterType<IFeedbackQueryService, FeedbackQueryService>();
             container.RegisterType<IMovieCommandService, MovieCommandService>();
