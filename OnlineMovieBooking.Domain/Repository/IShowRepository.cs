@@ -19,6 +19,5 @@ namespace OnlineMovieBooking.Domain.Repository
         List<Show> GetByStartTime(DateTime time);
         List<Show> GetByCinemaHallId(int id);
         List<Show> GetByMovieId(int id);
-        List<Show> GetByCinemaId(int id);
     }
 }

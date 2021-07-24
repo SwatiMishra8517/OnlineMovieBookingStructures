@@ -19,9 +19,10 @@ namespace OnlineMovieBooking.Domain.Repository.Entities
         public DateTime Time { get; set; }
         [DisplayName("Discout Coupon Id")]
         public int UserId { get; set; }
+        public int ShowId { get; set; }
         public int MovieId { get; set; }
 
-
+        public virtual Show Show { get; set; }
         public virtual Movie Movie { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<ShowSeat> ShowSeats { get; set; }

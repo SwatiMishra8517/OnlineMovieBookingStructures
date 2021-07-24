@@ -47,27 +47,13 @@ namespace OnlineMovieBooking.Domain.Repository
 
         public List<Payment> GetByUserId(int id)
         {
-            return db.Payments.Where(m => m.Booking.UserId == id).ToList();
+            return db.Payments.Where(m => m.UserId == id).ToList();
         }
 
         public List<Payment> GetByShowId(int id)
         {
-            return db.Payments.Where(m => m.Booking.ShowId == id).ToList();
-        }
-
-        public Payment GetByTransactionId(string id)
-        {
-            return (Payment)db.Payments.Where(m => m.RemoteTransactionId == id);
-        }
-
-        public List<Payment> GetByPaymentMethod(string method)
-        {
-            return db.Payments.Where(m => m.PaymentMethod == method).ToList();
-        }
-
-        public List<Payment> GetByBookingId(int id)
-        {
-            return db.Payments.Where(m => m.BookingId == id).ToList();
+            return db.Payments.Where(m => m.ShowId == id).ToList();
         }
     }
+    
 }
