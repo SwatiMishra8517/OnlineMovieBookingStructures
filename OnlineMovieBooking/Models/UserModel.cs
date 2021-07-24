@@ -37,7 +37,7 @@ namespace OnlineMovieBooking.Models
         [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$", ErrorMessage = "Password (Min Length - 8, 1 letter, 1 char, 1 special character)")]
         public string Password { get; set; }
 
-        public virtual ICollection<BookingModel> Bookings { get; set; }
+        public virtual ICollection<PaymentModel> Payments { get; set; }
 
         public static explicit operator UserModel(User v)
         {

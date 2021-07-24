@@ -13,9 +13,6 @@ namespace OnlineMovieBooking.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int FeedbackId { get; set; }
-        [Range(1, 10)]
-        [Required(ErrorMessage = "Enter the rating")]
-        public int Rating { get; set; }
         [DataType(DataType.MultilineText)]
         [Required(ErrorMessage = "Enter the review")]
         public string Review { get; set; }

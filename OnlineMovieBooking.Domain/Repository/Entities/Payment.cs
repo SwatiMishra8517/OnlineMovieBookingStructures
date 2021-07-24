@@ -17,7 +17,6 @@ namespace OnlineMovieBooking.Domain.Repository.Entities
         public double Amount { get; set; }
         [DataType(DataType.DateTime)]
         public DateTime Time { get; set; }
-        [DisplayName("Discout Coupon Id")]
         public int UserId { get; set; }
         public int ShowId { get; set; }
         public int MovieId { get; set; }

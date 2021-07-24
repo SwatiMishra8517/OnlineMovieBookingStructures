@@ -16,14 +16,7 @@ namespace OnlineMovieBooking.ViewModels
         [Required(ErrorMessage = "Please enter hall name"), MaxLength(30)]
         [RegularExpression("^[a-zA-Z0-9 ]*$", ErrorMessage = "Only Alphanumeric allowed")]
         public string Name { get; set; }
-        [DisplayName("Number of Seats")]
-        [Required(ErrorMessage = "Please enter the number of seats")]
-        public int TotalSeats { get; set; }
-        [Required(ErrorMessage = "Please select Cinema ID.")]
-        public int CinemaId { get; set; }
 
-        public virtual CinemaViewModel Cinema { get; set; }
-        public virtual ICollection<CinemaSeatViewModel> CinemaSeats { get; set; }
         public virtual ICollection<ShowViewModel> Shows { get; set; }
     }
 }

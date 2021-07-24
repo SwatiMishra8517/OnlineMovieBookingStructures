@@ -13,14 +13,13 @@ namespace OnlineMovieBooking.ViewModels
         [DataType(DataType.Currency)]
         public double Amount { get; set; }
         public DateTime Time { get; set; }
-        [DisplayName("Discout Coupon Id")]
-        public string DiscountCouponId { get; set; }
-        [System.ComponentModel.DisplayName("Remote Transaction Id")]
-        public string RemoteTransactionId { get; set; }
-        [DisplayName("Payment Method")]
-        public string PaymentMethod { get; set; }
-        public int BookingId { get; set; }
+        public int UserId { get; set; }
+        public int ShowId { get; set; }
+        public int MovieId { get; set; }
 
-        public virtual BookingViewModel Booking { get; set; }
+        public virtual ShowViewModel Show { get; set; }
+        public virtual MovieViewModel Movie { get; set; }
+        public virtual UserViewModel User { get; set; }
+        public virtual ICollection<ShowSeatViewModel> ShowSeats { get; set; }
     }
 }

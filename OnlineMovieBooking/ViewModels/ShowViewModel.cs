@@ -20,7 +20,6 @@ namespace OnlineMovieBooking.ViewModels
         public int CinemaHallId { get; set; }
         public int MovieId { get; set; }
 
-        public virtual ICollection<BookingViewModel> Bookings { get; set; }
         public virtual CinemaHallViewModel CinemaHall { get; set; }
         public virtual MovieViewModel Movie { get; set; }
         public virtual ICollection<ShowSeatViewModel> ShowSeats { get; set; }
