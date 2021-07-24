@@ -28,10 +28,9 @@ namespace OnlineMovieBooking.Proxy
                 PaymentId = payment.PaymentId,
                 Amount = payment.Amount,
                 Time = payment.Time,
-                DiscountCouponId = payment.DiscountCouponId,
-                RemoteTransactionId = payment.RemoteTransactionId,
-                PaymentMethod = payment.PaymentMethod,
-                BookingId = payment.BookingId
+                UserId = payment.UserId,
+                ShowId = payment.ShowId,
+                MovieId = payment.MovieId,
             };
             pcs.Add(p);
         }
@@ -52,10 +51,9 @@ namespace OnlineMovieBooking.Proxy
                     PaymentId = payment.PaymentId,
                     Amount = payment.Amount,
                     Time = payment.Time,
-                    DiscountCouponId = payment.DiscountCouponId,
-                    RemoteTransactionId = payment.RemoteTransactionId,
-                    PaymentMethod = payment.PaymentMethod,
-                    BookingId = payment.BookingId
+                    UserId = payment.UserId,
+                    ShowId = payment.ShowId,
+                    MovieId = payment.MovieId,
                 };
                 pms.Add(p);
             }
@@ -70,10 +68,9 @@ namespace OnlineMovieBooking.Proxy
                 PaymentId = payment.PaymentId,
                 Amount = payment.Amount,
                 Time = payment.Time,
-                DiscountCouponId = payment.DiscountCouponId,
-                RemoteTransactionId = payment.RemoteTransactionId,
-                PaymentMethod = payment.PaymentMethod,
-                BookingId = payment.BookingId
+                UserId = payment.UserId,
+                ShowId = payment.ShowId,
+                MovieId = payment.MovieId,
             };
             return p;
         }
@@ -85,53 +82,13 @@ namespace OnlineMovieBooking.Proxy
                 PaymentId = payment.PaymentId,
                 Amount = payment.Amount,
                 Time = payment.Time,
-                DiscountCouponId = payment.DiscountCouponId,
-                RemoteTransactionId = payment.RemoteTransactionId,
-                PaymentMethod = payment.PaymentMethod,
-                BookingId = payment.BookingId
+                UserId = payment.UserId,
+                ShowId = payment.ShowId,
+                MovieId = payment.MovieId,
             };
             pcs.Update(id, p);
 
         }
-
-        public List<PaymentModel> GetByBookingId(int id)
-        {
-            List<PaymentModel> dps = new List<PaymentModel>();
-            List<OnlineMovieBooking.Domain.DTO.Payment> rps = ups.GetByBookingId(id);
-            foreach (var rp in rps)
-            {
-                PaymentModel dp = new PaymentModel();
-                dp.PaymentId = rp.PaymentId;
-                dp.Amount = rp.Amount;
-                dp.Time = rp.Time;
-                dp.DiscountCouponId = rp.DiscountCouponId;
-                dp.RemoteTransactionId = rp.RemoteTransactionId;
-                dp.PaymentMethod = rp.PaymentMethod;
-                dp.BookingId = rp.BookingId;
-                dps.Add(dp);
-            }
-            return dps;
-        }
-
-        public List<PaymentModel> GetByPaymentMethod(string method)
-        {
-            List<PaymentModel> dps = new List<PaymentModel>();
-            List<OnlineMovieBooking.Domain.DTO.Payment> rps = ups.GetByPaymentMethod(method);
-            foreach (var rp in rps)
-            {
-                PaymentModel dp = new PaymentModel();
-                dp.PaymentId = rp.PaymentId;
-                dp.Amount = rp.Amount;
-                dp.Time = rp.Time;
-                dp.DiscountCouponId = rp.DiscountCouponId;
-                dp.RemoteTransactionId = rp.RemoteTransactionId;
-                dp.PaymentMethod = rp.PaymentMethod;
-                dp.BookingId = rp.BookingId;
-                dps.Add(dp);
-            }
-            return dps;
-        }
-
         public List<PaymentModel> GetByShowId(int id)
         {
             List<PaymentModel> dps = new List<PaymentModel>();
@@ -142,27 +99,12 @@ namespace OnlineMovieBooking.Proxy
                 dp.PaymentId = rp.PaymentId;
                 dp.Amount = rp.Amount;
                 dp.Time = rp.Time;
-                dp.DiscountCouponId = rp.DiscountCouponId;
-                dp.RemoteTransactionId = rp.RemoteTransactionId;
-                dp.PaymentMethod = rp.PaymentMethod;
-                dp.BookingId = rp.BookingId;
+                dp.UserId = rp.UserId;
+                dp.ShowId = rp.ShowId;
+                dp.MovieId = rp.MovieId;
                 dps.Add(dp);
             }
             return dps;
-        }
-
-        public PaymentModel GetByTransactionId(string id)
-        {
-            PaymentModel dp = new PaymentModel();
-            OnlineMovieBooking.Domain.DTO.Payment rp = ups.GetByTransactionId(id);
-            dp.PaymentId = rp.PaymentId;
-            dp.Amount = rp.Amount;
-            dp.Time = rp.Time;
-            dp.DiscountCouponId = rp.DiscountCouponId;
-            dp.RemoteTransactionId = rp.RemoteTransactionId;
-            dp.PaymentMethod = rp.PaymentMethod;
-            dp.BookingId = rp.BookingId;
-            return dp;
         }
 
         public List<PaymentModel> GetByUserId(int id)
@@ -175,10 +117,26 @@ namespace OnlineMovieBooking.Proxy
                 dp.PaymentId = rp.PaymentId;
                 dp.Amount = rp.Amount;
                 dp.Time = rp.Time;
-                dp.DiscountCouponId = rp.DiscountCouponId;
-                dp.RemoteTransactionId = rp.RemoteTransactionId;
-                dp.PaymentMethod = rp.PaymentMethod;
-                dp.BookingId = rp.BookingId;
+                dp.UserId = rp.UserId;
+                dp.ShowId = rp.ShowId;
+                dp.MovieId = rp.MovieId;
+                dps.Add(dp);
+            }
+            return dps;
+        }
+        public List<PaymentModel> GetByMovieId(int id)
+        {
+            List<PaymentModel> dps = new List<PaymentModel>();
+            List<OnlineMovieBooking.Domain.DTO.Payment> rps = ups.GetByMovieId(id);
+            foreach (var rp in rps)
+            {
+                PaymentModel dp = new PaymentModel();
+                dp.PaymentId = rp.PaymentId;
+                dp.Amount = rp.Amount;
+                dp.Time = rp.Time;
+                dp.UserId = rp.UserId;
+                dp.ShowId = rp.ShowId;
+                dp.MovieId = rp.MovieId;
                 dps.Add(dp);
             }
             return dps;

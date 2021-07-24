@@ -26,10 +26,7 @@ namespace OnlineMovieBooking.Proxy
             {
                 ShowSeatId = showSeat.ShowSeatId,
                 Status = showSeat.Status,
-                Price = showSeat.Price,
-                CinemaSeatId = showSeat.CinemaSeatId,
                 ShowId = showSeat.ShowId,
-                BookingId = showSeat.BookingId
             };
             sscs.Add(ss);
         }
@@ -49,27 +46,11 @@ namespace OnlineMovieBooking.Proxy
                 {
                     ShowSeatId = showSeat.ShowSeatId,
                     Status = showSeat.Status,
-                    Price = showSeat.Price,
-                    CinemaSeatId = showSeat.CinemaSeatId,
                     ShowId = showSeat.ShowId,
-                    BookingId = showSeat.BookingId
                 };
                 ums.Add(ss);
             }
             return ums;
-        }
-
-        public ShowSeatModel GetByBookinId(int id)
-        {
-            OnlineMovieBooking.Domain.DTO.ShowSeat res = uss.GetByBookinId(id);
-            ShowSeatModel dts = new ShowSeatModel();
-            dts.ShowSeatId = res.ShowSeatId;
-            dts.Status = res.Status;
-            dts.Price = res.Price;
-            dts.CinemaSeatId = res.CinemaSeatId;
-            dts.ShowId = res.ShowId;
-            dts.BookingId = res.BookingId;
-            return dts;
         }
 
         public ShowSeatModel GetById(int id)
@@ -79,10 +60,7 @@ namespace OnlineMovieBooking.Proxy
             {
                 ShowSeatId = showSeat.ShowSeatId,
                 Status = showSeat.Status,
-                Price = showSeat.Price,
-                CinemaSeatId = showSeat.CinemaSeatId,
                 ShowId = showSeat.ShowId,
-                BookingId = showSeat.BookingId
             };
             return ss;
         }
@@ -93,21 +71,15 @@ namespace OnlineMovieBooking.Proxy
             List<OnlineMovieBooking.Domain.DTO.ShowSeat> es = uss.GetByShowId(id);
             foreach (var res in es)
             {
-                ShowSeatModel dts = new ShowSeatModel();
-                dts.ShowSeatId = res.ShowSeatId;
-                dts.Status = res.Status;
-                dts.Price = res.Price;
-                dts.CinemaSeatId = res.CinemaSeatId;
-                dts.ShowId = res.ShowId;
-                dts.BookingId = res.BookingId;
+                ShowSeatModel dts = new ShowSeatModel
+                {
+                    ShowSeatId = res.ShowSeatId,
+                    Status = res.Status,
+                    ShowId = res.ShowId,
+                };
                 ds.Add(dts);
             }
             return ds;
-        }
-
-        public double GetPrice(int id)
-        {
-            return uss.GetPrice(id);
         }
 
         public string GetStatus(int id)
@@ -121,10 +93,7 @@ namespace OnlineMovieBooking.Proxy
             {
                 ShowSeatId = showSeat.ShowSeatId,
                 Status = showSeat.Status,
-                Price = showSeat.Price,
-                CinemaSeatId = showSeat.CinemaSeatId,
                 ShowId = showSeat.ShowId,
-                BookingId = showSeat.BookingId
             };
             sscs.Update(id, ss);
 

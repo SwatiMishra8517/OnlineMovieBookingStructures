@@ -26,7 +26,6 @@ namespace OnlineMovieBooking.Proxy
             var f = new OnlineMovieBooking.Domain.DTO.Feedback
             {
                 FeedbackId = feedback.FeedbackId,
-                Rating = feedback.Rating,
                 Review = feedback.Review,
                 UserId = feedback.UserId,
                 MovieId = feedback.MovieId,
@@ -48,7 +47,6 @@ namespace OnlineMovieBooking.Proxy
                 FeedbackModel f = new FeedbackModel
                 {
                     FeedbackId = feedback.FeedbackId,
-                    Rating = feedback.Rating,
                     Review = feedback.Review,
                     UserId = feedback.UserId,
                     MovieId = feedback.MovieId,
@@ -64,7 +62,6 @@ namespace OnlineMovieBooking.Proxy
             FeedbackModel f = new FeedbackModel
             {
                 FeedbackId = feedback.FeedbackId,
-                Rating = feedback.Rating,
                 Review = feedback.Review,
                 UserId = feedback.UserId,
                 MovieId = feedback.MovieId,
@@ -80,7 +77,6 @@ namespace OnlineMovieBooking.Proxy
             {
                 FeedbackModel df = new FeedbackModel();
                 df.FeedbackId = f.FeedbackId;
-                df.Rating = f.Rating;
                 df.Review = f.Review;
                 df.UserId = f.UserId;
                 df.MovieId = f.MovieId;
@@ -95,7 +91,6 @@ namespace OnlineMovieBooking.Proxy
             var f = new OnlineMovieBooking.Domain.DTO.Feedback
             {
                 FeedbackId = feedback.FeedbackId,
-                Rating = feedback.Rating,
                 Review = feedback.Review,
                 UserId = feedback.UserId,
                 MovieId = feedback.MovieId,

@@ -67,14 +67,16 @@ namespace OnlineMovieBooking.Proxy
             List<OnlineMovieBooking.Domain.DTO.Movie> ms = ums.GetByGenre(genre);
             foreach (var mov in ms)
             {
-                MovieModel dm = new MovieModel();
-                dm.MovieId = mov.MovieId;
-                dm.Name = mov.Name;
-                dm.Language = mov.Language;
-                dm.Genre = mov.Genre;
-                dm.Duration = mov.Duration;
-                dm.Description = mov.Description;
-                dm.ReleaseDate = mov.ReleaseDate;
+                MovieModel dm = new MovieModel
+                {
+                    MovieId = mov.MovieId,
+                    Name = mov.Name,
+                    Language = mov.Language,
+                    Genre = mov.Genre,
+                    Duration = mov.Duration,
+                    Description = mov.Description,
+                    ReleaseDate = mov.ReleaseDate
+                };
                 m.Add(dm);
             }
             return m;
@@ -102,14 +104,16 @@ namespace OnlineMovieBooking.Proxy
             List<OnlineMovieBooking.Domain.DTO.Movie> ms = ums.GetByLanguage(language);
             foreach (var mov in ms)
             {
-                MovieModel dm = new MovieModel();
-                dm.MovieId = mov.MovieId;
-                dm.Name = mov.Name;
-                dm.Language = mov.Language;
-                dm.Genre = mov.Genre;
-                dm.Duration = mov.Duration;
-                dm.Description = mov.Description;
-                dm.ReleaseDate = mov.ReleaseDate;
+                MovieModel dm = new MovieModel
+                {
+                    MovieId = mov.MovieId,
+                    Name = mov.Name,
+                    Language = mov.Language,
+                    Genre = mov.Genre,
+                    Duration = mov.Duration,
+                    Description = mov.Description,
+                    ReleaseDate = mov.ReleaseDate
+                };
                 m.Add(dm);
             }
             return m;
@@ -126,14 +130,16 @@ namespace OnlineMovieBooking.Proxy
             List<OnlineMovieBooking.Domain.DTO.Movie> ms = ums.GetByReleaseDate(date);
             foreach (var mov in ms)
             {
-                MovieModel dm = new MovieModel();
-                dm.MovieId = mov.MovieId;
-                dm.Name = mov.Name;
-                dm.Language = mov.Language;
-                dm.Genre = mov.Genre;
-                dm.Duration = mov.Duration;
-                dm.Description = mov.Description;
-                dm.ReleaseDate = mov.ReleaseDate;
+                MovieModel dm = new MovieModel
+                {
+                    MovieId = mov.MovieId,
+                    Name = mov.Name,
+                    Language = mov.Language,
+                    Genre = mov.Genre,
+                    Duration = mov.Duration,
+                    Description = mov.Description,
+                    ReleaseDate = mov.ReleaseDate
+                };
                 m.Add(dm);
             }
             return m;

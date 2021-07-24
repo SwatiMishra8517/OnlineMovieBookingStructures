@@ -25,9 +25,7 @@ namespace OnlineMovieBooking.Proxy
             var ch = new OnlineMovieBooking.Domain.DTO.CinemaHall
             {
                 CinemaHallId = cinemaHall.CinemaHallId,
-                Name = cinemaHall.Name,
-                TotalSeats = cinemaHall.TotalSeats,
-                CinemaId = cinemaHall.CinemaId,
+                Name = cinemaHall.Name
             };
             chcs.Add(ch);
         }
@@ -46,29 +44,11 @@ namespace OnlineMovieBooking.Proxy
                 CinemaHallModel ch = new CinemaHallModel
                 {
                     CinemaHallId = cinemaHall.CinemaHallId,
-                    Name = cinemaHall.Name,
-                    TotalSeats = cinemaHall.TotalSeats,
-                    CinemaId = cinemaHall.CinemaId,
+                    Name = cinemaHall.Name
                 };
                 chms.Add(ch);
             }
             return chms;
-        }
-
-        public List<CinemaHallModel> GetByCinemaId(int id)
-        {
-            List<CinemaHallModel> chs = new List<CinemaHallModel>();
-            List<OnlineMovieBooking.Domain.DTO.CinemaHall> halls = ucs.GetByCinemaId(id);
-            foreach (var ch in halls)
-            {
-                CinemaHallModel c = new CinemaHallModel();
-                c.CinemaHallId = ch.CinemaHallId;
-                c.Name = ch.Name;
-                c.TotalSeats = ch.TotalSeats;
-                c.CinemaId = ch.CinemaId;
-                chs.Add(c);
-            }
-            return chs;
         }
 
         public CinemaHallModel GetById(int id)
@@ -77,9 +57,7 @@ namespace OnlineMovieBooking.Proxy
             CinemaHallModel ch = new CinemaHallModel
             {
                 CinemaHallId = cinemaHall.CinemaHallId,
-                Name = cinemaHall.Name,
-                TotalSeats = cinemaHall.TotalSeats,
-                CinemaId = cinemaHall.CinemaId,
+                Name = cinemaHall.Name
             };
             return ch;
         }
@@ -90,8 +68,6 @@ namespace OnlineMovieBooking.Proxy
             CinemaHallModel c = new CinemaHallModel();
             c.CinemaHallId = ch.CinemaHallId;
             c.Name = ch.Name;
-            c.TotalSeats = ch.TotalSeats;
-            c.CinemaId = ch.CinemaId;
             return c;
         }
 
@@ -101,8 +77,6 @@ namespace OnlineMovieBooking.Proxy
             {
                 CinemaHallId = cinemaHall.CinemaHallId,
                 Name = cinemaHall.Name,
-                TotalSeats = cinemaHall.TotalSeats,
-                CinemaId = cinemaHall.CinemaId,
             };
             chcs.Update(id, ch);
 

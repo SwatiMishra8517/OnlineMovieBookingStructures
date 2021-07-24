@@ -66,13 +66,15 @@ namespace OnlineMovieBooking.Proxy
             List<OnlineMovieBooking.Domain.DTO.Show> sl = uss.GetByCinemaHallId(id);
             foreach (var show in sl)
             {
-                ShowModel sh = new ShowModel();
-                sh.ShowId = show.ShowId;
-                sh.Date = show.Date;
-                sh.StartTime = show.StartTime;
-                sh.EndTime = show.EndTime;
-                sh.CinemaHallId = show.CinemaHallId;
-                sh.MovieId = show.MovieId;
+                ShowModel sh = new ShowModel
+                {
+                    ShowId = show.ShowId,
+                    Date = show.Date,
+                    StartTime = show.StartTime,
+                    EndTime = show.EndTime,
+                    CinemaHallId = show.CinemaHallId,
+                    MovieId = show.MovieId
+                };
                 s.Add(sh);
 
             }
@@ -85,13 +87,15 @@ namespace OnlineMovieBooking.Proxy
             List<OnlineMovieBooking.Domain.DTO.Show> sl = uss.GetByCinemaId(id);
             foreach (var show in sl)
             {
-                ShowModel sh = new ShowModel();
-                sh.ShowId = show.ShowId;
-                sh.Date = show.Date;
-                sh.StartTime = show.StartTime;
-                sh.EndTime = show.EndTime;
-                sh.CinemaHallId = show.CinemaHallId;
-                sh.MovieId = show.MovieId;
+                ShowModel sh = new ShowModel
+                {
+                    ShowId = show.ShowId,
+                    Date = show.Date,
+                    StartTime = show.StartTime,
+                    EndTime = show.EndTime,
+                    CinemaHallId = show.CinemaHallId,
+                    MovieId = show.MovieId
+                };
                 s.Add(sh);
 
             }
@@ -104,13 +108,15 @@ namespace OnlineMovieBooking.Proxy
             List<OnlineMovieBooking.Domain.DTO.Show> sl = uss.GetByDate(date);
             foreach (var show in sl)
             {
-                ShowModel sh = new ShowModel();
-                sh.ShowId = show.ShowId;
-                sh.Date = show.Date;
-                sh.StartTime = show.StartTime;
-                sh.EndTime = show.EndTime;
-                sh.CinemaHallId = show.CinemaHallId;
-                sh.MovieId = show.MovieId;
+                ShowModel sh = new ShowModel
+                {
+                    ShowId = show.ShowId,
+                    Date = show.Date,
+                    StartTime = show.StartTime,
+                    EndTime = show.EndTime,
+                    CinemaHallId = show.CinemaHallId,
+                    MovieId = show.MovieId
+                };
                 s.Add(sh);
 
             }
@@ -138,13 +144,15 @@ namespace OnlineMovieBooking.Proxy
             List<OnlineMovieBooking.Domain.DTO.Show> sl = uss.GetByMovieId(id);
             foreach (var show in sl)
             {
-                ShowModel sh = new ShowModel();
-                sh.ShowId = show.ShowId;
-                sh.Date = show.Date;
-                sh.StartTime = show.StartTime;
-                sh.EndTime = show.EndTime;
-                sh.CinemaHallId = show.CinemaHallId;
-                sh.MovieId = show.MovieId;
+                ShowModel sh = new ShowModel
+                {
+                    ShowId = show.ShowId,
+                    Date = show.Date,
+                    StartTime = show.StartTime,
+                    EndTime = show.EndTime,
+                    CinemaHallId = show.CinemaHallId,
+                    MovieId = show.MovieId
+                };
                 s.Add(sh);
 
             }
@@ -157,13 +165,15 @@ namespace OnlineMovieBooking.Proxy
             List<OnlineMovieBooking.Domain.DTO.Show> sl = uss.GetByStartTime(time);
             foreach (var show in sl)
             {
-                ShowModel sh = new ShowModel();
-                sh.ShowId = show.ShowId;
-                sh.Date = show.Date;
-                sh.StartTime = show.StartTime;
-                sh.EndTime = show.EndTime;
-                sh.CinemaHallId = show.CinemaHallId;
-                sh.MovieId = show.MovieId;
+                ShowModel sh = new ShowModel
+                {
+                    ShowId = show.ShowId,
+                    Date = show.Date,
+                    StartTime = show.StartTime,
+                    EndTime = show.EndTime,
+                    CinemaHallId = show.CinemaHallId,
+                    MovieId = show.MovieId
+                };
                 s.Add(sh);
 
             }

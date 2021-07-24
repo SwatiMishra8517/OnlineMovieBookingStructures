@@ -56,5 +56,22 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.PaymentService.Payment
             }
             return dps;
         }
+        public List<Payment> GetByMovieId(int id)
+        {
+            List<DTO.Payment> dps = new List<Payment>();
+            List<Repository.Entities.Payment> rps = pr.GetByMovieId(id);
+            foreach (var rp in rps)
+            {
+                DTO.Payment dp = new Payment();
+                dp.PaymentId = rp.PaymentId;
+                dp.Amount = rp.Amount;
+                dp.Time = rp.Time;
+                dp.UserId = rp.UserId;
+                dp.ShowId = rp.ShowId;
+                dp.MovieId = rp.MovieId;
+                dps.Add(dp);
+            }
+            return dps;
+        }
     }
 }
