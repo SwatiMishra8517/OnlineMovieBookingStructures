@@ -8,8 +8,8 @@ namespace OnlineMovieBooking.Domain.DTO
 {
     public class Feedback
     {
+
         public int FeedbackId { get; set; }
-        public int Rating { get; set; }
         public string Review { get; set; }
 
         public int UserId { get; set; }

@@ -15,7 +15,7 @@ namespace OnlineMovieBooking.Domain.DTO
         public string Email { get; set; }
         public string Password { get; set; }
 
-        public virtual ICollection<Booking> Bookings { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
 
         public static explicit operator User(Repository.Entities.User v)
         {
