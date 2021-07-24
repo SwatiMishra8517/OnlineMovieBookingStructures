@@ -80,11 +80,7 @@
     <Compile Include="Repository\IShowRepository.cs" />
     <Compile Include="Repository\IShowSeatRepository.cs" />
     <Compile Include="Repository\PaymentRepository.cs" />
-    <Compile Include="Repository\Entities\Booking.cs" />
-    <Compile Include="Repository\Entities\Cinema.cs" />
     <Compile Include="Repository\Entities\CinemaHall.cs" />
-    <Compile Include="Repository\Entities\CinemaSeat.cs" />
-    <Compile Include="Repository\Entities\City.cs" />
     <Compile Include="Repository\Entities\Feedback.cs" />
     <Compile Include="Repository\Entities\Movie.cs" />
     <Compile Include="Repository\Entities\Payment.cs" />
