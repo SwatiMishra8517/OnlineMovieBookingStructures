@@ -21,7 +21,19 @@ namespace OnlineMovieBooking.Controllers
         public ActionResult Index()
         {
             List<ShowSeatModel> ssms = sscs.GetAll();
-            return View(ssms); 
+            List<ShowSeatViewModel> sList = new List<ShowSeatViewModel>();
+            foreach (var showSeat in ssms)
+            {
+                ShowSeatViewModel s = new ShowSeatViewModel
+                {
+                    ShowSeatId = showSeat.ShowSeatId,
+                    Status = showSeat.Status,
+                    ShowId = showSeat.ShowId,
+                };
+                sList.Add(s);
+            }
+
+            return View(sList); 
         }
 
         // GET: ShowSeats/Details/5

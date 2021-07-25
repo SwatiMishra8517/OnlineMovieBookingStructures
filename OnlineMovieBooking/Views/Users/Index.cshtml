@@ -4,19 +4,16 @@
     ViewBag.Title = "Index";
 }
 <script>
-    $(function() {
-
-    $("#showPass").change(function() {
-        var checked = $(this).is(":checked");           
-        if (checked) {
-            $("#password").attr("type", "text");
+    function myFunction() {
+        var x = document.getElementById("Password");
+        if (x.style.display === "none") {
+            x.style.display = "block";
         } else {
-            $("#password").attr("type", "password");
+            x.style.display = "none";
         }
-    });
-
-});
+    }
 </script>
+@Html.Partial("PartialAdminPanel")
 <h2>Users List</h2>
 
 <p>
@@ -42,30 +39,31 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MobileNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            <span id="Password">@Html.DisplayFor(modelItem => item.Password)</span>
-            <input type="checkbox" id="showPass" />
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UserId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MobileNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <span id="Password">@Html.DisplayFor(modelItem => item.Password)</span>
+                <button onclick="myFunction()">Click Me</button>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.UserId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+            </td>
+        </tr>
+    }
 
 </table>

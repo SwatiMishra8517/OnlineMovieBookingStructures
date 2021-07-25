@@ -1,9 +1,9 @@
-﻿@model IEnumerable<OnlineMovieBooking.Models.Show>
+﻿@model IEnumerable<OnlineMovieBooking.ViewModels.ShowViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
-
+@Html.Partial("PartialAdminPanel")
 <h2>Shows List</h2>
 
 <p>
@@ -29,29 +29,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CinemaHall.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Movie.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartTime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndTime)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ShowId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ShowId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ShowId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CinemaHall.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Movie.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ShowId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ShowId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ShowId })
+            </td>
+        </tr>
+    }
 
 </table>

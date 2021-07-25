@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+@Html.Partial("PartialAdminPanel")
 <h2>Show Seats List</h2>
 
 <p>
@@ -12,19 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Booking.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CinemaSeat.SeatNumber)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Show.ShowId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
         </th>
         <th></th>
     </tr>
@@ -32,19 +23,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Booking.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CinemaSeat.SeatNumber)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Show.ShowId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ShowSeatId }) |
