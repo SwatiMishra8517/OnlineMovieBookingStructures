@@ -49,14 +49,14 @@ namespace OnlineMovieBooking.Domain.Repository
 
         public User GetByUserName(string userName)
         {
-            var user = db.Users.Where(m => m.Username == userName);
-            return (User)user;
+            var user = db.Users.Where(m => m.Username == userName).FirstOrDefault();
+            return user;
         }
 
         public User GetByEmail(string email)
         {
-            var user = db.Users.Where(m => m.Email == email);
-            return (User)user;
+            var user = db.Users.Where(m => m.Email == email).FirstOrDefault();
+            return user;
         }
     }
 }

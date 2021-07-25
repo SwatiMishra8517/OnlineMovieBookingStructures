@@ -39,5 +39,29 @@ namespace OnlineMovieBooking.Controllers
             }
             return View(shows);
         }
+        public ActionResult SelectShowByCinemaHall()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult SelectShowByCinemaHall(int movieId)
+        {
+            List<ShowViewModel> shows = new List<ShowViewModel>();
+            List<ShowModel> sms = scs.GetByMovieId(movieId);
+            foreach (var show in sms)
+            {
+                ShowViewModel s = new ShowViewModel
+                {
+                    ShowId = show.ShowId,
+                    Date = show.Date,
+                    StartTime = show.StartTime,
+                    EndTime = show.EndTime,
+                    CinemaHallId = show.CinemaHallId,
+                    MovieId = show.MovieId
+                };
+                shows.Add(s);
+            }
+            return View(shows);
+        }
     }
 }

@@ -14,10 +14,21 @@
                 @Html.ActionLink("The Movie Box", "Movies", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Movies", "", "Login")</li>
-                    <li>@Html.ActionLink("Sign Up", "SignUp", "UserLogin")</li>
-                    <li>@Html.ActionLink("Login", "Login", "UserLogin")</li>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("SignOut", "SignOut")</li>
+                        <li><span class="navbar-text font-weight-bold ">Welcome @User.Identity.Name !</span></li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Movies", "", "Login")</li>
+                        <li>@Html.ActionLink("Sign Up", "SignUp", "UserLogin")</li>
+                        <li>@Html.ActionLink("Login", "Login", "UserLogin")</li>
+                    }
                 </ul>
             </div>
         </div>

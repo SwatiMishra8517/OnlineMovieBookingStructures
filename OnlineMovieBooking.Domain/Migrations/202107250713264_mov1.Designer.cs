@@ -7,13 +7,13 @@ namespace OnlineMovieBooking.Domain.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class DeletedUnwantedTables : IMigrationMetadata
+    public sealed partial class mov1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(DeletedUnwantedTables));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(mov1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202107250337126_DeletedUnwantedTables"; }
+            get { return "202107250713264_mov1"; }
         }
         
         string IMigrationMetadata.Source

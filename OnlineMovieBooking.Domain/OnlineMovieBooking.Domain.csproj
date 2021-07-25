@@ -64,13 +64,9 @@
     <Compile Include="DTO\Show.cs" />
     <Compile Include="DTO\ShowSeat.cs" />
     <Compile Include="DTO\User.cs" />
-    <Compile Include="Migrations\202107250337126_DeletedUnwantedTables.cs" />
-    <Compile Include="Migrations\202107250337126_DeletedUnwantedTables.designer.cs">
-      <DependentUpon>202107250337126_DeletedUnwantedTables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107250357117_DeletedShowIdInPayment.cs" />
-    <Compile Include="Migrations\202107250357117_DeletedShowIdInPayment.designer.cs">
-      <DependentUpon>202107250357117_DeletedShowIdInPayment.cs</DependentUpon>
+    <Compile Include="Migrations\202107250713264_mov1.cs" />
+    <Compile Include="Migrations\202107250713264_mov1.designer.cs">
+      <DependentUpon>202107250713264_mov1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -146,16 +142,13 @@
     <Compile Include="Services\UserService\UserQueryService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202107250337126_DeletedUnwantedTables.resx">
-      <DependentUpon>202107250337126_DeletedUnwantedTables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107250357117_DeletedShowIdInPayment.resx">
-      <DependentUpon>202107250357117_DeletedShowIdInPayment.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202107250713264_mov1.resx">
+      <DependentUpon>202107250713264_mov1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

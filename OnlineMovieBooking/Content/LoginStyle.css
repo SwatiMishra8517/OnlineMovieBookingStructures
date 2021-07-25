@@ -1,0 +1,42 @@
+﻿body {
+    background: url("https://repository-images.githubusercontent.com/201763429/30616780-bd1a-11e9-840c-edafb61c8f99");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    width: 100vw;
+    //filter:blur(1px);
+}
+
+.login-div {
+    display: grid;
+    place-items: center;
+    background: #00000099;
+    padding: 20px 20px 20px 20px;
+    border-radius: 10px;
+    width: 28vw;
+    margin: auto;
+    //filter: blur(0px);
+}
+
+
+
+.label {
+    color: #ffffff;
+    font-size: 120%;
+}
+
+.field-validation-error {
+    color: yellow;
+}
+
+.warning {
+    font-weight: bold;
+    list-style-type: none;
+    color: yellow;
+}
+
+ul li::marker {
+    content: "";
+}
