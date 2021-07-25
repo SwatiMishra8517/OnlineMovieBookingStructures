@@ -4,8 +4,8 @@
     ViewBag.Title = "Index";
 }
 <script>
-    function myFunction() {
-        var x = document.getElementById("Password");
+    function myFunction(id) {
+        var x = document.getElementById(id);
         if (x.style.display === "none") {
             x.style.display = "block";
         } else {
@@ -41,6 +41,8 @@
 
     @foreach (var item in Model)
     {
+        var i = 1;
+        string pass = "pass" + i;
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -55,8 +57,8 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                <span id="Password">@Html.DisplayFor(modelItem => item.Password)</span>
-                <button onclick="myFunction()">Click Me</button>
+                <span id=pass>@Html.DisplayFor(modelItem => item.Password)</span>
+                
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
@@ -64,6 +66,7 @@
                 @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
             </td>
         </tr>
+        i = i + 1;
     }
 
 </table>

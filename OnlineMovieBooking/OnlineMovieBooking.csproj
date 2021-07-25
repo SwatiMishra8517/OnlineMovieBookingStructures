@@ -299,10 +299,7 @@
     <Content Include="Views\Feedbacks\Details.cshtml" />
     <Content Include="Views\Feedbacks\Index.cshtml" />
     <Content Include="Views\UserInterface\Index.cshtml" />
-    <Content Include="Views\UserMovie\Index.cshtml" />
-    <Content Include="Views\UserMovie\Details.cshtml" />
     <Content Include="Views\Movie\FeedBack.cshtml" />
-    <Content Include="Views\UserMovie\AddFeedBack.cshtml" />
     <Content Include="Views\UserLogin\Login.cshtml" />
     <Content Include="Views\UserLogin\SignUp.cshtml" />
     <Content Include="Views\Movie\MovieInfo.cshtml" />

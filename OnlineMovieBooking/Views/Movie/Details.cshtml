@@ -3,7 +3,6 @@
     ViewBag.Title = "MovieInfo";
     Layout = "~/Views/Shared/_MovieLayout.cshtml";
 }
-<h2>Details</h2>
 
 
 
@@ -103,12 +102,11 @@
         border: 2px solid black;
     }
 </style>
-<
     <div class="row">
         <div class="column">
     
 
-            <img src= @ViewBag.address />
+            <img src= "@ViewBag.address" />
         </div>
         <div class="column1">
             <h2>@Html.DisplayFor(model => model.Name)</h2>
@@ -162,7 +160,6 @@
                     <img src="~/movieinfo/cast/cast4.png" />
                 </p>
             </div>
-            <div class="column2"><p>Cast 5</p></div>
         </div>
     </div>
     <div class="abt-div">
@@ -204,12 +201,6 @@
                 <div class="row">
                     <div class="column3"><p class="movie-watched">Movie watched</p></div>
                     <div class="column3"><input type="checkbox" name="" id="" class="input2"></div>
-                </div>
-
-
-                <div class="row">
-                    <div class="column3"><p>Ratings</p></div>
-                    <div class="column3"><p>&#9734;&#9734;&#9734;&#9734;&#9734;</p></div>
                 </div>
 
 
