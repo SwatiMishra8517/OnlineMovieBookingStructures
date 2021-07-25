@@ -15,6 +15,7 @@ namespace OnlineMovieBooking.Controllers
     {
         private MovieControllerService mcs = new MovieControllerService();
         private FeedbackControllerService fcs = new FeedbackControllerService();
+        private UserControllerService ucs = new UserControllerService();
         // GET: Movie
         public ActionResult Index()
         {
@@ -40,7 +41,7 @@ namespace OnlineMovieBooking.Controllers
 
         public ActionResult Details(int id)
         {
-            ViewBag.address = "~/moviesimage/movie"+id+"/movie"+id+".jpg";
+            ViewBag.address = @"~\moviesimage\movie"+id+@"\movie"+id+@".jpg";
             ViewBag.cast1 = "~/moviesimage/movie"+ id +"/cast/cast1.jpg";
             ViewBag.cast2 = "~/moviesimage/movie" + id + "/cast/cast2.jpg";
             ViewBag.cast3 ="~/moviesimage/movie" + id + "/cast/cast3.jpg";
@@ -65,11 +66,23 @@ namespace OnlineMovieBooking.Controllers
             List<FeedbackViewModel> feeds = new List<FeedbackViewModel>();
             foreach(var f in feedbacks)
             {
-                FeedbackViewModel df = new FeedbackViewModel();
-                df.FeedbackId = f.FeedbackId;
-                df.Review = f.Review;
-                df.UserId = f.UserId;
-                df.MovieId = f.MovieId;
+                var user = ucs.GetById(f.UserId);
+                UserViewModel u = new UserViewModel
+                {
+                    UserId = user.UserId,
+                    Username = user.Username,
+                    Name = user.Name,
+                    Email = user.Email,
+                    MobileNo = user.MobileNo,
+                };
+                FeedbackViewModel df = new FeedbackViewModel
+                {
+                    FeedbackId = f.FeedbackId,
+                    Review = f.Review,
+                    UserId = f.UserId,
+                    MovieId = f.MovieId,
+                    User = u
+                };
                 feeds.Add(df);
             }
             return View(feeds);
