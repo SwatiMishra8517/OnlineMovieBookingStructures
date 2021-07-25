@@ -25,6 +25,23 @@ namespace OnlineMovieBooking.Controllers
             List<ShowViewModel> sms = new List<ShowViewModel>();
             foreach (var show in shows)
             {
+                var movie = mvs.GetById(show.MovieId);
+                MovieViewModel m = new MovieViewModel
+                {
+                    MovieId = movie.MovieId,
+                    Name = movie.Name,
+                    Language = movie.Language,
+                    Genre = movie.Genre,
+                    ReleaseDate = movie.ReleaseDate,
+                    Duration = movie.Duration,
+                    Description = movie.Description,
+                };
+                var cinema = ccs.GetById(show.CinemaHallId);
+                CinemaHallViewModel c = new CinemaHallViewModel
+                {
+                    CinemaHallId = cinema.CinemaHallId,
+                    Name = cinema.Name
+                };
                 ShowViewModel s = new ShowViewModel
                 {
                     ShowId = show.ShowId,
@@ -32,7 +49,9 @@ namespace OnlineMovieBooking.Controllers
                     StartTime = show.StartTime,
                     EndTime = show.EndTime,
                     CinemaHallId = show.CinemaHallId,
-                    MovieId = show.MovieId
+                    MovieId = show.MovieId,
+                    Movie = m,
+                    CinemaHall = c
                 };
                 sms.Add(s);
             }
@@ -47,6 +66,23 @@ namespace OnlineMovieBooking.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ShowModel show = scs.GetById((int)id);
+            var movie = mvs.GetById(show.MovieId);
+            MovieViewModel m = new MovieViewModel
+            {
+                MovieId = movie.MovieId,
+                Name = movie.Name,
+                Language = movie.Language,
+                Genre = movie.Genre,
+                ReleaseDate = movie.ReleaseDate,
+                Duration = movie.Duration,
+                Description = movie.Description,
+            };
+            var cinema = ccs.GetById(show.CinemaHallId);
+            CinemaHallViewModel c = new CinemaHallViewModel
+            {
+                CinemaHallId = cinema.CinemaHallId,
+                Name = cinema.Name
+            };
             ShowViewModel s = new ShowViewModel
             {
                 ShowId = show.ShowId,
@@ -54,7 +90,9 @@ namespace OnlineMovieBooking.Controllers
                 StartTime = show.StartTime,
                 EndTime = show.EndTime,
                 CinemaHallId = show.CinemaHallId,
-                MovieId = show.MovieId
+                MovieId = show.MovieId,
+                Movie = m,
+                CinemaHall = c
             };
             if (show == null)
             {
@@ -108,9 +146,18 @@ namespace OnlineMovieBooking.Controllers
             {
                 return HttpNotFound();
             }
+            ShowViewModel s = new ShowViewModel
+            {
+                ShowId = show.ShowId,
+                Date = show.Date,
+                StartTime = show.StartTime,
+                EndTime = show.EndTime,
+                CinemaHallId = show.CinemaHallId,
+                MovieId = show.MovieId
+            };
             ViewBag.CinemaHallId = new SelectList(ccs.GetAll(), "CinemaHallId", "Name", show.CinemaHallId);
             ViewBag.MovieId = new SelectList(mvs.GetAll(), "MovieId", "Name", show.MovieId);
-            return View(show);
+            return View(s);
         }
 
         // POST: Shows/Edit/5
@@ -147,6 +194,23 @@ namespace OnlineMovieBooking.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ShowModel show = scs.GetById((int)id);
+            var movie = mvs.GetById(show.MovieId);
+            MovieViewModel m = new MovieViewModel
+            {
+                MovieId = movie.MovieId,
+                Name = movie.Name,
+                Language = movie.Language,
+                Genre = movie.Genre,
+                ReleaseDate = movie.ReleaseDate,
+                Duration = movie.Duration,
+                Description = movie.Description,
+            };
+            var cinema = ccs.GetById(show.CinemaHallId);
+            CinemaHallViewModel c = new CinemaHallViewModel
+            {
+                CinemaHallId = cinema.CinemaHallId,
+                Name = cinema.Name
+            };
             ShowViewModel s = new ShowViewModel
             {
                 ShowId = show.ShowId,
@@ -154,7 +218,9 @@ namespace OnlineMovieBooking.Controllers
                 StartTime = show.StartTime,
                 EndTime = show.EndTime,
                 CinemaHallId = show.CinemaHallId,
-                MovieId = show.MovieId
+                MovieId = show.MovieId,
+                Movie = m,
+                CinemaHall = c
             };
             if (show == null)
             {

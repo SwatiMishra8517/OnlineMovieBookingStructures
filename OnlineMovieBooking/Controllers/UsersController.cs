@@ -85,6 +85,7 @@ namespace OnlineMovieBooking.Controllers
                     MobileNo = user.MobileNo,
                     Email = user.Email,
                     Password = user.Password
+                    
                 };
                 ucs.Add(u);
                 return RedirectToAction("Index");
