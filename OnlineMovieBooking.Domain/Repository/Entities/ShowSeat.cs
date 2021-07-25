@@ -16,6 +16,6 @@ namespace OnlineMovieBooking.Domain.Repository.Entities
         public string Status { get; set; }
         public int ShowId { get; set; }
 
-        public virtual Show Show { get; set; }
+        
     }
 }

@@ -19,6 +19,6 @@ namespace OnlineMovieBooking.Domain.Repository.Entities
         public string Name { get; set; }
         
 
-        public virtual ICollection<Show> Shows { get; set; }
+       
     }
 }

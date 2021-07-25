@@ -20,7 +20,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.CinemaHallService.Cine
                 DTO.CinemaHall c = new CinemaHall();
                 c.CinemaHallId = ch.CinemaHallId;
                 c.Name = ch.Name;
-                c.Shows = (ICollection<Show>)ch.Shows;
                 chs.Add(c);
             }
             return chs;
@@ -33,7 +32,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.CinemaHallService.Cine
                 DTO.CinemaHall c = new CinemaHall();
                 c.CinemaHallId = ch.CinemaHallId;
                 c.Name = ch.Name;
-                c.Shows = (ICollection<Show>)ch.Shows;
             
             return c;
         }
@@ -44,7 +42,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.CinemaHallService.Cine
             DTO.CinemaHall c = new CinemaHall();
             c.CinemaHallId = ch.CinemaHallId;
             c.Name = ch.Name;
-            c.Shows = (ICollection<Show>)ch.Shows;
 
             return c;
         }

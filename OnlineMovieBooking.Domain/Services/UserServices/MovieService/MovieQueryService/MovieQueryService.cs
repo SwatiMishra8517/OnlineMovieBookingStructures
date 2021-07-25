@@ -25,7 +25,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.MovieService.MovieQuer
                 dm.Duration = mov.Duration;
                 dm.Description = mov.Description;
                 dm.ReleaseDate = mov.ReleaseDate;
-                dm.Shows = (ICollection<Show>)mov.Shows;
                 m.Add(dm);
             }
             return m;
@@ -46,7 +45,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.MovieService.MovieQuer
                 dm.Duration = mov.Duration;
                 dm.Description = mov.Description;
                 dm.ReleaseDate = mov.ReleaseDate;
-                dm.Shows = (ICollection<Show>)mov.Shows;
                 m.Add(dm);
             }
             return m;
@@ -71,7 +69,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.MovieService.MovieQuer
                 dm.Duration = mov.Duration;
                 dm.Description = mov.Description;
                 dm.ReleaseDate = mov.ReleaseDate;
-                dm.Shows = (ICollection<Show>)mov.Shows;
                 m.Add(dm);
             }
             return m;
@@ -88,7 +85,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.MovieService.MovieQuer
             dm.Duration = mov.Duration;
             dm.Description = mov.Description;
             dm.ReleaseDate = mov.ReleaseDate;
-            dm.Shows = (ICollection<Show>)mov.Shows;
             return dm;
         }
 
@@ -106,7 +102,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.MovieService.MovieQuer
                 dm.Duration = mov.Duration;
                 dm.Description = mov.Description;
                 dm.ReleaseDate = mov.ReleaseDate;
-                dm.Shows = (ICollection<Show>)mov.Shows;
                 m.Add(dm);
             }
             return m;

@@ -24,7 +24,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.ShowService.ShowQueryS
                 sh.EndTime = show.EndTime;
                 sh.CinemaHallId = show.CinemaHallId;
                 sh.MovieId = show.MovieId;
-                sh.ShowSeats = (ICollection<ShowSeat>)show.ShowSeats;
                 s.Add(sh);
 
             }
@@ -44,7 +43,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.ShowService.ShowQueryS
                 sh.EndTime = show.EndTime;
                 sh.CinemaHallId = show.CinemaHallId;
                 sh.MovieId = show.MovieId;
-                sh.ShowSeats = (ICollection<ShowSeat>)show.ShowSeats;
                 s.Add(sh);
 
             }
@@ -62,7 +60,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.ShowService.ShowQueryS
             sh.CinemaHallId = show.CinemaHallId;
             sh.MovieId = show.MovieId;
             
-            sh.ShowSeats = (ICollection<ShowSeat>)show.ShowSeats;
             return sh;
         }
 
@@ -79,7 +76,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.ShowService.ShowQueryS
                 sh.EndTime = show.EndTime;
                 sh.CinemaHallId = show.CinemaHallId;
                 sh.MovieId = show.MovieId;
-                sh.ShowSeats = (ICollection<ShowSeat>)show.ShowSeats;
                 s.Add(sh);
 
             }
@@ -99,7 +95,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.ShowService.ShowQueryS
                 sh.EndTime = show.EndTime;
                 sh.CinemaHallId = show.CinemaHallId;
                 sh.MovieId = show.MovieId;
-                sh.ShowSeats = (ICollection<ShowSeat>)show.ShowSeats;
                 s.Add(sh);
 
             }
