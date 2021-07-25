@@ -16,6 +16,5 @@ namespace OnlineMovieBooking.Domain.Repository
         void Delete(int id);
         List<Payment> GetAll();
         List<Payment> GetByUserId(int id);
-        List<Payment> GetByShowId(int id);
     }
 }

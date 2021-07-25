@@ -20,23 +20,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.PaymentService.Payment
         }
 
 
-        public List<Payment> GetByShowId(int id)
-        {
-            List<DTO.Payment> dps = new List<Payment>();
-            List<Repository.Entities.Payment> rps = pr.GetByShowId(id);
-            foreach (var rp in rps)
-            {
-                DTO.Payment dp = new Payment();
-                dp.PaymentId = rp.PaymentId;
-                dp.Amount = rp.Amount;
-                dp.Time = rp.Time;
-                dp.UserId = rp.UserId;
-                dp.ShowId = rp.ShowId;
-                dp.MovieId=rp.MovieId;
-                dps.Add(dp);
-            }
-            return dps;
-        }
 
 
         public List<Payment> GetByUserId(int id)
@@ -50,7 +33,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.PaymentService.Payment
                 dp.Amount = rp.Amount;
                 dp.Time = rp.Time;
                 dp.UserId = rp.UserId;
-                dp.ShowId = rp.ShowId;
                 dp.MovieId = rp.MovieId;
                 dps.Add(dp);
             }
@@ -67,7 +49,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.PaymentService.Payment
                 dp.Amount = rp.Amount;
                 dp.Time = rp.Time;
                 dp.UserId = rp.UserId;
-                dp.ShowId = rp.ShowId;
                 dp.MovieId = rp.MovieId;
                 dps.Add(dp);
             }

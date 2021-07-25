@@ -50,10 +50,6 @@ namespace OnlineMovieBooking.Domain.Repository
             return db.Payments.Where(m => m.UserId == id).ToList();
         }
 
-        public List<Payment> GetByShowId(int id)
-        {
-            return db.Payments.Where(m => m.ShowId == id).ToList();
-        }
         public List<Payment> GetByMovieId(int id)
         {
             return db.Payments.Where(m => m.MovieId == id).ToList();

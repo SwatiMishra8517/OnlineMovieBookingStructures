@@ -27,7 +27,6 @@ namespace OnlineMovieBooking.Domain.Services.PaymentService
                 Amount = payment.Amount,
                 Time = payment.Time,
                 UserId = payment.UserId,
-                ShowId = payment.ShowId,
                 MovieId = payment.MovieId
             };
             pr.Add(p);
@@ -48,7 +47,6 @@ namespace OnlineMovieBooking.Domain.Services.PaymentService
             p.Amount = payment.Amount;
             p.Time = payment.Time;
             p.UserId = payment.UserId;
-            p.ShowId = payment.ShowId;
             p.MovieId = payment.MovieId;
             pr.Update(id, p);
         }

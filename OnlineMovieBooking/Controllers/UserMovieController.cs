@@ -52,7 +52,7 @@ namespace OnlineMovieBooking.Controllers
                 ReleaseDate = movie.ReleaseDate,
 
             };
-            return View(movie);
+            return View(m);
         }
         public ActionResult FeedBack(int? id)
         {
@@ -62,7 +62,6 @@ namespace OnlineMovieBooking.Controllers
             {
                 FeedbackViewModel df = new FeedbackViewModel();
                 df.FeedbackId = f.FeedbackId;
-                df.Rating = f.Rating;
                 df.Review = f.Review;
                 df.UserId = f.UserId;
                 df.MovieId = f.MovieId;
@@ -82,7 +81,6 @@ namespace OnlineMovieBooking.Controllers
                 FeedbackModel f = new FeedbackModel
                 {
                     FeedbackId = feedback.FeedbackId,
-                    Rating = feedback.Rating,
                     Review = feedback.Review,
                     UserId = feedback.UserId,
                     MovieId = feedback.MovieId,

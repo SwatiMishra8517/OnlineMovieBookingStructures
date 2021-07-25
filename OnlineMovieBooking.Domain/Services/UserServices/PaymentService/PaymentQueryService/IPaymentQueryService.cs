@@ -11,7 +11,6 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.PaymentService.Payment
     interface IPaymentQueryService
     {
         List<Payment> GetByUserId(int id);
-        List<Payment> GetByShowId(int id);
         Payment GetById(int id);
     }
 }
