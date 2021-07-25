@@ -52,7 +52,7 @@ namespace OnlineMovieBooking.Controllers
                 ReleaseDate = movie.ReleaseDate,
 
             };
-            return View(movie);
+            return View(m);
         }
         public ActionResult FeedBack(int? id)
         {

@@ -293,6 +293,7 @@
     <Content Include="Views\Movie\MovieInfo.cshtml" />
     <Content Include="Views\Shared\PartialAdminPanel.cshtml" />
     <Content Include="Views\Movie\Index.cshtml" />
+    <Content Include="Views\Movie\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
