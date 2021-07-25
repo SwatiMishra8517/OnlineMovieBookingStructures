@@ -280,14 +280,10 @@
     <Content Include="Views\Feedbacks\Delete.cshtml" />
     <Content Include="Views\Feedbacks\Details.cshtml" />
     <Content Include="Views\Feedbacks\Index.cshtml" />
-    <Content Include="Views\UserMovieSelection\SelectCinemaByCity.cshtml" />
-    <Content Include="Views\UserMovieSelection\SelectCity.cshtml" />
-    <Content Include="Views\UserMovieSelection\SelectShowByCinema.cshtml" />
-    <Content Include="Views\UserMovieSelection\SelectShowByMovie.cshtml" />
     <Content Include="Views\UserInterface\Index.cshtml" />
     <Content Include="Views\UserMovie\Index.cshtml" />
     <Content Include="Views\UserMovie\Details.cshtml" />
-    <Content Include="Views\UserMovie\FeedBack.cshtml" />
+    <Content Include="Views\Movie\FeedBack.cshtml" />
     <Content Include="Views\UserMovie\AddFeedBack.cshtml" />
     <Content Include="Views\UserLogin\Login.cshtml" />
     <Content Include="Views\UserLogin\SignUp.cshtml" />
@@ -297,12 +293,12 @@
     <Content Include="Views\Movie\Details.cshtml" />
     <Content Include="Views\Shared\_MovieLayout.cshtml" />
     <Content Include="Views\UserMovieSelection\SelectShowByCinemaHall.cshtml" />
+    <Content Include="Views\UserMovieSelection\SelectShowByMovie.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\Movies\" />
     <Folder Include="Views\Default\" />
-    <Folder Include="Views\User_Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
