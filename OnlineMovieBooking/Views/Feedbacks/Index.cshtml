@@ -1,9 +1,9 @@
-﻿@model IEnumerable<OnlineMovieBooking.Models.Feedback>
+﻿@model IEnumerable<OnlineMovieBooking.ViewModels.FeedbackViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
-
+@Html.Partial("PartialAdminPanel")
 <h2>Feedback List</h2>
 
 <table class="table">
@@ -15,33 +15,28 @@
             @Html.DisplayNameFor(model => model.User.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Rating)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Review)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Movie.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rating)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Review)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id=item.FeedbackId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.FeedbackId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Movie.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Review)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.FeedbackId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.FeedbackId })
+            </td>
+        </tr>
+    }
 
 </table>

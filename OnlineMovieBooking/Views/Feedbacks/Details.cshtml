@@ -1,9 +1,9 @@
-﻿@model OnlineMovieBooking.Models.Feedback
+﻿@model OnlineMovieBooking.ViewModels.FeedbackViewModel
 
 @{
     ViewBag.Title = "Details";
 }
-
+@Html.Partial("PartialAdminPanel")
 <h2>Details</h2>
 
 <div>
@@ -24,14 +24,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.User.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Rating)
         </dd>
 
         <dt>

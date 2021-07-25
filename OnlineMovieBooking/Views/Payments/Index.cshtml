@@ -1,9 +1,9 @@
-﻿@model IEnumerable<OnlineMovieBooking.Models.Payment>
+﻿@model IEnumerable<OnlineMovieBooking.ViewModels.PaymentViewModel>
 
 @{
     ViewBag.Title = "Index";
 }
-
+@Html.Partial("PartialAdminPanel")
 <h2>Payment List</h2>
 
 <p>
@@ -12,52 +12,47 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Booking.Status)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Amount)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Time)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DiscountCouponId)
+            @Html.DisplayNameFor(model => model.User.Username)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RemoteTransactionId)
+            @Html.DisplayNameFor(model => model.Show.ShowId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PaymentMethod)
+            @Html.DisplayNameFor(model => model.Movie.Name)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Booking.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Time)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DiscountCouponId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RemoteTransactionId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PaymentMethod)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PaymentId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PaymentId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PaymentId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Username)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Show.ShowId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Movie.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PaymentId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PaymentId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PaymentId })
+            </td>
+        </tr>
+    }
 
 </table>

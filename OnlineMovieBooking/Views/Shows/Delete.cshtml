@@ -1,9 +1,9 @@
-﻿@model OnlineMovieBooking.Models.Show
+﻿@model OnlineMovieBooking.ViewModels.ShowViewModel
 
 @{
     ViewBag.Title = "Delete";
 }
-
+@Html.Partial("PartialAdminPanel")
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this show?</h3>
@@ -52,7 +52,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

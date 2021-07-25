@@ -1,22 +1,15 @@
-﻿@model OnlineMovieBooking.Models.Payment
+﻿@model OnlineMovieBooking.ViewModels.PaymentViewModel
 
 @{
     ViewBag.Title = "Details";
 }
-
+@Html.Partial("PartialAdminPanel")
 <h2>Details</h2>
 
 <div>
     <h4>Payment</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Booking.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Booking.Status)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Amount)
@@ -35,27 +28,27 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DiscountCouponId)
+            @Html.DisplayNameFor(model => model.User.Username)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DiscountCouponId)
+            @Html.DisplayFor(model => model.User.Username)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.RemoteTransactionId)
+            @Html.DisplayNameFor(model => model.Show.ShowId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RemoteTransactionId)
+            @Html.DisplayFor(model => model.Show.ShowId)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PaymentMethod)
+            @Html.DisplayNameFor(model => model.Movie.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PaymentMethod)
+            @Html.DisplayFor(model => model.Movie.Name)
         </dd>
 
     </dl>
