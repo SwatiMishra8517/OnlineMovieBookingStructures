@@ -1,0 +1,154 @@
+﻿
+@{
+    ViewBag.Title = "_MovieLayout";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <style>
+        header {
+            background-color: #3c2b2b;
+            padding: 10px;
+            text-align: left;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            margin-top: -50px;
+        }
+
+        .input-search {
+            background-color: transparent;
+            color: rgb(218, 194, 194);
+            outline: none;
+            width: 30%;
+            border-radius: 30px;
+            margin: 15px 15px;
+            margin-left: 90px;
+            padding-left: 20px;
+            border: 2px solid rgb(221, 193, 193);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .dropdown-nav {
+            background-color: transparent;
+            color: rgb(202, 185, 185);
+            outline: none;
+            border: 0px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin-left: 20px;
+        }
+
+        .button-signin {
+            margin: 15px 15px;
+            margin-left: 20%;
+            border: none;
+            background-color: chartreuse;
+            color: black;
+            padding: 15px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            transition-duration: 0.4s;
+            border-radius: 5px;
+        }
+
+        .button-signin1:hover {
+            background-color: #008CBA;
+            color: white;
+        }
+
+        .button-profile {
+            background-color: transparent;
+            outline: none;
+            border: none;
+            color: white;
+            margin-left: 20px;
+        }
+
+        .button-icon {
+            font-size: 24px;
+            color: rgb(202, 185, 185);
+        }
+
+        .button-profile1:hover {
+            background-color: transparent;
+            color: cornflowerblue;
+        }
+
+        .img1 {
+            height: 75px;
+            width: 260px;
+            padding-left: 50px;
+        }
+
+        nav {
+            padding: 8px;
+            background-color: gray;
+            display: flex;
+            flex: auto;
+            font-family: 'Courier New', Courier, monospace;
+            color: black;
+        }
+
+        .button-nav {
+            border: 0;
+            padding-right: 30px;
+            background-color: transparent;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <header>
+
+
+        <img src="~/Views/Shared/TMBLogo2 (2).png" />
+        <input type="text" placeholder="Search for Movies" class="input-search">
+        <select name="City" id="city" class="dropdown-nav">
+            <option value="">Choose your city</option>
+            <option value="">A</option>
+            <option value="">B</option>
+            <option value="">C</option>
+            <option value="">D</option>
+            <option value="">E</option>
+            <option value="">F</option>
+            <option value="">G</option>
+            <option value="">H</option>
+            <option value="">I</option>
+        </select>
+        <button class="button-signin button-signin1">Sign in</button>
+        <button class="button-profile "><i class='far fa-user-circle button-icon button-profile1'></i></button>
+    </header>
+    <nav>
+        <button class="button-nav">Movies</button>
+        <button class="button-nav">Streams</button>
+        <button class="button-nav">Plays</button>
+        <button class="button-nav">Events</button>
+        <button class="button-nav">Sports</button>
+
+
+    </nav>
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p style="text-align:center">Created by Pod group 2.</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+
+</body>
+</html>
+
