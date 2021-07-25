@@ -16,30 +16,7 @@ namespace OnlineMovieBooking.Controllers
         private MovieControllerService mcs = new MovieControllerService();
         private CinemaHallControllerService ccs = new CinemaHallControllerService();
         // GET: UserMovieSelection
-        public ActionResult SelectShowByMovie()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult SelectShowByMovie(int movieId)
-        {
-            List<ShowViewModel> shows = new List<ShowViewModel>();
-            List<ShowModel> sms = scs.GetByMovieId(movieId);
-            foreach (var show in sms)
-            {
-                ShowViewModel s = new ShowViewModel
-                {
-                    ShowId = show.ShowId,
-                    Date = show.Date,
-                    StartTime = show.StartTime,
-                    EndTime = show.EndTime,
-                    CinemaHallId = show.CinemaHallId,
-                    MovieId = show.MovieId
-                };
-                shows.Add(s);
-            }
-            return View(shows);
-        }
+        
         public ActionResult CinemaHall()
         {
             var cinemas = ccs.GetAll();
@@ -55,7 +32,10 @@ namespace OnlineMovieBooking.Controllers
             }
             return View(cList);
         }
-
+        public ActionResult SelectShowByCinemaHall()
+        {
+            return View();
+        }
         [HttpPost]
         public ActionResult SelectShowByCinemaHall(int id)
         {
