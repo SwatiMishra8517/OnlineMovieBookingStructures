@@ -99,7 +99,7 @@ namespace OnlineMovieBooking.Controllers
                     ModelState.AddModelError("", "User already Exists");
                     return View();
                 }
-                ucs.Add(userDetail);
+                ucs.Add(u);
                 return RedirectToAction("Login");
             }
 

@@ -17,9 +17,6 @@ namespace OnlineMovieBooking.Domain.DTO
 
         public virtual ICollection<Payment> Payments { get; set; }
 
-        public static explicit operator User(Repository.Entities.User v)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

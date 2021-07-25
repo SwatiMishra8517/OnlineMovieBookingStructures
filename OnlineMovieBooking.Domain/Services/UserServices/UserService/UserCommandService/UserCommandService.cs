@@ -16,6 +16,7 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.UserService.UserComman
         {
             Repository.Entities.User u = new Repository.Entities.User();
             u.UserId = user.UserId;
+            u.Name = user.Name;
             u.Username = user.Username;
             u.Email = user.Email;
             u.MobileNo = user.MobileNo;

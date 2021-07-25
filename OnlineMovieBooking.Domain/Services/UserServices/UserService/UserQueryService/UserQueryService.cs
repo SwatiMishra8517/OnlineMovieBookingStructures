@@ -14,19 +14,46 @@ namespace OnlineMovieBooking.Domain.Services.UserServices.UserService.UserQueryS
         public User GetByEmail(string email)
         {
             Repository.Entities.User user = ur.GetByEmail(email);
-            return (User)user;
+            User u = new User
+            {
+                UserId = user.UserId,
+                Name = user.Name,
+                Username = user.Username,
+                Email = user.Email,
+                Password = user.Password,
+                MobileNo = user.MobileNo,
+            };
+            return u;
         }
 
         public User GetById(int id)
         {
             Repository.Entities.User user = ur.GetById(id);
-            return (User)user;
+            User u = new User
+            {
+                UserId = user.UserId,
+                Name = user.Name,
+                Username = user.Username,
+                Email = user.Email,
+                Password = user.Password,
+                MobileNo = user.MobileNo,
+            };
+            return u;
         }
 
         public User GetByUserName(string username)
         {
             Repository.Entities.User user = ur.GetByUserName(username);
-            return (User)user;
+            User u = new User
+            {
+                UserId = user.UserId,
+                Name = user.Name,
+                Username = user.Username,
+                Email = user.Email,
+                Password = user.Password,
+                MobileNo = user.MobileNo,
+            };
+            return u;
         }
     }
 }
