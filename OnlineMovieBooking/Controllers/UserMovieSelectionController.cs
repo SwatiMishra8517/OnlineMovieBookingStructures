@@ -32,11 +32,7 @@ namespace OnlineMovieBooking.Controllers
             }
             return View(cList);
         }
-        public ActionResult SelectShowByCinemaHall()
-        {
-            return View();
-        }
-        [HttpPost]
+
         public ActionResult SelectShowByCinemaHall(int id)
         {
             List<ShowViewModel> shows = new List<ShowViewModel>();

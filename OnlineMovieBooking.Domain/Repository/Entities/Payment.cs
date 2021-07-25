@@ -22,6 +22,6 @@ namespace OnlineMovieBooking.Domain.Repository.Entities
 
         public virtual Movie Movie { get; set; }
         public virtual User User { get; set; }
-        public virtual ICollection<ShowSeat> ShowSeats { get; set; }
+        
     }
 }

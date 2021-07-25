@@ -68,6 +68,10 @@
     <Compile Include="Migrations\202107250713264_mov1.designer.cs">
       <DependentUpon>202107250713264_mov1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107251334069_RemovedDependencies.cs" />
+    <Compile Include="Migrations\202107251334069_RemovedDependencies.designer.cs">
+      <DependentUpon>202107251334069_RemovedDependencies.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CinemaHallRepository.cs" />
@@ -148,6 +152,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202107250713264_mov1.resx">
       <DependentUpon>202107250713264_mov1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107251334069_RemovedDependencies.resx">
+      <DependentUpon>202107251334069_RemovedDependencies.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

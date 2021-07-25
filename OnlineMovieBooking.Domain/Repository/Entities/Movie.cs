@@ -33,6 +33,6 @@ namespace OnlineMovieBooking.Domain.Repository.Entities
         [Required(ErrorMessage = "Please enter the date")]
         public Nullable<DateTime> ReleaseDate { get; set; }
 
-        public virtual ICollection<Show> Shows { get; set; }
+        
     }
 }
