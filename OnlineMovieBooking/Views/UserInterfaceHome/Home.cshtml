@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_MovieLayout.cshtml";
+}
+
+<style>
+    h1 {
+        back-ground color: #E27D60;
+        font-family: 'Helvetica Neue', sans-serif;
+        font-size: 25px;
+        font-weight: bold;
+        letter-spacing: -1px;
+        line-height: 2;
+        text-align: center;
+    }
+</style>
+<div class="h1">
+    <h1 style="background-color:#55BCC9" id="h1">
+        Welcome to Movie Box
+    </h1>
+</div>
+<div>
+    <div>
+        @Html.ActionLink("Movies", "Index","Movie")
+    </div>
+    <div>
+        @Html.ActionLink("CinemaHalls", "CinemaHall", "UserMovieSelection")
+    </div>
+</div>
+
+
+

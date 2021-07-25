@@ -105,7 +105,7 @@
 </head>
 <body>
     <header>
-        
+
 
         <img src="~/Views/Shared/TMBLogo2 (2).png" />
         <input type="text" placeholder="Search for Movies" class="input-search">
@@ -121,7 +121,10 @@
             <option value="">H</option>
             <option value="">I</option>
         </select>
-        <button class="button-signin button-signin1">Sign in</button>
+        <% using(Html.BeginForm("actionName", "controllerName")) { %>
+        <input class="button-signin button-signin1" type="submit" value="Sign Out" />
+        <% } %>
+        
         <button class="button-profile "><i class='far fa-user-circle button-icon button-profile1'></i></button>
     </header>
     <nav>

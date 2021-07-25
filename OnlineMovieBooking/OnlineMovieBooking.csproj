@@ -164,6 +164,7 @@
     <Compile Include="Controllers\PaymentsController.cs" />
     <Compile Include="Controllers\ShowsController.cs" />
     <Compile Include="Controllers\ShowSeatsController.cs" />
+    <Compile Include="Controllers\UserInterfaceHomeController.cs" />
     <Compile Include="Controllers\UserMovieController.cs" />
     <Compile Include="Controllers\UserMovieSelectionController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -310,6 +311,7 @@
     <Content Include="Views\UserMovieSelection\SelectShowByMovie.cshtml" />
     <Content Include="Views\UserMovieSelection\CinemaHall.cshtml" />
     <Content Include="Views\UserMovieSelection\SelectShowByCinemaHall.cshtml" />
+    <Content Include="Views\UserInterfaceHome\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

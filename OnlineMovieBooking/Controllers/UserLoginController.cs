@@ -41,7 +41,7 @@ namespace OnlineMovieBooking.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(u.Username, false);
 
-                    return RedirectToAction("Index", "UserInterface");
+                    return RedirectToAction("Index", "UserInterfaceHome");
                 }
 
 
@@ -93,13 +93,12 @@ namespace OnlineMovieBooking.Controllers
                     Password = user.Password
                 };
                 // user.Password = Encrypt(user.Password);
-                UserModel userDetail = ucs.GetByEmail(u.Email);
-                if (userDetail != null)
-                {
-                    ModelState.AddModelError("", "User already Exists");
-                    return View();
-                }
-                ucs.Add(u);
+                
+
+                    ucs.Add(u);
+                
+
+                
                 return RedirectToAction("Login");
             }
 
