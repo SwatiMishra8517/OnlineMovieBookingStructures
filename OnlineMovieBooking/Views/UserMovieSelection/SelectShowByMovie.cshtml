@@ -6,21 +6,16 @@
 }
 
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>SelectShowByMovie</title>
-</head>
-<body>
+
+
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CinemaHall.Name)
+                @Html.DisplayNameFor(model =>model.CinemaHallId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Movie.Name)
+                @Html.DisplayNameFor(model => model.MovieId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Date)
@@ -38,10 +33,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.CinemaHall.Name)
+                    @Html.DisplayFor(modelItem => item.CinemaHallId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Movie.Name)
+                    @Html.DisplayFor(modelItem => item.MovieId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Date)
@@ -61,5 +56,5 @@
         }
 
     </table>
-</body>
-</html>
+
+

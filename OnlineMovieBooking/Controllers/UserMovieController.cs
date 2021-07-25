@@ -40,6 +40,11 @@ namespace OnlineMovieBooking.Controllers
 
         public ActionResult Details(int id)
         {
+            ViewBag.address = "~/moviesimage/movie"+id+"/movie"+id+".jpg";
+            ViewBag.cast1 = "~/moviesimage/movie"+ id +"/cast/cast1.jpg";
+            ViewBag.cast2 = "~/moviesimage/movie" + id + "/cast/cast2.jpg";
+            ViewBag.cast3 ="~/moviesimage/movie" + id + "/cast/cast3.jpg";
+            ViewBag.cast4 = "~/moviesimage/movie" + id + "/cast/cast4.jpg";
             MovieModel movie = mcs.GetById(id);
             MovieViewModel m = new MovieViewModel
             {
