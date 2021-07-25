@@ -307,8 +307,9 @@
     <Content Include="Views\Movie\Index.cshtml" />
     <Content Include="Views\Movie\Details.cshtml" />
     <Content Include="Views\Shared\_MovieLayout.cshtml" />
-    <Content Include="Views\UserMovieSelection\SelectShowByCinemaHall.cshtml" />
     <Content Include="Views\UserMovieSelection\SelectShowByMovie.cshtml" />
+    <Content Include="Views\UserMovieSelection\CinemaHall.cshtml" />
+    <Content Include="Views\UserMovieSelection\SelectShowByCinemaHall.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

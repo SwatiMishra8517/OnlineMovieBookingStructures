@@ -1,0 +1,39 @@
+﻿@model IEnumerable<OnlineMovieBooking.ViewModels.CinemaHallViewModel>
+
+@{
+    ViewBag.Title = "SelectShowByCinemaHall";
+    Layout = "~/Views/Shared/_MovieLayout.cshtml";
+}
+
+<h2>SelectShowByCinemaHall</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CinemaHallId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CinemaHallId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Select", "SelectShowByCinemaHall", new { id = item.CinemaHallId }) |
+            </td>
+        </tr>
+    }
+
+</table>
