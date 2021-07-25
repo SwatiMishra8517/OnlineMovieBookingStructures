@@ -283,7 +283,6 @@
     <Content Include="Views\UserMovieSelection\SelectShowByCinema.cshtml" />
     <Content Include="Views\UserMovieSelection\SelectShowByMovie.cshtml" />
     <Content Include="Views\UserInterface\Index.cshtml" />
-    <Content Include="Views\UserFilter\Cities.cshtml" />
     <Content Include="Views\UserMovie\Index.cshtml" />
     <Content Include="Views\UserMovie\Details.cshtml" />
     <Content Include="Views\UserMovie\FeedBack.cshtml" />
