@@ -40,7 +40,7 @@ namespace OnlineMovieBooking.Controllers
             }
             return View(shows);
         }
-        public ActionResult SelectShowByCinemaHall()
+        public ActionResult CinemaHall()
         {
             var cinemas = ccs.GetAll();
             List<CinemaHallViewModel> cList = new List<CinemaHallViewModel>();
@@ -55,11 +55,15 @@ namespace OnlineMovieBooking.Controllers
             }
             return View(cList);
         }
+        public ActionResult SelectShowByCinemaHall()
+        {
+            return View();
+        }
         [HttpPost]
-        public ActionResult SelectShowByCinemaHall(int cinemaHallId)
+        public ActionResult SelectShowByCinemaHall(int id)
         {
             List<ShowViewModel> shows = new List<ShowViewModel>();
-            List<ShowModel> sms = scs.GetByCinemaHallId(cinemaHallId);
+            List<ShowModel> sms = scs.GetByCinemaHallId(id);
             foreach (var show in sms)
             {
                 ShowViewModel s = new ShowViewModel
@@ -75,5 +79,6 @@ namespace OnlineMovieBooking.Controllers
             }
             return View(shows);
         }
+
     }
 }

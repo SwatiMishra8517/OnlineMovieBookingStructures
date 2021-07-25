@@ -1,12 +1,64 @@
-﻿@model IEnumerable<OnlineMovieBooking.ViewModels.CinemaHallViewModel>
+﻿@model IEnumerable<OnlineMovieBooking.ViewModels.ShowViewModel>
 
 @{
-    ViewBag.Title = "Select CinemaHall";
+    ViewBag.Title = "SelectShowByCinemaHall";
+    Layout = "~/Views/Shared/_MovieLayout.cshtml";
 }
 
-<h2>Select Cinema Hall</h2>
+<h2>SelectShowByCinemaHall</h2>
 
-@foreach (var item in Model)
-{
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CinemaHallId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MovieId)
+        </th>
+        <th></th>
+    </tr>
 
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShowId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CinemaHallId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MovieId)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
 }
+
+</table>
