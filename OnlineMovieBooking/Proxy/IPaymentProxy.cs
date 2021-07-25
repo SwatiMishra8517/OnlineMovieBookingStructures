@@ -15,7 +15,6 @@ namespace OnlineMovieBooking.Proxy
         PaymentModel GetById(int id);
         List<PaymentModel> GetAll();
         List<PaymentModel> GetByUserId(int id);
-        List<PaymentModel> GetByShowId(int id);
         List<PaymentModel> GetByMovieId(int id);
     }
 }

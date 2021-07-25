@@ -89,23 +89,7 @@ namespace OnlineMovieBooking.Proxy
             pcs.Update(id, p);
 
         }
-        public List<PaymentModel> GetByShowId(int id)
-        {
-            List<PaymentModel> dps = new List<PaymentModel>();
-            List<OnlineMovieBooking.Domain.DTO.Payment> rps = ups.GetByShowId(id);
-            foreach (var rp in rps)
-            {
-                PaymentModel dp = new PaymentModel();
-                dp.PaymentId = rp.PaymentId;
-                dp.Amount = rp.Amount;
-                dp.Time = rp.Time;
-                dp.UserId = rp.UserId;
-                dp.ShowId = rp.ShowId;
-                dp.MovieId = rp.MovieId;
-                dps.Add(dp);
-            }
-            return dps;
-        }
+       
 
         public List<PaymentModel> GetByUserId(int id)
         {

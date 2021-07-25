@@ -292,6 +292,7 @@
     <Content Include="Views\UserLogin\SignUp.cshtml" />
     <Content Include="Views\Movie\MovieInfo.cshtml" />
     <Content Include="Views\Shared\PartialAdminPanel.cshtml" />
+    <Content Include="Views\Movie\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
