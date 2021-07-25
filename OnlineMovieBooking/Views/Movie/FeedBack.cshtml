@@ -1,0 +1,29 @@
+﻿@model IEnumerable<OnlineMovieBooking.ViewModels.FeedbackViewModel>
+
+@{
+    ViewBag.Title = "FeedBack";
+    Layout = "~/Views/Shared/_MovieLayout.cshtml";
+}
+
+<h2>FeedBack</h2>
+
+
+<p>image</p>
+<hr />
+
+<table>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.UserId)</td>
+            <td>@Html.DisplayFor(modelItem => item.Review)</td>
+        </tr>
+    }
+</table>
+
+
+<p>
+    @Html.ActionLink("Back to MovieInfo", "Index")
+    @Html.ActionLink("Add Review", "AddFeedBack")
+</p>
+

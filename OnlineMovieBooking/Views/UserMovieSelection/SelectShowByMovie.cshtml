@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<OnlineMovieBooking.ViewModels.ShowViewModel>
 
 @{
-    Layout = null;
+    ViewBag.Title = "SelectShowByMovie";
+    Layout = "~/Views/Shared/_MovieLayout.cshtml";
 }
+
 
 <!DOCTYPE html>
 
@@ -31,32 +33,33 @@
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CinemaHall.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Movie.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndTime)
-            </td>
-            <td>
-                
-                @Html.ActionLink("Select Seat", "SelectSeat", new { id=item.ShowId }) 
-               
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CinemaHall.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Movie.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndTime)
+                </td>
+                <td>
+
+                    @Html.ActionLink("Select Seat", "SelectSeat", new { id = item.ShowId })
+
+                </td>
+            </tr>
+        }
+
     </table>
 </body>
 </html>
