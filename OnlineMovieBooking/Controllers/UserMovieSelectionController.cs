@@ -98,7 +98,55 @@ namespace OnlineMovieBooking.Controllers
            
             return View(ums);
         }
-        
+        public ActionResult GetNonReserved()
+        {
+            List<ShowSeatModel> showSeats = sss.GetAll();
+            List<ShowSeatViewModel> ums = new List<ShowSeatViewModel>();
+
+
+            foreach (var showSeat in showSeats)
+            {
+                ShowSeatViewModel ss = new ShowSeatViewModel();
+                ss.ShowId = showSeat.ShowId;
+                ss.ShowSeatId = showSeat.ShowSeatId;
+                if (showSeat.Status != "R")
+                {
+                    ss.Status = false;
+                    ums.Add(ss);
+                }  
+            }
+
+
+            return View(ums);
+        }
+        public ActionResult SelectSeat(int id)
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Edit( ShowSeatViewModel showSeat)
+        {
+            if (ModelState.IsValid)
+            {
+                ShowSeatModel s = new ShowSeatModel();
+                s.ShowId = showSeat.ShowId;
+                s.ShowSeatId = showSeat.ShowSeatId;
+                if (showSeat.Status == true)
+                {
+                    s.Status = "R";
+                }
+                else
+                {
+                    s.Status = "N";
+                }
+                sss.Update(showSeat.ShowId, s);
+                return RedirectToAction("Index");
+            }
+            ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId", showSeat.ShowId);
+            return View(showSeat);
+        }
+
+
 
     }
 }

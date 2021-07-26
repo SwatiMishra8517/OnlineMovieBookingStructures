@@ -38,5 +38,9 @@ namespace OnlineMovieBooking.ControllerService
         {
             return showSeatProxy.GetStatus(id);
         }
+        public List<ShowSeatModel> GetNonReserved()
+        {
+            return showSeatProxy.GetNonReserved();
+        }
     }
 }

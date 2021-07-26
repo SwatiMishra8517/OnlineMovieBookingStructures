@@ -11,6 +11,7 @@ namespace OnlineMovieBooking.Proxy
     {
         private readonly ShowSeatCommandService sscs = new ShowSeatCommandService();
         private readonly ShowSeatQueryService ssqs = new ShowSeatQueryService();
+        private OnlineMovieBooking.Domain.Repository.ShowSeatRepository srs = new Domain.Repository.ShowSeatRepository();
         private readonly OnlineMovieBooking.Domain.Services.UserServices.ShowSeatService.ShowSeatQueryService.ShowSeatQueryService uss = new Domain.Services.UserServices.ShowSeatService.ShowSeatQueryService.ShowSeatQueryService();
         public ShowSeatProxy() { }
         public ShowSeatProxy(ShowSeatQueryService userQueryService, ShowSeatCommandService userCommandService, OnlineMovieBooking.Domain.Services.UserServices.ShowSeatService.ShowSeatQueryService.ShowSeatQueryService us)
@@ -96,6 +97,24 @@ namespace OnlineMovieBooking.Proxy
                 ShowId = showSeat.ShowId,
             };
             sscs.Update(id, ss);
+
+        }
+        public List<ShowSeatModel> GetNonReserved()
+        {
+
+            List<OnlineMovieBooking.Domain.Repository.Entities.ShowSeat> es = srs.GetNonReserved();
+            List<ShowSeatModel> ds = new List<ShowSeatModel>();
+            foreach (var res in es)
+            {
+                ShowSeatModel dts = new ShowSeatModel
+                {
+                    ShowSeatId = res.ShowSeatId,
+                    Status = res.Status,
+                    ShowId = res.ShowId,
+                };
+                ds.Add(dts);
+            }
+            return ds;
 
         }
     }
