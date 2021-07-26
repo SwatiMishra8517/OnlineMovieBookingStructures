@@ -12,9 +12,12 @@ namespace OnlineMovieBooking.ViewModels
         public ShowSeatViewModel() { }
         public int ShowSeatId { get; set; }
         [Required(ErrorMessage = "Please select the status")]
-        public string Status { get; set; }
+        public bool Status { get; set; }
         public int ShowId { get; set; }
 
         public virtual ShowViewModel Show { get; set; }
+
+        
     }
+    
 }
