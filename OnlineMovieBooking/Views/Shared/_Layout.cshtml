@@ -17,6 +17,15 @@
                 <ul class="nav navbar-nav navbar-right">
                     @if (User.Identity.IsAuthenticated && User.Identity.Name == "admin")
                     {
+                        <script type="text/javascript" language="javascript">
+    function DisableBackButton() {
+                                window.history.forward()
+                            }
+                            DisableBackButton();
+                            window.onload = DisableBackButton;
+                            window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+                            window.onunload = function () { void (0) }
+                        </script>
                         <li>@Html.ActionLink("SignOut", "SignOut", "UserLogin")</li>
                         <li><span class="navbar-text font-weight-bold ">Welcome @User.Identity.Name</span></li>
 
@@ -31,6 +40,15 @@
                     }
                     else
                     {
+                        <script type="text/javascript" language="javascript">
+                            function DisableBackButton() {
+                                window.history.forward()
+                            }
+                            DisableBackButton();
+                            window.onload = DisableBackButton;
+                            window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+                            window.onunload = function () { void (0) }
+                        </script>
                         <li>@Html.ActionLink("Movies", "", "Login")</li>
                         <li>@Html.ActionLink("Sign Up", "SignUp", "UserLogin")</li>
                         <li>@Html.ActionLink("Login", "Login", "UserLogin")</li>

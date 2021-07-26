@@ -139,7 +139,7 @@ namespace OnlineMovieBooking.Controllers
                 {
                     s.Status = "N";
                 }
-                sss.Update(showSeat.ShowId, s);
+                sss.Update(showSeat.ShowSeatId, s);
                 return RedirectToAction("Index");
             }
             ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId", showSeat.ShowId);
