@@ -12,7 +12,7 @@ using OnlineMovieBooking.ViewModels;
 
 namespace OnlineMovieBooking.Controllers
 {
-    [Authorize]
+    [Authorize(Users = "admin")]
     public class UsersController : Controller
     {
         private readonly UserControllerService ucs = new UserControllerService();

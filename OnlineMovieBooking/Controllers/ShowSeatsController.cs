@@ -12,7 +12,7 @@ using OnlineMovieBooking.ViewModels;
 
 namespace OnlineMovieBooking.Controllers
 {
-    [Authorize]
+    [Authorize(Users = "admin")]
     public class ShowSeatsController : Controller
     {
         private readonly ShowSeatControllerService sscs = new ShowSeatControllerService();
@@ -55,7 +55,18 @@ namespace OnlineMovieBooking.Controllers
             {
                 return HttpNotFound();
             }
-            return View(showSeat);
+            ShowSeatViewModel ss = new ShowSeatViewModel();
+            ss.ShowId = showSeat.ShowId;
+            ss.ShowSeatId = showSeat.ShowSeatId;
+            if (showSeat.Status == "R")
+            {
+                ss.Status = true;
+            }
+            else
+            {
+                ss.Status = false;
+            }
+            return View(ss);
         }
 
         // GET: ShowSeats/Create
@@ -109,7 +120,18 @@ namespace OnlineMovieBooking.Controllers
                 return HttpNotFound();
             }
             ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId", showSeat.ShowId);
-            return View(showSeat);
+            ShowSeatViewModel ss = new ShowSeatViewModel();
+            ss.ShowId = showSeat.ShowId;
+            ss.ShowSeatId = showSeat.ShowSeatId;
+            if (showSeat.Status == "R")
+            {
+                ss.Status = true;
+            }
+            else
+            {
+                ss.Status = false;
+            }
+            return View(ss);
         }
 
         // POST: ShowSeats/Edit/5
@@ -132,7 +154,7 @@ namespace OnlineMovieBooking.Controllers
                 {
                     s.Status = "N";
                 }
-                sscs.Update(showSeat.ShowId, s);
+                sscs.Update(showSeat.ShowSeatId, s);
                 return RedirectToAction("Index");
             }
             ViewBag.ShowId = new SelectList(scs.GetAll(), "ShowId", "ShowId", showSeat.ShowId);
