@@ -124,7 +124,7 @@ namespace OnlineMovieBooking.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Edit( ShowSeatViewModel showSeat)
+        public ActionResult SelectSeat( ShowSeatViewModel showSeat)
         {
             if (ModelState.IsValid)
             {

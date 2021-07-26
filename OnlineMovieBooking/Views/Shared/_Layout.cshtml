@@ -40,15 +40,6 @@
                     }
                     else
                     {
-                        <script type="text/javascript" language="javascript">
-                            function DisableBackButton() {
-                                window.history.forward()
-                            }
-                            DisableBackButton();
-                            window.onload = DisableBackButton;
-                            window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
-                            window.onunload = function () { void (0) }
-                        </script>
                         <li>@Html.ActionLink("Movies", "", "Login")</li>
                         <li>@Html.ActionLink("Sign Up", "SignUp", "UserLogin")</li>
                         <li>@Html.ActionLink("Login", "Login", "UserLogin")</li>
