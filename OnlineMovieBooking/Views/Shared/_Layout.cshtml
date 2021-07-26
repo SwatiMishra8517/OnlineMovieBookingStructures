@@ -18,7 +18,7 @@
                     @if (User.Identity.IsAuthenticated && User.Identity.Name == "admin")
                     {
                         <li>@Html.ActionLink("SignOut", "SignOut", "UserLogin")</li>
-                        <li><span class="navbar-text font-weight-bold ">Welcome @User.Identity.Name !</span></li>
+                        <li><span class="navbar-text font-weight-bold ">Welcome @User.Identity.Name</span></li>
 
                     }
                     else if (User.Identity.IsAuthenticated)
@@ -26,8 +26,8 @@
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
                         <li>@Html.ActionLink("About", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                        <li>@Html.ActionLink("SignOut", "SignOut")</li>
-                        <li><span class="navbar-text font-weight-bold ">Welcome @User.Identity.Name !</span></li>
+                        <li>@Html.ActionLink("SignOut", "SignOut", "UserLogin")</li>
+                        <li><span class="navbar-text font-weight-bold ">Welcome @User.Identity.Name</span></li>
                     }
                     else
                     {

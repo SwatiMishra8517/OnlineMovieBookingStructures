@@ -12,7 +12,7 @@ using OnlineMovieBooking.ViewModels;
 
 namespace OnlineMovieBooking.Controllers
 {
-
+    [AllowAnonymous]
     public class UserLoginController : Controller
     {
         private readonly UserControllerService ucs = new UserControllerService();
@@ -20,6 +20,14 @@ namespace OnlineMovieBooking.Controllers
         // GET: UserLogin
         public ActionResult Login()
         {
+            if (User.Identity.Name == "admin")
+            {
+                return RedirectToAction("Index", "Movies");
+            }
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Home", "Movie");
+            }
             return View();
         }
         [HttpPost]
@@ -71,6 +79,14 @@ namespace OnlineMovieBooking.Controllers
 
         public ActionResult SignUp()
         {
+            if (User.Identity.Name == "admin")
+            {
+                return RedirectToAction("Index", "Movies");
+            }
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Home", "Movie");
+            }
             return View();
         }
         [HttpPost]
@@ -98,13 +114,21 @@ namespace OnlineMovieBooking.Controllers
         }
         public ActionResult Admin()
         {
-
+            if (User.Identity.Name == "admin")
+            {
+                return RedirectToAction("Index", "Movies");
+            }
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Home", "Movie");
+            }
             return View();
         }
 
         [HttpPost]
         public ActionResult Admin(UserLoginViewModel user)
         {
+
             if (user.Username == "admin" && user.Password == "Admin@123")
             {
                 FormsAuthentication.SetAuthCookie(user.Username, false);
@@ -117,6 +141,12 @@ namespace OnlineMovieBooking.Controllers
                 return View();
             }
 
+        }
+        [Authorize]
+        public ActionResult SignOut()
+        {
+            FormsAuthentication.SignOut();
+            return Redirect("/UserLogin/Login");
         }
     }
 }
