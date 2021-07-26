@@ -3,6 +3,16 @@
 @{
     ViewBag.Title = "Delete";
 }
+<script>
+    function show() {
+        var x = document.getElementById("pass");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
 @Html.Partial("PartialAdminPanel")
 <h2>Delete User - @Model.Username</h2>
 
@@ -47,7 +57,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Password)
+            <span style="display: none" id="pass">@Model.Password</span>
+            <input type="checkbox" onclick="show()" /> Show Password
         </dd>
 
     </dl>

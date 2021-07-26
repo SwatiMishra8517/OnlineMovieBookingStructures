@@ -3,16 +3,6 @@
 @{
     ViewBag.Title = "Index";
 }
-<script>
-    function myFunction(id) {
-        var x = document.getElementById(id);
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-        }
-    }
-</script>
 @Html.Partial("PartialAdminPanel")
 <h2>Users List</h2>
 
@@ -33,10 +23,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>
-        <th></th>
+        <th>Operations</th>
     </tr>
 
     @foreach (var item in Model)
@@ -55,10 +42,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                <span id=pass>@Html.DisplayFor(modelItem => item.Password)</span>
-                
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |

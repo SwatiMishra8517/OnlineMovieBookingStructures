@@ -3,7 +3,16 @@
 @{
     ViewBag.Title = "Edit";
 }
-
+<script>
+    function showPass() {
+        var x = document.getElementById("pass");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
 @Html.Partial("PartialAdminPanel") 
 <h2>Edit User @Model.Username</h2>
 
@@ -52,7 +61,9 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" }, Value = Model.Password})*@
+                <input type="password" value="@Model.Password" class="form-control" id="pass"/>
+                <input type="checkbox" onclick="showPass()" /> Show Password
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>

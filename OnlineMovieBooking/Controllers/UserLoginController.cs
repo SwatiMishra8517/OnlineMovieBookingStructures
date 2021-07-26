@@ -26,7 +26,7 @@ namespace OnlineMovieBooking.Controllers
             }
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Home", "Movie");
+                return RedirectToAction("Index", "Movie");
             }
             return View();
         }
@@ -39,17 +39,12 @@ namespace OnlineMovieBooking.Controllers
             if (ModelState.IsValid)
             {
 
-                UserModel u = new UserModel
-                {
-                    Username = user.Username,
-                    Password = user.Password,
-                };
-                UserModel userDetail = ucs.GetByUserName(u.Username);
+                UserModel userDetail = ucs.GetByUserName(user.Username);
                 if (userDetail != null)
                 {
-                    FormsAuthentication.SetAuthCookie(u.Username, false);
+                    FormsAuthentication.SetAuthCookie(user.Username, false);
 
-                    return RedirectToAction("Home", "UserInterfaceHome");
+                    return RedirectToAction("Index", "Movie");
                 }
                 else
                 {
@@ -85,7 +80,7 @@ namespace OnlineMovieBooking.Controllers
             }
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Home", "Movie");
+                return RedirectToAction("Index", "Movie");
             }
             return View();
         }
@@ -120,7 +115,7 @@ namespace OnlineMovieBooking.Controllers
             }
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Home", "Movie");
+                return RedirectToAction("Index", "Movie");
             }
             return View();
         }
