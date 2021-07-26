@@ -39,9 +39,9 @@ namespace OnlineMovieBooking.Models
 
         public virtual ICollection<PaymentModel> Payments { get; set; }
 
-        public static explicit operator UserModel(User v)
-        {
-            throw new NotImplementedException();
-        }
+        //public static explicit operator UserModel(User v)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
