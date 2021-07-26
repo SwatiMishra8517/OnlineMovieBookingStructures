@@ -124,7 +124,10 @@
         <% using(Html.BeginForm("actionName", "controllerName")) { %>
         <input class="button-signin button-signin1" type="submit" value="Sign Out" />
         <% } %>
-        
+        <ul>
+            <li>@Html.ActionLink("SignOut", "SignOut")</li>
+        </ul>
+
         <button class="button-profile "><i class='far fa-user-circle button-icon button-profile1'></i></button>
     </header>
     <nav>
