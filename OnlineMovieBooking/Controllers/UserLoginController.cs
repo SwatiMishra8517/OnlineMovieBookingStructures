@@ -41,14 +41,13 @@ namespace OnlineMovieBooking.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(u.Username, false);
 
-                    return RedirectToAction("Index", "UserInterfaceHome");
+                    return RedirectToAction("Home", "UserInterfaceHome");
                 }
-
 
 
                 else
                 {
-                    ModelState.AddModelError("", "User doesn't Exists");
+                    ViewBag.message = "User not found";
                     return View();
                 }
             }
