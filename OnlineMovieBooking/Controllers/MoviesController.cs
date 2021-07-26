@@ -12,6 +12,7 @@ using OnlineMovieBooking.Models;
 
 namespace OnlineMovieBooking.Controllers
 {
+    [Authorize(Users = "admin")]
     public class MoviesController : Controller
     {
         private MovieControllerService mcs = new MovieControllerService();

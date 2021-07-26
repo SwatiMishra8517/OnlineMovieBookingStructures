@@ -62,7 +62,16 @@ namespace OnlineMovieBooking.Proxy
         public UserModel GetByEmail(string email)
         {
             OnlineMovieBooking.Domain.DTO.User user = uss.GetByEmail(email);
-            return (UserModel)user;
+            UserModel u = new UserModel
+            {
+                UserId = user.UserId,
+                Username = user.Username,
+                Name = user.Name,
+                MobileNo = user.MobileNo,
+                Email = user.Email,
+                Password = user.Password
+            };
+            return u;
         }
 
         public UserModel GetById(int id)
@@ -83,7 +92,16 @@ namespace OnlineMovieBooking.Proxy
         public UserModel GetByUserName(string username)
         {
             OnlineMovieBooking.Domain.DTO.User user = uss.GetByUserName(username);
-            return (UserModel)user;
+            UserModel u = new UserModel
+            {
+                UserId = user.UserId,
+                Username = user.Username,
+                Name = user.Name,
+                MobileNo = user.MobileNo,
+                Email = user.Email,
+                Password = user.Password
+            };
+            return u;
         }
 
         public void Update(int id, UserModel user)
