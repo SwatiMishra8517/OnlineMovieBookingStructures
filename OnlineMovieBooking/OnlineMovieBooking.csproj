@@ -313,6 +313,7 @@
     <Content Include="Views\UserMovieSelection\SelectShowByCinemaHall.cshtml" />
     <Content Include="Views\UserInterfaceHome\Home.cshtml" />
     <Content Include="Views\UserMovieSelection\SelectSeatByShow.cshtml" />
+    <Content Include="Views\UserLogin\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,6 +12,7 @@ using OnlineMovieBooking.ViewModels;
 
 namespace OnlineMovieBooking.Controllers
 {
+    [Authorize]
     public class ShowSeatsController : Controller
     {
         private readonly ShowSeatControllerService sscs = new ShowSeatControllerService();

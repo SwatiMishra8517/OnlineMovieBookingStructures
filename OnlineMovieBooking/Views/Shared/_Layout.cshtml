@@ -23,11 +23,17 @@
                         <li>@Html.ActionLink("SignOut", "SignOut")</li>
                         <li><span class="navbar-text font-weight-bold ">Welcome @User.Identity.Name !</span></li>
                     }
+                    else if (User.Identity.Name == "admin")
+                    {
+                        <li>@Html.ActionLink("SignOut", "SignOut", "UserLogin")</li>
+                        <li><span class="navbar-text font-weight-bold ">Welcome @User.Identity.Name !</span></li>
+                    }
                     else
                     {
                         <li>@Html.ActionLink("Movies", "", "Login")</li>
                         <li>@Html.ActionLink("Sign Up", "SignUp", "UserLogin")</li>
                         <li>@Html.ActionLink("Login", "Login", "UserLogin")</li>
+                        <li>@Html.ActionLink("Admin", "Admin", "UserLogin")</li>
                     }
                 </ul>
             </div>

@@ -12,6 +12,7 @@ using OnlineMovieBooking.Models;
 
 namespace OnlineMovieBooking.Controllers
 {
+    [Authorize]
     public class PaymentsController : Controller
     {
         private PaymentControllerService pcs = new PaymentControllerService();

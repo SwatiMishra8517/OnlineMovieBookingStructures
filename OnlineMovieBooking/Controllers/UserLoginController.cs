@@ -41,7 +41,7 @@ namespace OnlineMovieBooking.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(u.Username, false);
 
-                    return RedirectToAction("Index", "UserInterfaceHome");
+                    return RedirectToAction("Home", "UserInterfaceHome");
                 }
                 else
                 {
@@ -90,16 +90,33 @@ namespace OnlineMovieBooking.Controllers
                     Password = user.Password
                 };
                 // user.Password = Encrypt(user.Password);
-                
-
                     ucs.Add(u);
-                
-
-                
                 return RedirectToAction("Login");
             }
 
             return View();
+        }
+        public ActionResult Admin()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Admin(UserLoginViewModel user)
+        {
+            if (user.Username == "admin" && user.Password == "Admin@123")
+            {
+                FormsAuthentication.SetAuthCookie(user.Username, false);
+                //change the parameters
+                return RedirectToAction("Index", "Movies");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Admin credentials are incorrect");
+                return View();
+            }
+
         }
     }
 }
