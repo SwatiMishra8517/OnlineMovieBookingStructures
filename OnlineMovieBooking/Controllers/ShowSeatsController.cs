@@ -24,13 +24,19 @@ namespace OnlineMovieBooking.Controllers
             List<ShowSeatViewModel> sList = new List<ShowSeatViewModel>();
             foreach (var showSeat in ssms)
             {
-                ShowSeatViewModel s = new ShowSeatViewModel
+                ShowSeatViewModel ss = new ShowSeatViewModel();
+                ss.ShowId = showSeat.ShowId;
+                ss.ShowSeatId = showSeat.ShowSeatId;
+                if (showSeat.Status == "R")
                 {
-                    ShowSeatId = showSeat.ShowSeatId,
-                    Status = showSeat.Status,
-                    ShowId = showSeat.ShowId,
-                };
-                sList.Add(s);
+                    ss.Status = true;
+                }
+                else
+                {
+                    ss.Status = false;
+                }
+
+                sList.Add(ss);
             }
 
             return View(sList); 
@@ -66,14 +72,21 @@ namespace OnlineMovieBooking.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ShowSeatId,Status,Price,CinemaSeatId,ShowId,BookingId")] ShowSeatViewModel showSeat)
         {
+
             if (ModelState.IsValid)
             {
-                ShowSeatModel s = new ShowSeatModel
+                ShowSeatModel s = new ShowSeatModel();
+                s.ShowId = showSeat.ShowId;
+                s.ShowSeatId = showSeat.ShowSeatId;
+                if (showSeat.Status == true)
                 {
-                    ShowSeatId = showSeat.ShowSeatId,
-                    Status = showSeat.Status,
-                    ShowId = showSeat.ShowId,
-                };
+                    s.Status = "R";
+                }
+                else
+                {
+                    s.Status = "N";
+                }
+                
                 sscs.Add(s);
                 return RedirectToAction("Index");
             }
@@ -107,12 +120,17 @@ namespace OnlineMovieBooking.Controllers
         {
             if (ModelState.IsValid)
             {
-                ShowSeatModel s = new ShowSeatModel
+                ShowSeatModel s = new ShowSeatModel();
+                s.ShowId = showSeat.ShowId;
+                s.ShowSeatId = showSeat.ShowSeatId;
+                if (showSeat.Status == true)
                 {
-                    ShowSeatId = showSeat.ShowSeatId,
-                    Status = showSeat.Status,
-                    ShowId = showSeat.ShowId,
-                };
+                    s.Status = "R";
+                }
+                else
+                {
+                    s.Status = "N";
+                }
                 sscs.Update(showSeat.ShowId, s);
                 return RedirectToAction("Index");
             }

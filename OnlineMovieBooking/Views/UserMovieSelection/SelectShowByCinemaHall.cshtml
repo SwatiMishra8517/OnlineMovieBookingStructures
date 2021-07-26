@@ -54,9 +54,8 @@
             @Html.DisplayFor(modelItem => item.MovieId)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Select", "SelectSeatByShow", new { id=item.ShowId }) |
+            
         </td>
     </tr>
 }

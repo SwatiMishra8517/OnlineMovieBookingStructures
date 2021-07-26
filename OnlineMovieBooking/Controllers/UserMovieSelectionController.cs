@@ -15,6 +15,7 @@ namespace OnlineMovieBooking.Controllers
         private ShowControllerService scs = new ShowControllerService();
         private MovieControllerService mcs = new MovieControllerService();
         private CinemaHallControllerService ccs = new CinemaHallControllerService();
+        private ShowSeatControllerService sss = new ShowSeatControllerService();
         // GET: UserMovieSelection
 
         public ActionResult CinemaHall()
@@ -71,6 +72,33 @@ namespace OnlineMovieBooking.Controllers
             }
             return View(shows);
         }
+        public ActionResult SelectSeatByShow(int id)
+        {
+            List<ShowSeatModel> showSeats = sss.GetAll();
+            List<ShowSeatViewModel> ums = new List<ShowSeatViewModel>();
+
+
+            foreach (var showSeat in showSeats)
+            {
+                ShowSeatViewModel ss = new ShowSeatViewModel();
+                ss.ShowId =showSeat.ShowId;
+                ss.ShowSeatId = showSeat.ShowSeatId;
+                if(showSeat.Status=="R")
+                {
+                    ss.Status = true;
+                }
+                else
+                {
+                    ss.Status = false;
+                }
+                
+                ums.Add(ss);
+            }
+
+           
+            return View(ums);
+        }
+        
 
     }
 }
