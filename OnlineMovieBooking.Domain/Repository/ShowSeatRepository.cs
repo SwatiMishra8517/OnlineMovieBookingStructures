@@ -60,5 +60,9 @@ namespace OnlineMovieBooking.Domain.Repository
         {
             return db.ShowSeats.ToList();
         }
+        public List<ShowSeat> GetNonReserved()
+        {
+            return db.ShowSeats.Where(m => m.Status != "R").ToList();
+        }
     }
 }
