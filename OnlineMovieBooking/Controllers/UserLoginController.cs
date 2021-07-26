@@ -43,9 +43,6 @@ namespace OnlineMovieBooking.Controllers
 
                     return RedirectToAction("Index", "UserInterfaceHome");
                 }
-
-
-
                 else
                 {
                     ModelState.AddModelError("", "User doesn't Exists");

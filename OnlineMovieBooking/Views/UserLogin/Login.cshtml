@@ -2,6 +2,7 @@
 
 @{
     Layout = Layout;
+    ViewBag.Title = "Login";
 }
 
 <!DOCTYPE html>
@@ -31,7 +32,7 @@
             </div>
             <div class="form-group">
                 @Html.LabelFor(user => user.Password, new { @class = "text-white" })
-                @Html.TextBoxFor(user => user.Password, new { @class = "form-control" })
+                @Html.PasswordFor(user => user.Password, new { @class = "form-control" })
                 @Html.ValidationMessageFor(user => user.Password)
             </div>
             <div class="form-group">
