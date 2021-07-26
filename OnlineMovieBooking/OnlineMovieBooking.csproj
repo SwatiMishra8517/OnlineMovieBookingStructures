@@ -315,6 +315,7 @@
     <Content Include="Views\UserMovieSelection\SelectSeatByShow.cshtml" />
     <Content Include="Views\UserMovieSelection\GetNonReserved.cshtml" />
     <Content Include="Views\UserMovieSelection\SelectSeat.cshtml" />
+    <Content Include="Views\UserLogin\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

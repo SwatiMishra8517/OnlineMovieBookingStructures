@@ -12,6 +12,7 @@ using OnlineMovieBooking.Models;
 
 namespace OnlineMovieBooking.Controllers
 {
+    [Authorize(Users = "admin")]
     public class FeedbacksController : Controller
     {
         private FeedbackControllerService fcs = new FeedbackControllerService();
